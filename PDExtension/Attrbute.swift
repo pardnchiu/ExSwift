@@ -30,7 +30,7 @@ public struct sParagraph {
         self.key = key;
         
         switch key {
-        case .lineSpacing, .lineMinHeight, .paragraphSpacing:
+        case .lineSpacing, .lineMinHeight, .lineMaxHeight, .paragraphSpacing:
             self.value = CGFloat(truncating: (value as? NSNumber) ?? 0);
 //        case .lineMaxHeight: self.value = value as? CGFloat ?? CGFloat(vh);
         default            : self.value = value;
