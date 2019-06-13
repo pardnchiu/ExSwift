@@ -11,10 +11,10 @@ import Foundation
 public protocol simplify {}
 public extension simplify where Self: AnyObject {
     func set(_ block: (Self) throws -> Void) rethrows -> Self {
-        try block(self)
+        try block(self);
         return self
-    }
-}
+    };
+};
 extension NSObject: simplify {};
 extension CGPoint: simplify {};
 extension CGRect: simplify {};
