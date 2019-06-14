@@ -16,7 +16,7 @@ public extension simplify where Self: AnyObject {
     };
 };
 extension NSObject: simplify {};
-extension CGPoint: simplify {};
-extension CGRect: simplify {};
-extension CGSize: simplify {};
+extension CGPoint : simplify {};
+extension CGRect  : simplify {};
+extension CGSize  : simplify {};
 extension CGVector: simplify {};
