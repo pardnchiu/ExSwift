@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CommonCrypto/CommonDigest.h>
 
 //! Project version number for PDExtension.
 FOUNDATION_EXPORT double PDExtensionVersionNumber;
