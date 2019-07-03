@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+public struct PDSeparator {
+    public var color: UIColor?, left: CGFloat, right: CGFloat;
+    public init(_ color: UIColor?,_ left: CGFloat,_ right: CGFloat) {
+        self.color = color;
+        self.left  = left;
+        self.right = right;
+    };
+};
+
 public extension UITableView {
     
     func set(protocol delegate: UITableViewDelegate,_ dataSource: UITableViewDataSource) {
@@ -16,7 +25,7 @@ public extension UITableView {
         self.dataSource = dataSource;
     };
     
-    func set(separator style: UITableViewCell.SeparatorStyle,_ value: PD.separator?) {
+    func set(separator style: UITableViewCell.SeparatorStyle,_ value: PDSeparator?) {
         self.separatorStyle       = style;
         self.separatorColor       = value?.color
         self.separatorInset.left  = (value?.left ?? 0);
