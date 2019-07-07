@@ -191,9 +191,10 @@ public extension UIColor {
         var str: String = value.trimmingCharacters(in: .whitespaces).replace(["#":""]),
         rgb: UInt32 = 0;
         switch (str.count != 6) {
-        case true : Scanner(string: str).scanHexInt32(&rgb);
+        case true: self.init(rgb: 0.5, 0.5, 0.5);
+        case false: Scanner(string: str).scanHexInt32(&rgb);
         self.init(rgb: CGFloat((rgb & 0xFF0000) >> 16), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF));
-        case false: self.init(rgb: 0.5, 0.5, 0.5);
+            print("rgb", CGFloat(rgb & 0xFF0000), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF))
         };
     };
     

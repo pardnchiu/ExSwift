@@ -1,6 +1,5 @@
 import UIKit
 import AVFoundation
-import PDExtension
 
 public class PDCamera: NSObject {
     
@@ -16,7 +15,7 @@ public class PDCamera: NSObject {
     public var output_video = AVCaptureMovieFileOutput()
     public var output_photo = AVCapturePhotoOutput()
     public var preview: AVCaptureVideoPreviewLayer?
-    public var flashMode = AVCaptureDevice.FlashMode.off
+    public var flashMode = AVCaptureDevice.FlashMode.auto
     public var currentCameraPosition: CameraPosition?
     public var photoCaptureCompletionBlock:((UIImage?,Error?) -> Void)?
 }
@@ -161,6 +160,16 @@ extension PDCamera {
         
         captureSession.commitConfiguration()
         
+    }
+    
+    public func set(flash value: AVCaptureDevice.FlashMode) throws {
+        switch value {
+        case .auto: self.flashMode = .on;
+        case .on  : self.flashMode = .off;
+        case .off : self.flashMode = .auto;
+        @unknown default:
+            throw CameraControllerError.unknown;
+        }
     }
     
     public func get(_ completion: @escaping (UIImage?, Error?) -> Void) {

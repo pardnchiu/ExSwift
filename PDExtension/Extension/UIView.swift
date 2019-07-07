@@ -74,6 +74,28 @@ public extension UIView {
         if let height = height { self.h(height) };
     };
     
+    func set(x: CGFloat) { self.x(x) };
+    func set(y: CGFloat) { self.y(y) };
+    func set(w: CGFloat) { self.w(w) };
+    func set(h: CGFloat) { self.h(h) };
+    func set(a: CGFloat) { self.a(a) };
+    func set(x: CGFloat, y: CGFloat) { self.x(x); self.y(y) };
+    func set(x: CGFloat, w: CGFloat) { self.x(x); self.w(w) };
+    func set(x: CGFloat, h: CGFloat) { self.x(x); self.h(h) };
+    func set(y: CGFloat, w: CGFloat) { self.y(y); self.w(w) };
+    func set(y: CGFloat, h: CGFloat) { self.y(y); self.h(h) };
+    func set(w: CGFloat, h: CGFloat) { self.w(w); self.h(h) };
+    func set(x: CGFloat, y: CGFloat, w: CGFloat) { self.x(x); self.y(y); self.w(w) };
+    func set(x: CGFloat, y: CGFloat, h: CGFloat) { self.x(x); self.y(y); self.h(h) };
+    func set(x: CGFloat, w: CGFloat, h: CGFloat) { self.x(x); self.w(w); self.h(h) };
+    func set(y: CGFloat, w: CGFloat, h: CGFloat) { self.y(y); self.w(w); self.h(h) };
+    
+    func set(toX value: CGFloat,_ time: Double) { animation(time) { self.x(value) } }
+    func set(toY value: CGFloat,_ time: Double) { animation(time) { self.y(value) } }
+    func set(toW value: CGFloat,_ time: Double) { animation(time) { self.w(value) } }
+    func set(toH value: CGFloat,_ time: Double) { animation(time) { self.h(value) } }
+    func set(toA value: CGFloat,_ time: Double) { animation(time) { self.a(value) } }
+    
     func set(hidden value: Bool) {
         self.isHidden = value;
     };

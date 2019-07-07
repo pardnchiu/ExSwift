@@ -15,4 +15,9 @@ public extension UIScrollView {
     func l(_ value: CGFloat) { self.contentInset.left = value };
     func b(_ value: CGFloat) { self.contentInset.bottom = value };
     func r(_ value: CGFloat) { self.contentInset.right = value };
+    
+    func set(indicator vertical: Bool, _ horizontal: Bool) {
+        self.showsVerticalScrollIndicator = vertical;
+        self.showsHorizontalScrollIndicator = horizontal;
+    };
 }

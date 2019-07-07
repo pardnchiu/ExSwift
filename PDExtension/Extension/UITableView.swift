@@ -20,6 +20,12 @@ public struct PDSeparator {
 
 public extension UITableView {
     
+    var _header: UIView? { return self.tableHeaderView };
+    var _footer: UIView? { return self.tableFooterView };
+};
+
+public extension UITableView {
+    
     func set(protocol delegate: UITableViewDelegate,_ dataSource: UITableViewDataSource) {
         self.delegate   = delegate;
         self.dataSource = dataSource;
@@ -32,8 +38,8 @@ public extension UITableView {
         self.separatorInset.right = (value?.right ?? 0);
     }
     
-    func view(footer view: UIView) { self.tableFooterView = view };
-    func view(header view: UIView) { self.tableHeaderView = view };
+    func set(footer view: UIView) { self.tableFooterView = view };
+    func set(header view: UIView) { self.tableHeaderView = view };
     
     func set(cell value: AnyClass) { self.register(value.self, forCellReuseIdentifier: "\(value)") };
     func set(cells values: [AnyClass]) { values.forEach { self.register($0.self, forCellReuseIdentifier: "\($0)") } };

@@ -68,33 +68,33 @@ public struct PDLayout {
     };
 };
 
-public func x(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.xEqual, target, value) };
-public func y(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.yEqual, target, value) };
-public func t(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tEqual, target, value) };
-public func l(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lEqual, target, value) };
-public func b(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bEqual, target, value) };
-public func r(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rEqual, target, value) };
-public func w(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wEqual, target, value) };
-public func h(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hEqual, target, value) };
+public func xAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.xEqual, target, value) };
+public func yAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.yEqual, target, value) };
+public func tAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tEqual, target, value) };
+public func lAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lEqual, target, value) };
+public func bAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bEqual, target, value) };
+public func rAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rEqual, target, value) };
+public func wAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wEqual, target, value) };
+public func hAnchor(equal target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hEqual, target, value) };
 
-public func t(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tGreater, target, value) };
-public func l(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lGreater, target, value) };
-public func b(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bGreater, target, value) };
-public func r(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rGreater, target, value) };
-public func w(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wGreater, target, value) };
-public func h(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hGreater, target, value) };
+public func tAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tGreater, target, value) };
+public func lAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lGreater, target, value) };
+public func bAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bGreater, target, value) };
+public func rAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rGreater, target, value) };
+public func wAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wGreater, target, value) };
+public func hAnchor(greater target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hGreater, target, value) };
 
-public func t(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tLess, target, value) };
-public func l(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lLess, target, value) };
-public func b(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bLess, target, value) };
-public func r(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rLess, target, value) };
-public func w(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wLess, target, value) };
-public func h(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hLess, target, value) };
+public func tAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.tLess, target, value) };
+public func lAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.lLess, target, value) };
+public func bAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.bLess, target, value) };
+public func rAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.rLess, target, value) };
+public func wAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.wLess, target, value) };
+public func hAnchor(less target: Any?,_ value: CGFloat) -> PDLayout { return PDLayout(.hLess, target, value) };
 
 public extension UIView {
     
-    func layouts(_ pdlayouts: [PDLayout]) {
-        pdlayouts.forEach {
+    func PDLayouts(_ layouts: [PDLayout]) {
+        layouts.forEach {
             switch $0.constraint {
             case .xEqual: if let target = $0.target as? NSLayoutXAxisAnchor { self.centerXAnchor.equal(to: target, $0.value).isActive = true }
             case .yEqual: if let target = $0.target as? NSLayoutYAxisAnchor { self.centerYAnchor.equal(to: target, $0.value).isActive = true }
