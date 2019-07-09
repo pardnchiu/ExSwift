@@ -32,6 +32,7 @@ public extension String {
     };
     var no_Space: String { return self.trimmingCharacters(in: .whitespaces) };
     var empty: Bool { return self.no_Space.isEmpty };
+    var _url: URL? { return URL(string: self) };
     
     func split(_ str: Character) -> [String] {
         var ary: [String] = []
@@ -56,7 +57,11 @@ public extension String {
     
     func w(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ h:CGFloat) -> CGFloat {
         let label: UILabel = UILabel(0, 0, CGFloat.greatestFiniteMagnitude, h).set {
-            $0.txt(self, .black, .center, size, weight, line);
+            $0.PDText([
+                lText(text: self),
+                lText(font: size, weight),
+                lText(line: line)
+                ])
             $0.lineBreakMode = NSLineBreakMode.byWordWrapping;
             $0.sizeToFit();
         };
@@ -65,7 +70,11 @@ public extension String {
     
     func h(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ w:CGFloat) -> CGFloat{
         let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).set {
-            $0.txt(self, .black, .center, size, weight, line);
+            $0.PDText([
+                lText(text: self),
+                lText(font: size, weight),
+                lText(line: line)
+                ])
             $0.lineBreakMode = NSLineBreakMode.byWordWrapping;
             $0.sizeToFit();
         };
@@ -74,7 +83,11 @@ public extension String {
     
     func h(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ w:CGFloat,_ lineSpace: CGFloat,_ lineHeight: CGFloat) -> CGFloat{
         let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).set {
-            $0.txt("", .black, .center, size, weight, line);
+            $0.PDText([
+                lText(text: self),
+                lText(font: size, weight),
+                lText(line: line)
+                ])
             let paraph = NSMutableParagraphStyle().set {
                 $0.lineSpacing = lineSpace;
                 $0.minimumLineHeight = lineHeight

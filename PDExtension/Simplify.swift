@@ -24,21 +24,21 @@ extension CGRect  : simplify {};
 extension CGSize  : simplify {};
 extension CGVector: simplify {};
 
-public func localCache(save value: [String:Any],_ path: String,_ name: String) {
+public func cache(save value: [String:Any],_ path: String,_ name: String) {
     let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
     try! FileManager.default.createDirectory(atPath: doc, withIntermediateDirectories: true, attributes: nil);
     NSDictionary(dictionary: value).write(toFile: file, atomically: true);
 };
 
-public func localCache(load path: String,_ name: String,_ completion: @escaping ([String:Any]?)->()) {
+public func cache(load path: String,_ name: String,_ completion: @escaping ([String:Any]?)->()) {
     let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
     let dic = NSDictionary(contentsOfFile: file) as? [String:Any];
     completion(dic);
 };
 
-public func localCache(delete path: String,_ name: String) {
+public func cache(delete path: String,_ name: String) {
     let fileManager = FileManager.default;
     do {
         try fileManager.removeItem(atPath: NSHomeDirectory()+"/Library/Caches/\(path)/\(name).plist");
@@ -49,7 +49,54 @@ public func localCache(delete path: String,_ name: String) {
     };
 };
 
-public func addListener(root: UIViewController,_ tag: String,_ selector: Selector,_ object: Any?) {
+public func get(data url: URL?, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    guard let url = url else { return }
+    URLSession.shared.dataTask(with: url, completionHandler: completion).resume();
+};
+
+public func get(image url: URL?,_ completion: @escaping (UIImage?)->Void) {
+//    guard let url = value else { return }
+//    URLSession.shared.dataTask(with: url) { (data, response, error) in
+//        DispatchQueue.main.async() {
+//            if let _ = error { completion(nil); return };
+//            guard let data = data else { completion(nil); return };
+//            completion(UIImage(data: data))
+//        };
+//        }.resume();
+    get(data: url) { (data, response, error) in
+        DispatchQueue.main.async() {
+            if let _ = error { completion(nil); return };
+            guard let data = data else { completion(nil); return };
+            completion(UIImage(data: data))
+        };
+    };
+};
+
+public func get(image filename: String,_ completion: @escaping (UIImage?)->Void) {
+    DispatchQueue.main.async() {
+        guard
+            let path  = Bundle.main.path(forResource: filename, ofType: nil),
+            let image = UIImage(contentsOfFile: path)
+            else { completion(nil); return };
+        completion(image);
+    };
+};
+
+public func get(address latitude: Double, _ longitude: Double,_ completion: @escaping (String?)->Void) {
+    let location = CLLocation(latitude: latitude, longitude: longitude);
+    CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+        DispatchQueue.main.async() {
+            if let _ = error { completion(nil); return };
+            guard let placemark = placemarks?[0] else { completion(nil); return };
+            let area = (placemark.subAdministrativeArea ?? "");
+            let dist = (placemark.locality ?? "");
+            let address = String(format:"%@%@", area, dist);
+            completion(address.trimmingCharacters(in: .whitespaces).isEmpty ? nil : address);
+        };
+    });
+};
+
+public func listener(add root: UIViewController,_ tag: String,_ selector: Selector,_ object: Any?) {
     switch (tag) {
     case "keyboardWillAppear":
         NotificationCenter.default.addObserver(root, selector: selector, name: UIResponder.keyboardWillShowNotification, object: nil);
@@ -58,21 +105,19 @@ public func addListener(root: UIViewController,_ tag: String,_ selector: Selecto
     }
 }
 
-public func setListener(_ tag: String,_ dic: [String:Any]) {
+public func listener(set tag: String,_ dic: [String:Any]) {
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: tag), object: nil, userInfo: dic)
 }
 
-public func deleteListener(root: UIViewController,_ tag: String) {
+public func listener(delete root: UIViewController,_ tag: String) {
     NotificationCenter.default.removeObserver(root, name: NSNotification.Name(rawValue: tag), object: nil)
 }
 
 public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void ) {
     UIView.animate(withDuration: time, animations: animate);
 };
-public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void,_ complet: @escaping ()->Void) {
-    UIView.animate(withDuration: time, animations: animate) { (true) in
-        complet()
-    };
+public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void,_ complet: ((Bool)->Void)?) {
+    UIView.animate(withDuration: time, animations: animate, completion: complet)
 };
 
 //@objc func _loadNotify(_ data: Notification) {
@@ -207,6 +252,12 @@ public extension UIColor {
         case false: self.init(rgb: 0.5, 0.5, 0.5, a);
         };
     };
+    
+    var _ciColor: CIColor { return CIColor(color: self) };
+    var _r: CGFloat { return (self._ciColor.red*255._cgflt) };
+    var _g: CGFloat { return (self._ciColor.green*255._cgflt) };
+    var _b: CGFloat { return (self._ciColor.blue*255._cgflt) };
+    var _a: CGFloat { return (self._ciColor.alpha) };
 };
 public extension UIEdgeInsets {
     

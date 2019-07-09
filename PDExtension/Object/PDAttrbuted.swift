@@ -1,5 +1,5 @@
 //
-//  PDAttrbuted.swift
+//  PDAttributed.swift
 //  PDExtension
 //
 //  Created by Pardn Co., Ltd on 2019/6/9.
@@ -77,16 +77,16 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
 }
 
 public extension UIButton {
-    func PDAttrbuted(normal values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .normal) };
-    func PDAttrbuted(highlight values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted) };
-    func PDAttrbuted(disabled values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .disabled) };
+    func PDAttributed(normal values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .normal) };
+    func PDAttributed(highlight values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted) };
+    func PDAttributed(disabled values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .disabled) };
 };
 
 public extension UILabel {
-    func PDAttrbuted(_ values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttributed(_ values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
 };
 
 public extension UITextField {
-    func PDAttrbuted(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
-    func PDAttrbuted(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
+    func PDAttributed(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttributed(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
 };

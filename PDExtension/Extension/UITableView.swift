@@ -20,15 +20,40 @@ public struct PDSeparator {
 
 public extension UITableView {
     
-    var _header: UIView? { return self.tableHeaderView };
-    var _footer: UIView? { return self.tableFooterView };
+    var _header: UIView? { return (self.tableHeaderView) };
+    var _footer: UIView? { return (self.tableFooterView) };
+    
+    var _headerH: CGFloat { return (self.tableHeaderView?._h ?? 0) };
+    var _footerH: CGFloat { return (self.tableFooterView?._h ?? 0) };
 };
 
 public extension UITableView {
     
+    convenience init(_ x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ style: UITableView.Style) {
+        self.init(frame: CGRect(x: x, y: y, width: w, height: h), style: style);
+    };
+    
+    convenience init(_ frame: CGRect,_ style: UITableView.Style) {
+        switch frame {
+        case .zero: self.init(frame: .zero, style: style);
+        self.autolayout();
+        default   : self.init(frame: frame, style: style);
+        };
+    };
+    
+    func set(autoRowHeight value: CGFloat) {
+        self.estimatedRowHeight = value;
+        self.rowHeight = UITableView.automaticDimension;
+    }
+    
     func set(protocol delegate: UITableViewDelegate,_ dataSource: UITableViewDataSource) {
         self.delegate   = delegate;
         self.dataSource = dataSource;
+    };
+    
+    func set(selection single: Bool, _ multiple: Bool) {
+        self.allowsSelection = single;
+        self.allowsMultipleSelection = multiple;
     };
     
     func set(separator style: UITableViewCell.SeparatorStyle,_ value: PDSeparator?) {
@@ -36,7 +61,9 @@ public extension UITableView {
         self.separatorColor       = value?.color
         self.separatorInset.left  = (value?.left ?? 0);
         self.separatorInset.right = (value?.right ?? 0);
-    }
+    };
+    
+    func set(editing value: Bool) { self.isEditing = value };
     
     func set(footer view: UIView) { self.tableFooterView = view };
     func set(header view: UIView) { self.tableHeaderView = view };
@@ -45,13 +72,22 @@ public extension UITableView {
     func set(cells values: [AnyClass]) { values.forEach { self.register($0.self, forCellReuseIdentifier: "\($0)") } };
 };
 
-//@objc func separator(_ col: UIColor?, _ left: CGFloat, _ right: CGFloat) {
-//    self.separatorStyle = .singleLine;
-//    self.separatorInset = UIEdgeInsets.init(top: 0, left: left, bottom: 0, right: right);
-//    self.separatorColor = col;
-//};
-//
-//@objc func selection(_ single: Bool, _ multiple: Bool) {
-//    self.allowsSelection = single;
-//    self.allowsMultipleSelection = multiple;
-//};
+// old
+public extension UITableView {
+    
+    func updateData() {
+        UIView.setAnimationsEnabled(false)
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock { () -> Void in
+            UIView.setAnimationsEnabled(true)
+        }
+        
+        reloadData()
+        beginUpdates()
+        endUpdates()
+        
+        CATransaction.commit()
+    }
+};
+
