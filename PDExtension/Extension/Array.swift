@@ -27,15 +27,15 @@ public extension Array {
     
     func a(to flt: CGFloat,_ time: Double) {
         for i in self {
-            if let item = (i as? UIView)      { item.a(to: flt, time) };
-            if let item = (i as? UIButton )   { item.a(to: flt, time) };
-            if let item = (i as? UILabel )    { item.a(to: flt, time) };
-            if let item = (i as? UIImageView) { item.a(to: flt, time) };
-            if let item = (i as? UITableView) { item.a(to: flt, time) };
-            if let item = (i as? UISwitch )   { item.a(to: flt, time) };
-            if let item = (i as? UISlider )   { item.a(to: flt, time) };
-            if let item = (i as? UITextField) { item.a(to: flt, time) };
-            if let item = (i as? UITextView)  { item.a(to: flt, time) };
+            if let item = (i as? UIView)      { item.alpha(to: flt, time) };
+            if let item = (i as? UIButton )   { item.alpha(to: flt, time) };
+            if let item = (i as? UILabel )    { item.alpha(to: flt, time) };
+            if let item = (i as? UIImageView) { item.alpha(to: flt, time) };
+            if let item = (i as? UITableView) { item.alpha(to: flt, time) };
+            if let item = (i as? UISwitch )   { item.alpha(to: flt, time) };
+            if let item = (i as? UISlider )   { item.alpha(to: flt, time) };
+            if let item = (i as? UITextField) { item.alpha(to: flt, time) };
+            if let item = (i as? UITextView)  { item.alpha(to: flt, time) };
         };
     };
     

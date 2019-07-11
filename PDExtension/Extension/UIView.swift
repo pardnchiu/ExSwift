@@ -24,9 +24,9 @@ public extension UIView {
     var _bgColor: UIColor { return (self.backgroundColor ?? .clear) };
     var _x: CGFloat { return (self.frame.origin.x) };
     var _y: CGFloat { return (self.frame.origin.y) };
-    var _w: CGFloat { return (self.frame.size.width) };
-    var _h: CGFloat { return (self.frame.size.height) };
-    var _a: CGFloat { return (self.alpha) };
+    var _width: CGFloat { return (self.frame.size.width) };
+    var _height: CGFloat { return (self.frame.size.height) };
+    var _alpha: CGFloat { return (self.alpha) };
 };
 
 public extension UIView {
@@ -52,6 +52,8 @@ public extension UIView {
     };
     
     func autolayout() { self.translatesAutoresizingMaskIntoConstraints = false };
+    func removeSubviews() { self.subviews.forEach { $0.removeFromSuperview() } };
+    func removeSublayers() { self.layer.sublayers?.forEach { $0.removeFromSuperlayer() } };
     
     func x(_ value: CGFloat) { self.frame.origin.x = value };
     func y(_ value: CGFloat) { self.frame.origin.y = value };
@@ -59,69 +61,60 @@ public extension UIView {
     func h(_ value: CGFloat) { self.frame.size.height = value };
     func a(_ value: CGFloat) { self.alpha = value };
     
-    func x(add value: CGFloat) { self.frame.origin.x += value };
-    func y(add value: CGFloat) { self.frame.origin.y += value };
-    func h(add value: CGFloat) { self.frame.size.height += value };
-    func w(add value: CGFloat) { self.frame.size.width  += value };
-    func a(add value: CGFloat) { self.alpha += value };
+    func originX(add value: CGFloat) { self.frame.origin.x += value };
+    func originY(add value: CGFloat) { self.frame.origin.y += value };
+    func height(add value: CGFloat) { self.frame.size.height += value };
+    func width(add value: CGFloat) { self.frame.size.width  += value };
+    func alpha(add value: CGFloat) { self.alpha += value };
     
-    func x(to value: CGFloat,_ time: Double) { animation(time) { self.x(value) } };
-    func y(to value: CGFloat,_ time: Double) { animation(time) { self.y(value) } };
-    func w(to value: CGFloat,_ time: Double) { animation(time) { self.w(value) } };
-    func h(to value: CGFloat,_ time: Double) { animation(time) { self.h(value) } };
-    func a(to value: CGFloat,_ time: Double) { animation(time) { self.a(value) } };
+    func originX(to value: CGFloat,_ time: Double) { animation(time) { self.x(value) } };
+    func originY(to value: CGFloat,_ time: Double) { animation(time) { self.y(value) } };
+    func width(to value: CGFloat,_ time: Double) { animation(time) { self.w(value) } };
+    func height(to value: CGFloat,_ time: Double) { animation(time) { self.h(value) } };
+    func alpha(to value: CGFloat,_ time: Double) { animation(time) { self.a(value) } };
     
-    func x(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.x(value) }, completion) };
-    func y(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.y(value) }, completion) };
-    func w(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.w(value) }, completion) };
-    func h(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.h(value) }, completion) };
-    func a(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.a(value) }, completion) };
+    func originX(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.x(value) }, completion) };
+    func originY(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.y(value) }, completion) };
+    func width(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.w(value) }, completion) };
+    func height(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.h(value) }, completion) };
+    func alpha(to value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { animation(time, { self.a(value) }, completion) };
     
-//    func set(frame x: CGFloat?,_ y: CGFloat?,_ width: CGFloat?,_ height: CGFloat?) {
-//        if let x = x { self.x(x) };
-//        if let y = y { self.y(y) };
-//        if let width = width { self.w(width) };
-//        if let height = height { self.h(height) };
-//    };
+    func set(originX value: CGFloat) { self.x(value) };
+    func set(originY value: CGFloat) { self.y(value) };
+    func set(width value: CGFloat) { self.w(value) };
+    func set(height value: CGFloat) { self.h(value) };
+    func set(alpha value: CGFloat) { self.a(value) };
     
-    func set(x: CGFloat) { self.x(x) };
-    func set(y: CGFloat) { self.y(y) };
-    func set(w: CGFloat) { self.w(w) };
-    func set(h: CGFloat) { self.h(h) };
-    func set(a: CGFloat) { self.a(a) };
-    func set(x: CGFloat, y: CGFloat) { self.x(x); self.y(y) };
-    func set(x: CGFloat, w: CGFloat) { self.x(x); self.w(w) };
-    func set(x: CGFloat, h: CGFloat) { self.x(x); self.h(h) };
-    func set(y: CGFloat, w: CGFloat) { self.y(y); self.w(w) };
-    func set(y: CGFloat, h: CGFloat) { self.y(y); self.h(h) };
-    func set(w: CGFloat, h: CGFloat) { self.w(w); self.h(h) };
-    func set(x: CGFloat, y: CGFloat, a: CGFloat) { self.x(x); self.y(y); self.a(a) };
-    func set(x: CGFloat, w: CGFloat, a: CGFloat) { self.x(x); self.w(w); self.a(a) };
-    func set(x: CGFloat, h: CGFloat, a: CGFloat) { self.x(x); self.h(h); self.a(a) };
-    func set(y: CGFloat, w: CGFloat, a: CGFloat) { self.y(y); self.w(w); self.a(a) };
-    func set(y: CGFloat, h: CGFloat, a: CGFloat) { self.y(y); self.h(h); self.a(a) };
-    func set(w: CGFloat, h: CGFloat, a: CGFloat) { self.w(w); self.h(h); self.a(a) };
-    func set(x: CGFloat, y: CGFloat, w: CGFloat) { self.x(x); self.y(y); self.w(w) };
-    func set(x: CGFloat, y: CGFloat, h: CGFloat) { self.x(x); self.y(y); self.h(h) };
-    func set(x: CGFloat, w: CGFloat, h: CGFloat) { self.x(x); self.w(w); self.h(h) };
-    func set(y: CGFloat, w: CGFloat, h: CGFloat) { self.y(y); self.w(w); self.h(h) };
-    func set(x: CGFloat, y: CGFloat, w: CGFloat, a: CGFloat) { self.x(x); self.y(y); self.w(w); self.a(a) };
-    func set(x: CGFloat, y: CGFloat, h: CGFloat, a: CGFloat) { self.x(x); self.y(y); self.h(h); self.a(a) };
-    func set(x: CGFloat, w: CGFloat, h: CGFloat, a: CGFloat) { self.x(x); self.w(w); self.h(h); self.a(a) };
-    func set(y: CGFloat, w: CGFloat, h: CGFloat, a: CGFloat) { self.y(y); self.w(w); self.h(h); self.a(a) };
-    func set(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat) { self.x(x); self.y(y); self.w(w); self.h(h) };
-    func set(x: CGFloat, y: CGFloat, w: CGFloat, h: CGFloat, a: CGFloat) { self.x(x); self.y(y); self.w(w); self.h(h); self.a(a) };
+    func set(originX: CGFloat, originY: CGFloat) { self.x(originX); self.y(originY) };
+    func set(originX: CGFloat, width: CGFloat) { self.x(originX); self.w(width) };
+    func set(originX: CGFloat, height: CGFloat) { self.x(originX); self.h(height) };
+    func set(originY: CGFloat, width: CGFloat) { self.y(originY); self.w(width) };
+    func set(originY: CGFloat, height: CGFloat) { self.y(originY); self.h(height) };
+    func set(width: CGFloat, height: CGFloat) { self.w(width);   self.h(height) };
     
-    func set(toX value: CGFloat,_ time: Double) { self.x(to: value, time) };
-    func set(toY value: CGFloat,_ time: Double) { self.y(to: value, time) };
-    func set(toW value: CGFloat,_ time: Double) { self.w(to: value, time) };
-    func set(toH value: CGFloat,_ time: Double) { self.h(to: value, time) };
-    func set(toA value: CGFloat,_ time: Double) { self.a(to: value, time) };
-    func set(toX value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { x(to: value, time, completion) };
-    func set(toY value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { y(to: value, time, completion) };
-    func set(toW value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { w(to: value, time, completion) };
-    func set(toH value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { h(to: value, time, completion) };
-    func set(toA value: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) { a(to: value, time, completion) };
+    func set(originX: CGFloat, originY: CGFloat, alpha: CGFloat) { self.x(originX); self.y(originY); self.a(alpha) };
+    func set(originX: CGFloat, width: CGFloat, alpha: CGFloat) { self.x(originX); self.w(width);   self.a(alpha) };
+    func set(originX: CGFloat, height: CGFloat, alpha: CGFloat) { self.x(originX); self.h(height);  self.a(alpha) };
+    func set(originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.y(originY); self.w(width);   self.a(alpha) };
+    func set(originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.y(originY); self.h(height);  self.a(alpha) };
+    func set(width: CGFloat, height: CGFloat, alpha: CGFloat) { self.w(width);   self.h(height);  self.a(alpha) };
+    func set(originX: CGFloat, originY: CGFloat, width: CGFloat)  { self.set(rect: originX, originY, width, self._height) };
+    func set(originX: CGFloat, originY: CGFloat, height: CGFloat) { self.set(rect: originX, originY, self._width, height) };
+    func set(originX: CGFloat, width: CGFloat,   height: CGFloat) { self.set(rect: originX, self._y, width, height) };
+    func set(originY: CGFloat, width: CGFloat,   height: CGFloat) { self.set(rect: self._x, originY, width, height) };
+    
+    func set(originX: CGFloat, originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.set(rect: originX, originY, width, self._height); self.a(alpha) };
+    func set(originX: CGFloat, originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: originX, originY, self._width, height); self.a(alpha) };
+    func set(originX: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: originX, self._y, width, height); self.a(alpha) };
+    func set(originY: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: self._x, originY, width, height); self.a(alpha) };
+    
+    func set(rect originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat) {
+        self.frame = CGRect(originX, originY, width, height)
+    };
+    func set(rect originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat,_ alpha: CGFloat) {
+        self.frame = CGRect(originX, originY, width, height)
+        self.alpha = alpha
+    };
     
     func set(hidden value: Bool) {
         self.isHidden = value;
@@ -160,14 +153,6 @@ public extension UIView {
         self.layer.borderWidth = width;
     };
     
-//    func set(shadow value: SHADOW,_ mask: Bool) {
-//        self.layer.shadowColor   = value.col.cgColor;
-//        self.layer.shadowOffset  = value.offset;
-//        self.layer.shadowRadius  = value.radius;
-//        self.layer.shadowOpacity = value.alpha;
-//        self.layer.masksToBounds = mask;
-//    };
-    
     func set(shadow color: UIColor) {
         let color = UIColor(rgb: color._r, color._g, color._b, color._a/5)
         self.layer.shadowColor   = color.cgColor;
@@ -187,22 +172,60 @@ public extension UIView {
     
     func set(scale x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat) {
         self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-        self.transform = self.transform.scaledBy(x: w/self._w, y: h/self._h);
+        self.transform = self.transform.scaledBy(x: w/self._width, y: h/self._height);
     };
     
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ time: Double) {
         animation(time) {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-            self.transform = self.transform.scaledBy(x: w/self._w, y: h/self._h);
+            self.transform = self.transform.scaledBy(x: w/self._width, y: h/self._height);
         };
     };
     
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) {
         animation(time, {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-            self.transform = self.transform.scaledBy(x: w/self._w, y: h/self._h);
+            self.transform = self.transform.scaledBy(x: w/self._width, y: h/self._height);
         }, completion)
     }
+    
+    enum FIT {
+        case width;
+        case height;
+    }
+    
+    enum ALIGNMENT {
+        case top;
+        case left;
+        case bottom;
+        case right;
+        case center;
+    }
+    
+    func size(toFit target: FIT,_ alignment: ALIGNMENT) {
+        let aTop   : CGFloat = self._y;
+        let aLeft  : CGFloat = self._x;
+        let aBottom: CGFloat = self._y+self._height;
+        let aRight : CGFloat = self._x+self._width;
+        let aWidth : CGFloat = self._width;
+        let aHeight: CGFloat = self._height;
+        
+        self.sizeToFit();
+        switch (target) {
+        case .width:
+            switch (alignment) {
+            case .right : self.set(originX: aRight-self._width, originY: aTop, height: aHeight)
+            case .center: self.set(originX: aRight-aWidth/2-self._width/2, originY: aTop, height: aHeight)
+            default     : break;
+            }
+        case .height:
+            switch (alignment) {
+            case .bottom: self.set(originX: aLeft, originY: aBottom-self._height, width: aWidth)
+            case .center: self.set(originX: aLeft, originY: aBottom-aHeight/2-self._height/2, width: aWidth)
+            default: break;
+            }
+        };
+    };
     
     func x(equal to: NSLayoutXAxisAnchor,_ value: CGFloat) { self.centerXAnchor.equal(to: to, value).isActive = true };
     func y(equal to: NSLayoutYAxisAnchor,_ value: CGFloat) { self.centerYAnchor.equal(to: to, value).isActive = true };

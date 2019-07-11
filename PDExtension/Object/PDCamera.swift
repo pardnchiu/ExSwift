@@ -3,18 +3,30 @@ import AVFoundation
 
 public class PDCamera: NSObject {
     
+    public enum ERROR: Swift.Error {
+        case captureSessionAlreadyRunning
+        case captureSessionIsMissing
+        case inputsAreInvalid
+        case invalidOperation
+        case noCamerasAvailable
+        case unknown
+    }
+    
+    public enum CameraPosition {
+        case front
+        case rear
+    }
+    
     public var session: AVCaptureSession?
     public var front  : AVCaptureDevice?
     public var rear   : AVCaptureDevice?
-    public var video = AVCaptureDevice.default(for: AVMediaType.video)
-    public var audio = AVCaptureDevice.default(for: AVMediaType.audio)
-    public var input_front: AVCaptureDeviceInput?
-    public var input_rear : AVCaptureDeviceInput?
-    public var input_video: AVCaptureDeviceInput?
-    public var input_audio: AVCaptureDeviceInput?
-    public var output_video = AVCaptureMovieFileOutput()
-    public var output_photo = AVCapturePhotoOutput()
-    public var preview: AVCaptureVideoPreviewLayer?
+    public var frontInput: AVCaptureDeviceInput?
+    public var rearInput : AVCaptureDeviceInput?
+    public var videoInput: AVCaptureDeviceInput?
+    public var audioInput: AVCaptureDeviceInput?
+    public var videoOutput = AVCaptureMovieFileOutput()
+    public var photoOutput = AVCapturePhotoOutput()
+    public var previewLayer: AVCaptureVideoPreviewLayer?
     public var flashMode = AVCaptureDevice.FlashMode.auto
     public var currentCameraPosition: CameraPosition?
     public var photoCaptureCompletionBlock:((UIImage?,Error?) -> Void)?
@@ -23,7 +35,7 @@ public class PDCamera: NSObject {
 extension PDCamera {
     
     public func set(_ completion: @escaping (Error?) -> Void) {
-        DispatchQueue(label: "prepare").async {
+        DispatchQueue.global(qos: .background).async {
             do{
                 self.session = AVCaptureSession();
                 
@@ -42,47 +54,47 @@ extension PDCamera {
                 };
                 
                 guard let captureSession = self.session else {
-                    throw CameraControllerError.captureSessionIsMissing
+                    throw ERROR.captureSessionIsMissing
                 };
                 
                 if let rearCamera = self.rear {
-                    self.input_rear = try AVCaptureDeviceInput(device: rearCamera);
-                    if captureSession.canAddInput(self.input_rear!){
-                        captureSession.addInput(self.input_rear!)
+                    self.rearInput = try AVCaptureDeviceInput(device: rearCamera);
+                    if captureSession.canAddInput(self.rearInput!){
+                        captureSession.addInput(self.rearInput!)
                     };
                     self.currentCameraPosition = .rear;
                 } else if let frontCamera = self.front {
-                    self.input_front = try AVCaptureDeviceInput(device: frontCamera);
-                    if captureSession.canAddInput(self.input_front!) {
-                        captureSession.addInput(self.input_front!)
+                    self.frontInput = try AVCaptureDeviceInput(device: frontCamera);
+                    if captureSession.canAddInput(self.frontInput!) {
+                        captureSession.addInput(self.frontInput!)
                     };
                     self.currentCameraPosition = .front;
                 };
                 
-                if let videoInput = self.video {
-                    self.input_video = try AVCaptureDeviceInput(device: videoInput);
-                    if captureSession.canAddInput(self.input_video!) {
-                        captureSession.addInput(self.input_video!)
+                if let videoInput = AVCaptureDevice.default(for: .video) {
+                    self.videoInput = try AVCaptureDeviceInput(device: videoInput);
+                    if captureSession.canAddInput(self.videoInput!) {
+                        captureSession.addInput(self.videoInput!)
                     };
                 };
                 
-                if let audioInput = self.audio {
-                    self.input_audio = try AVCaptureDeviceInput(device: audioInput);
-                    if captureSession.canAddInput(self.input_audio!) {
-                        captureSession.addInput(self.input_audio!)
+                if let audioInput = AVCaptureDevice.default(for: .audio) {
+                    self.audioInput = try AVCaptureDeviceInput(device: audioInput);
+                    if captureSession.canAddInput(self.audioInput!) {
+                        captureSession.addInput(self.audioInput!)
                     };
                 };
                 
-                self.output_photo.setPreparedPhotoSettingsArray([
+                self.photoOutput.setPreparedPhotoSettingsArray([
                     AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
                 ], completionHandler: nil);
-                self.output_video.maxRecordedDuration = CMTime(seconds: 20, preferredTimescale: 600);
-                self.output_video.movieFragmentInterval = CMTime.invalid;
-                if captureSession.canAddOutput(self.output_video) {
-                    captureSession.addOutput(self.output_video);
+                self.videoOutput.maxRecordedDuration = CMTime(seconds: 20, preferredTimescale: 600);
+                self.videoOutput.movieFragmentInterval = CMTime.invalid;
+                if captureSession.canAddOutput(self.videoOutput) {
+                    captureSession.addOutput(self.videoOutput);
                 };
-                if captureSession.canAddOutput(self.output_photo) {
-                    captureSession.addOutput(self.output_photo);
+                if captureSession.canAddOutput(self.photoOutput) {
+                    captureSession.addOutput(self.photoOutput);
                 };
                 captureSession.startRunning();
             } catch {
@@ -97,17 +109,15 @@ extension PDCamera {
         };
     };
     
-    public func show(_ view: UIView) throws {
+    public func set(preview view: UIView) throws {
         guard
             let captureSession = self.session, captureSession.isRunning
-            else {
-            throw CameraControllerError.captureSessionIsMissing;
-        };
-        self.preview = AVCaptureVideoPreviewLayer(session: captureSession)
-        self.preview?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.preview?.connection?.videoOrientation = .portrait
-        view.layer.insertSublayer(self.preview!, at: 0)
-        self.preview?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+            else { throw ERROR.captureSessionIsMissing };
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        self.previewLayer?.connection?.videoOrientation = .portrait
+        self.previewLayer?.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        view.layer.insertSublayer(self.previewLayer!, at: 0)
     }
     
     public func change() throws {
@@ -115,7 +125,7 @@ extension PDCamera {
             let currenCameraPoisition = currentCameraPosition,
             let captureSession = self.session, captureSession.isRunning
             else {
-                throw CameraControllerError.captureSessionIsMissing;
+                throw ERROR.captureSessionIsMissing;
         };
         captureSession.beginConfiguration()
         
@@ -123,38 +133,38 @@ extension PDCamera {
         case .front:
             let inputs = captureSession.inputs
             guard
-                let frontCameraInput = self.input_front, inputs.contains(frontCameraInput),
+                let frontCameraInput = self.frontInput, inputs.contains(frontCameraInput),
                 let rearCamera = self.rear
                 else {
-                    throw CameraControllerError.captureSessionIsMissing;
+                    throw ERROR.captureSessionIsMissing;
             };
             
-            self.input_rear = try AVCaptureDeviceInput(device: rearCamera)
+            self.rearInput = try AVCaptureDeviceInput(device: rearCamera)
             captureSession.removeInput(frontCameraInput)
-            if captureSession.canAddInput(self.input_rear!) {
-                captureSession.addInput(self.input_rear!)
+            if captureSession.canAddInput(self.rearInput!) {
+                captureSession.addInput(self.rearInput!)
                 self.currentCameraPosition = .rear
             } else {
-                throw CameraControllerError.invalidOperation
+                throw ERROR.invalidOperation
             }
         case .rear:
             let inputs = captureSession.inputs
             guard
-                let rearCameraInput = self.input_rear, inputs.contains(rearCameraInput),
+                let rearCameraInput = self.rearInput, inputs.contains(rearCameraInput),
                 let frontCamera = self.front
                 else {
-                    throw CameraControllerError.captureSessionIsMissing;
+                    throw ERROR.captureSessionIsMissing;
             }
     
-            self.input_front = try AVCaptureDeviceInput(device: frontCamera)
+            self.frontInput = try AVCaptureDeviceInput(device: frontCamera)
     
             captureSession.removeInput(rearCameraInput)
     
-            if captureSession.canAddInput(self.input_front!) {
-                captureSession.addInput(self.input_front!)
+            if captureSession.canAddInput(self.frontInput!) {
+                captureSession.addInput(self.frontInput!)
                 self.currentCameraPosition = .front
             } else {
-                throw CameraControllerError.invalidOperation;
+                throw ERROR.invalidOperation;
             }
         }
         
@@ -168,7 +178,7 @@ extension PDCamera {
         case .on  : self.flashMode = .off;
         case .off : self.flashMode = .auto;
         @unknown default:
-            throw CameraControllerError.unknown;
+            throw ERROR.unknown;
         }
     }
     
@@ -176,47 +186,41 @@ extension PDCamera {
         guard
             let captureSession = session, captureSession.isRunning
             else {
-                completion(nil, CameraControllerError.captureSessionIsMissing);
+                completion(nil, ERROR.captureSessionIsMissing);
                 return
         }
         
         let settings = AVCapturePhotoSettings()
         settings.flashMode = self.flashMode
         
-        self.output_photo.capturePhoto(with: settings, delegate: self)
+        self.photoOutput.capturePhoto(with: settings, delegate: self)
         self.photoCaptureCompletionBlock = completion
     }
 }
 
 extension PDCamera: AVCapturePhotoCaptureDelegate {
     
-    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        
+    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error = error {
-            self.photoCaptureCompletionBlock!(nil, error)
-        } else if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil) {
-            
+            self.photoCaptureCompletionBlock?(nil, error)
+        } else if let data = photo.fileDataRepresentation() {
             let image = UIImage(data: data)
-            self.photoCaptureCompletionBlock!(image, nil)
-        }else{
-            self.photoCaptureCompletionBlock!(nil, CameraControllerError.unknown)
+            self.photoCaptureCompletionBlock?(image, nil)
+        } else{
+            self.photoCaptureCompletionBlock?(nil, ERROR.unknown)
         }
     }
-}
-
-extension PDCamera {
     
-    public enum CameraControllerError: Swift.Error {
-        case captureSessionAlreadyRunning
-        case captureSessionIsMissing
-        case inputsAreInvalid
-        case invalidOperation
-        case noCamerasAvailable
-        case unknown
-    }
-    
-    public enum CameraPosition {
-        case front
-        case rear
-    }
+//    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+//
+//        if let error = error {
+//            self.photoCaptureCompletionBlock!(nil, error)
+//        } else if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil) {
+//            //AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil)
+//            let image = UIImage(data: data)
+//            self.photoCaptureCompletionBlock!(image, nil)
+//        }else{
+//            self.photoCaptureCompletionBlock!(nil, CameraControllerError.unknown)
+//        }
+//    }
 }

@@ -11,12 +11,31 @@ import UIKit
 
 public extension UICollectionView {
     
+    @objc convenience init(_ x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ layout: UICollectionViewLayout) {
+        self.init(frame: CGRect(x: x, y: y, width: w, height: h), collectionViewLayout: layout);
+    };
+    
+    @objc convenience init(_ frame: CGRect,_ layout: UICollectionViewLayout) {
+        switch frame {
+        case .zero: self.init(frame: .zero, collectionViewLayout: layout); self.autolayout();
+        default:    self.init(frame: frame, collectionViewLayout: layout);
+        };
+    };
+    
     func set(protocol delegate: UICollectionViewDelegate,_ dataSource: UICollectionViewDataSource) {
         self.delegate   = delegate;
         self.dataSource = dataSource;
     };
     func set(cell value: AnyClass) { self.register(value.self, forCellWithReuseIdentifier: "\(value)") };
-    func set(cells values: [AnyClass]) { values.forEach { self.register($0.self, forCellWithReuseIdentifier: "\($0)") } };
+    func set(cells values: [AnyClass]) { values.forEach { self.register($0.self, forCellWithReuseIdentifier: "\($0)") } }
+    
+    func cell(reuse tag: String,_ indexPath: IndexPath) -> UICollectionViewCell {
+        return self.dequeueReusableCell(withReuseIdentifier: tag, for: indexPath);
+    };
+
+    func scroll(to index: IndexPath,_ position: UICollectionView.ScrollPosition,_ animate: Bool) {
+        self.scrollToItem(at: index, at: position, animated: animate);
+    };
 };
 
 public extension UICollectionViewFlowLayout {

@@ -134,10 +134,28 @@ public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void,_ compl
 //    completion(dic);
 //};
 
+public extension Bool {
+    
+    func function(TRUE: ()->(), FALSE: ()->()) {
+        if (self) {
+            TRUE();
+            return
+        };
+        FALSE();
+    };
+};
+
 public extension NSNumber {
     
     var _int: Int {
         return Int(truncating: self)
+    }
+}
+
+public extension CGFloat {
+    
+    var _int: Int {
+        return Int(self)
     }
 }
 
