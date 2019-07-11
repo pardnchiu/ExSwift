@@ -42,11 +42,36 @@ public extension UIButton {
         let disable   = (self.image(for: .disabled) ?? UIImage());
         return images(normal, highlight, disable);
     }
+    var _top    : CGFloat { return self.contentEdgeInsets.top };
+    var _left   : CGFloat { return self.contentEdgeInsets.left };
+    var _bottom : CGFloat { return self.contentEdgeInsets.bottom };
+    var _right  : CGFloat { return self.contentEdgeInsets.right };
 }
 
 public extension UIButton {
     
-    func set(enable: Bool) { self.isEnabled = enable };
+    func t(_ value: CGFloat) { self.contentEdgeInsets.top = value };
+    func l(_ value: CGFloat) { self.contentEdgeInsets.left = value };
+    func b(_ value: CGFloat) { self.contentEdgeInsets.bottom = value };
+    func r(_ value: CGFloat) { self.contentEdgeInsets.right = value };
+    
+    func set(top value: CGFloat) { self.t(value) };
+    func set(left value: CGFloat) { self.l(value) };
+    func set(bottom value: CGFloat) { self.b(value) };
+    func set(right value: CGFloat) { self.r(value) };
+    func set(top: CGFloat, left: CGFloat)   { self.t(top); self.l(left) };
+    func set(top: CGFloat, bottom: CGFloat) { self.t(top); self.b(bottom) };
+    func set(top: CGFloat, right: CGFloat)  { self.t(top); self.r(right) };
+    func set(left: CGFloat, bottom: CGFloat) { self.l(left); self.b(bottom) };
+    func set(left: CGFloat, right: CGFloat)  { self.l(left); self.r(right) };
+    func set(bottom: CGFloat, right: CGFloat)  { self.b(bottom); self.r(right) };
+    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(padding: top, left, bottom, self._right) };
+    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(padding: top, left, self._bottom, right) };
+    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: top, self._left, bottom, right) };
+    func set(left: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: self._top, left, bottom, right) };
+    func set(padding top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
+        self.contentEdgeInsets = UIEdgeInsets(top, left, bottom, right);
+    };
     
     func set(text value: String?,_ state: UIControl.State) { self.setTitle(value, for: state) };
     func set(alignment horizon: UIControl.ContentHorizontalAlignment,_ vertical: UIControl.ContentVerticalAlignment) {
@@ -72,4 +97,6 @@ public extension UIButton {
     func set(tapUpOut target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchUpOutside) };
     func set(tapDown target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchDown) };
     func set(tapCancel target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchCancel) };
+
+    func set(enable: Bool) { self.isEnabled = enable };
 };

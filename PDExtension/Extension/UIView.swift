@@ -98,20 +98,20 @@ public extension UIView {
     func set(originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.y(originY); self.w(width);   self.a(alpha) };
     func set(originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.y(originY); self.h(height);  self.a(alpha) };
     func set(width: CGFloat, height: CGFloat, alpha: CGFloat) { self.w(width);   self.h(height);  self.a(alpha) };
-    func set(originX: CGFloat, originY: CGFloat, width: CGFloat)  { self.set(rect: originX, originY, width, self._height) };
-    func set(originX: CGFloat, originY: CGFloat, height: CGFloat) { self.set(rect: originX, originY, self._width, height) };
-    func set(originX: CGFloat, width: CGFloat,   height: CGFloat) { self.set(rect: originX, self._y, width, height) };
-    func set(originY: CGFloat, width: CGFloat,   height: CGFloat) { self.set(rect: self._x, originY, width, height) };
+    func set(originX: CGFloat, originY: CGFloat, width: CGFloat)  { self.set(frame: originX, originY, width, self._height) };
+    func set(originX: CGFloat, originY: CGFloat, height: CGFloat) { self.set(frame: originX, originY, self._width, height) };
+    func set(originX: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: originX, self._y, width, height) };
+    func set(originY: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: self._x, originY, width, height) };
     
-    func set(originX: CGFloat, originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.set(rect: originX, originY, width, self._height); self.a(alpha) };
-    func set(originX: CGFloat, originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: originX, originY, self._width, height); self.a(alpha) };
-    func set(originX: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: originX, self._y, width, height); self.a(alpha) };
-    func set(originY: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(rect: self._x, originY, width, height); self.a(alpha) };
+    func set(originX: CGFloat, originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.set(frame: originX, originY, width, self._height); self.a(alpha) };
+    func set(originX: CGFloat, originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: originX, originY, self._width, height); self.a(alpha) };
+    func set(originX: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: originX, self._y, width, height); self.a(alpha) };
+    func set(originY: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: self._x, originY, width, height); self.a(alpha) };
     
-    func set(rect originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat) {
+    func set(frame originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat) {
         self.frame = CGRect(originX, originY, width, height)
     };
-    func set(rect originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat,_ alpha: CGFloat) {
+    func set(frame originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat,_ alpha: CGFloat) {
         self.frame = CGRect(originX, originY, width, height)
         self.alpha = alpha
     };

@@ -17,9 +17,8 @@ public extension UILabel {
 
 public extension UILabel {
     
-    @objc func padding(_ t: CGFloat,_ l: CGFloat,_ b: CGFloat,_ r: CGFloat) {
-        let inset = UIEdgeInsets(top: t, left: l, bottom: b, right: r);
-        self.frame = self.frame.inset(by: inset);
+    func set(padding top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
+        self.frame = self.frame.inset(by: UIEdgeInsets(top, left, bottom, right));
     };
     
     func clear() { self.text = nil };

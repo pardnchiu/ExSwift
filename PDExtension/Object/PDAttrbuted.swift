@@ -12,12 +12,10 @@ import UIKit
 public struct PDAttributed {
     public enum body {
         case text;
-        
+        case color;
+        case alignment;        // 對齊
         case font;
-        case textColor;
         case charSpacing;
-        
-        case textAlignment;    // 對齊
         case lineBreakMode;    // 斷行
         case lineSpacing;      // 行間距
         case lineMinHeight;    // 最低行高
@@ -34,10 +32,14 @@ public struct PDAttributed {
         self.value = value;
     };
 };
-public func aText(text value: String)                   -> PDAttributed { return PDAttributed(.text, value) };
+public func aText(text value: String) -> PDAttributed { return PDAttributed(.text, value) };
+public func aText(color value: UIColor)                                    -> PDAttributed { return PDAttributed(.color, value) };
+public func aText(color r: CGFloat,_ g: CGFloat,_ b: CGFloat)              -> PDAttributed { return PDAttributed(.color, UIColor(rgb: r, g, b)) };
+public func aText(color r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ a: CGFloat) -> PDAttributed { return PDAttributed(.color, UIColor(rgb: r, g, b, a)) };
+public func aText(color hex: String)                                       -> PDAttributed { return PDAttributed(.color, UIColor(hex: hex)) };
+public func aText(color hex: String, a: CGFloat)                           -> PDAttributed { return PDAttributed(.color, UIColor(hex: hex, a)) };
+public func aText(alignment value: NSTextAlignment)     -> PDAttributed { return PDAttributed(.alignment, value) };
 public func aText(font value: UIFont)                   -> PDAttributed { return PDAttributed(.font, value) };
-public func aText(textColor value: UIColor)             -> PDAttributed { return PDAttributed(.textColor, value) };
-public func aText(textAlignment value: NSTextAlignment) -> PDAttributed { return PDAttributed(.textAlignment, value) };
 public func aText(charSpacing value: Float)             -> PDAttributed { return PDAttributed(.charSpacing, value) };
 public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttributed { return PDAttributed(.lineBreakMode, value) };
 public func aText(lineSpacing value: CGFloat)           -> PDAttributed { return PDAttributed(.lineSpacing, value) };
@@ -56,10 +58,10 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
         values.forEach {
             switch $0.key {
             case .text            : if let value = $0.value as? String { text = value };
-            case .font            : if let value = $0.value as? UIFont { attributes[NSAttributedString.Key.font] = value };
-            case .textColor       : if let value = $0.value as? UIColor { attributes[NSAttributedString.Key.foregroundColor] = value };
+            case .color       : if let value = $0.value as? UIColor { attributes[NSAttributedString.Key.foregroundColor] = value };
             case .charSpacing     : if let value = $0.value as? Float { attributes[NSAttributedString.Key.kern] = value };
-            case .textAlignment   : if let value = $0.value as? NSTextAlignment { style.alignment = value };
+            case .alignment   : if let value = $0.value as? NSTextAlignment { style.alignment = value };
+            case .font            : if let value = $0.value as? UIFont { attributes[NSAttributedString.Key.font] = value };
             case .lineBreakMode   : if let value = $0.value as? NSLineBreakMode { style.lineBreakMode = value };
             case .lineSpacing     : if let value = $0.value as? CGFloat { style.lineSpacing = value };
             case .lineMinHeight   : if let value = $0.value as? CGFloat { style.minimumLineHeight = value };

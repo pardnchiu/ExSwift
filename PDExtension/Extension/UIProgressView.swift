@@ -13,7 +13,7 @@ public extension UIProgressView {
     
     convenience init(_ x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ style: UIProgressView.Style) {
         self.init(progressViewStyle: style);
-        self.set(rect: x, y, w, h);
+        self.set(frame: x, y, w, h);
     };
     
     convenience init(_ frame: CGRect,_ style: UIProgressView.Style) {

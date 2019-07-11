@@ -35,11 +35,11 @@ public extension UIScrollView {
     func set(left: CGFloat, bottom: CGFloat) { self.l(left); self.b(bottom) };
     func set(left: CGFloat, right: CGFloat)  { self.l(left); self.r(right) };
     func set(bottom: CGFloat, right: CGFloat)  { self.b(bottom); self.r(right) };
-    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(inset: top, left, bottom, self._right) };
-    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(inset: top, left, self._bottom, right) };
-    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(inset: top, self._left, bottom, right) };
-    func set(left: CGFloat,bottom: CGFloat, right: CGFloat)  { self.set(inset: self._top, left, bottom, right) };
-    func set(inset top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
+    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(padding: top, left, bottom, self._right) };
+    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(padding: top, left, self._bottom, right) };
+    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: top, self._left, bottom, right) };
+    func set(left: CGFloat,bottom: CGFloat, right: CGFloat)  { self.set(padding: self._top, left, bottom, right) };
+    func set(padding top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
         self.contentInset = UIEdgeInsets(top, left, bottom, right)
     };
     

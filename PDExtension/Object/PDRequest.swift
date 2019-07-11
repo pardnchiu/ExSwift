@@ -77,30 +77,6 @@ public func albumPermission(_ root: UIViewController,_ completion: @escaping ()-
 
 public extension PHImageManager {
     
-    
-//    func get(image asset: PHAsset,_ size: CGSize?,_ completion: @escaping (UIImage?) -> ()) {
-//        let options = PHImageRequestOptions()
-//        options.isNetworkAccessAllowed = true
-//        options.isSynchronous = true
-//        options.version      = .current
-//        options.deliveryMode = .opportunistic
-//        options.resizeMode   = .exact
-//        let targetSize = size ?? CGSize(asset.pixelWidth._cgflt, asset.pixelHeight._cgflt)
-//        self.requestImage(for: asset, targetSize: targetSize, contentMode: .aspectFill, options: options, resultHandler: { (image, info) in
-//            completion(image)
-//        });
-//    }
-//
-//    func get(video asset: PHAsset,_ completion: @escaping (AVAsset?) -> ()) {
-//        let options = PHVideoRequestOptions()
-//        options.isNetworkAccessAllowed = true
-//        options.version      = .current
-//        options.deliveryMode = .automatic
-//        self.requestAVAsset(forVideo: asset, options: options) { (video, mix, nfo) in
-//            completion(video)
-//        };
-//    }
-    
     func PDRequest(avasset values: [PDAVAsset],_ completion: @escaping (AVAsset?) -> ()) {
         let options = PHVideoRequestOptions()
         var asset: PHAsset?
@@ -137,7 +113,6 @@ public extension PHImageManager {
         };
         guard let target = asset else { completion(nil); return };
         self.requestImage(for: target, targetSize: size ?? CGSize(target.pixelWidth._cgflt, target.pixelHeight._cgflt), contentMode: contentMode, options: options, resultHandler: { (image, info) in
-            //            print("asset info:", info ?? [:]);
             completion(image);
         });
     };

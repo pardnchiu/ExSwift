@@ -210,17 +210,4 @@ extension PDCamera: AVCapturePhotoCaptureDelegate {
             self.photoCaptureCompletionBlock?(nil, ERROR.unknown)
         }
     }
-    
-//    public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-//
-//        if let error = error {
-//            self.photoCaptureCompletionBlock!(nil, error)
-//        } else if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil) {
-//            //AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil)
-//            let image = UIImage(data: data)
-//            self.photoCaptureCompletionBlock!(image, nil)
-//        }else{
-//            self.photoCaptureCompletionBlock!(nil, CameraControllerError.unknown)
-//        }
-//    }
 }
