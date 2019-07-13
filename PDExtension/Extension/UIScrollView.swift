@@ -17,8 +17,8 @@ public extension UIScrollView {
     var _right  : CGFloat { return self.contentInset.right };
     var _offsetX: CGFloat { return self.contentOffset.x };
     var _offsetY: CGFloat { return self.contentOffset.y };
-    var _sizeWidth : CGFloat { return self.contentSize.width };
-    var _sizeHeight: CGFloat { return self.contentSize.height };
+    var _innerWidth : CGFloat { return self.contentSize.width };
+    var _innerHeight: CGFloat { return self.contentSize.height };
     
     func t(_ value: CGFloat) { self.contentInset.top = value };
     func l(_ value: CGFloat) { self.contentInset.left = value };
@@ -43,7 +43,7 @@ public extension UIScrollView {
         self.contentInset = UIEdgeInsets(top, left, bottom, right)
     };
     
-    func set(size width: CGFloat,_ height: CGFloat) { self.contentSize = CGSize(width, height) };
+    func set(inner width: CGFloat,_ height: CGFloat) { self.contentSize = CGSize(width, height) };
     func set(protocal delegate: UIScrollViewDelegate) { self.delegate = delegate };
     func set(scrollEnable value: Bool) { self.isScrollEnabled = value };
     func set(indicator vertical: Bool, _ horizontal: Bool) {

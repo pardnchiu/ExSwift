@@ -55,25 +55,25 @@ public func vAsset(version value: PHVideoRequestOptionsVersion)           -> PDA
 public func vAsset(deliveryMode value: PHVideoRequestOptionsDeliveryMode) -> PDAVAsset { return PDAVAsset(.deliveryMode, value) };
 public func vAsset(networkAllow value: Bool)                              -> PDAVAsset { return PDAVAsset(.networkAllow, value) };
 
-public func albumPermission(_ root: UIViewController,_ completion: @escaping ()->Void) {
-    PHPhotoLibrary.requestAuthorization({ (status) in
-        DispatchQueue.main.async {
-            switch status {
-            case .authorized:
-                completion()
-            default:
-                PDAlert(alert: root, title: "通知", message: "您尚未開啟存取相簿的權限\n請至手機的設定>NEEDS>照片>改為允許讀取和寫入", actions: [
-                    PDAction(title: "是", style: .default, action: { (action) in
-                        if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
-                            UIApplication.shared.open(settingsURL as URL);
-                        };
-                    }),
-                    PDAction(title: "否", style: .cancel, action: nil)
-                    ]);
-            };
-        };
-    });
-};
+//public func albumPermission(_ root: UIViewController,_ completion: @escaping ()->Void) {
+//    PHPhotoLibrary.requestAuthorization({ (status) in
+//        DispatchQueue.main.async {
+//            switch status {
+//            case .authorized:
+//                completion()
+//            default:
+//                PDAlert(alert: root, title: "通知", message: "您尚未開啟存取相簿的權限\n請至手機的設定>NEEDS>照片>改為允許讀取和寫入", actions: [
+//                    PDAction(title: "是", style: .default, action: { (action) in
+//                        if let settingsURL = URL(string: UIApplication.openSettingsURLString + Bundle.main.bundleIdentifier!) {
+//                            UIApplication.shared.open(settingsURL as URL);
+//                        };
+//                    }),
+//                    PDAction(title: "否", style: .cancel, action: nil)
+//                    ]);
+//            };
+//        };
+//    });
+//};
 
 public extension PHImageManager {
     

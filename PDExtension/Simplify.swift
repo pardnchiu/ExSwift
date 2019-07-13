@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MapKit
+import Photos
 
 public protocol simplify {}
 public extension simplify where Self: AnyObject {
@@ -24,115 +25,17 @@ extension CGRect  : simplify {};
 extension CGSize  : simplify {};
 extension CGVector: simplify {};
 
-public func cache(save value: [String:Any],_ path: String,_ name: String) {
-    let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
-    let file: String = doc+"/\(name).plist";
-    try! FileManager.default.createDirectory(atPath: doc, withIntermediateDirectories: true, attributes: nil);
-    NSDictionary(dictionary: value).write(toFile: file, atomically: true);
-};
-
-public func cache(load path: String,_ name: String,_ completion: @escaping ([String:Any]?)->()) {
-    let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
-    let file: String = doc+"/\(name).plist";
-    let dic = NSDictionary(contentsOfFile: file) as? [String:Any];
-    completion(dic);
-};
-
-public func cache(delete path: String,_ name: String) {
-    let fileManager = FileManager.default;
-    do {
-        try fileManager.removeItem(atPath: NSHomeDirectory()+"/Library/Caches/\(path)/\(name).plist");
-    }
-    catch let error as NSError {
-        print(error.localizedDescription);
-        return
-    };
-};
-
-public func get(data url: URL?, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-    guard let url = url else { return }
-    URLSession.shared.dataTask(with: url, completionHandler: completion).resume();
-};
-
-public func get(image url: URL?,_ completion: @escaping (UIImage?)->Void) {
-//    guard let url = value else { return }
-//    URLSession.shared.dataTask(with: url) { (data, response, error) in
-//        DispatchQueue.main.async() {
-//            if let _ = error { completion(nil); return };
-//            guard let data = data else { completion(nil); return };
-//            completion(UIImage(data: data))
-//        };
-//        }.resume();
-    get(data: url) { (data, response, error) in
-        DispatchQueue.main.async() {
-            if let _ = error { completion(nil); return };
-            guard let data = data else { completion(nil); return };
-            completion(UIImage(data: data))
-        };
-    };
-};
-
-public func get(image filename: String,_ completion: @escaping (UIImage?)->Void) {
-    DispatchQueue.main.async() {
-        guard
-            let path  = Bundle.main.path(forResource: filename, ofType: nil),
-            let image = UIImage(contentsOfFile: path)
-            else { completion(nil); return };
-        completion(image);
-    };
-};
-
-public func get(address latitude: Double, _ longitude: Double,_ completion: @escaping (String?)->Void) {
-    let location = CLLocation(latitude: latitude, longitude: longitude);
-    CLGeocoder().reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
-        DispatchQueue.main.async() {
-            if let _ = error { completion(nil); return };
-            guard let placemark = placemarks?[0] else { completion(nil); return };
-            let area = (placemark.subAdministrativeArea ?? "");
-            let dist = (placemark.locality ?? "");
-            let address = String(format:"%@%@", area, dist);
-            completion(address.trimmingCharacters(in: .whitespaces).isEmpty ? nil : address);
-        };
-    });
-};
-
-public func listener(add root: UIViewController,_ tag: String,_ selector: Selector,_ object: Any?) {
-    switch (tag) {
-    case "keyboardWillAppear":
-        NotificationCenter.default.addObserver(root, selector: selector, name: UIResponder.keyboardWillShowNotification, object: nil);
-    default:
-        NotificationCenter.default.addObserver(root, selector: selector, name: NSNotification.Name(rawValue: tag), object: object)
-    }
-}
-
-public func listener(set tag: String,_ dic: [String:Any]) {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: tag), object: nil, userInfo: dic)
-}
-
-public func listener(delete root: UIViewController,_ tag: String) {
-    NotificationCenter.default.removeObserver(root, name: NSNotification.Name(rawValue: tag), object: nil)
-}
-
 public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void ) {
     UIView.animate(withDuration: time, animations: animate);
 };
+
 public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void,_ complet: ((Bool)->Void)?) {
     UIView.animate(withDuration: time, animations: animate, completion: complet)
 };
 
-//@objc func _loadNotify(_ data: Notification) {
-//    if let bool = data.userInfo?["reload"] as? Bool, bool {
-//        self._action("loadNotify")
-//    }
-//}
-
-//
-//public func load_local(dic path: String,_ name: String,_ completion: @escaping ([String:Any]?)->()) {
-//    let doc: String = NSHomeDirectory()+"/Library/Caches/\(path)",
-//    file = doc+"/\(name).plist",
-//    dic  = NSDictionary(contentsOfFile: file) as? [String:Any];
-//    completion(dic);
-//};
+public func delay(second value: DispatchTime,_ completion: @escaping ()->Void) {
+    DispatchQueue.main.asyncAfter(deadline: value, execute: completion)
+};
 
 public extension Bool {
     
@@ -161,7 +64,7 @@ public extension CGFloat {
 
 public extension Date {
     
-    struct OBJC {
+    struct object {
         public var yy  : String;
         public var yyyy: String;
         public var M   : String;
@@ -182,29 +85,17 @@ public extension Date {
         public var S   : String;
     }
     
-    var _int: Int { return Int(self.timeIntervalSince1970) };
-    var _objc: OBJC {
-        let form = DateFormatter().set { $0.dateFormat = "yy-yyyy-M-MM-MMM-MMMM-E-EEEE-dd-d-h-hh-H-m-mm-s-ss-S-SS-SSS-a" },
-                                       ary = form.string(from: self).split("-"),
-        data = OBJC(yy: ary[0],
-                    yyyy: ary[1],
-                    M   : ary[2],
-                    MM  : ary[3],
-                    MMM : ary[4],
-                    MMMM: ary[5],
-                    E   : ary[6],
-                    EEEE: ary[7],
-                    dd  : ary[8],
-                    d   : ary[9],
-                    h   : ary[10],
-                    hh  : ary[11],
-                    H   : ary[12],
-                    m   : ary[13],
-                    mm  : ary[14],
-                    s   : ary[15],
-                    ss  : ary[16],
-                    S   : ary[17]);
-        return data;
+    var _int : Int { return Int(self.timeIntervalSince1970); };
+    var _objc: object {
+        let form = DateFormatter().set { $0.dateFormat = "yy-yyyy-M-MM-MMM-MMMM-E-EEEE-dd-d-h-hh-H-m-mm-s-ss-S-SS-SSS-a" }
+        let ary = form.string(from: self).split("-")
+        return object(yy: ary[0],  yyyy: ary[1],  M: ary[2],
+                      MM: ary[3],  MMM : ary[4],  MMMM: ary[5],
+                      E : ary[6],  EEEE: ary[7],
+                      dd: ary[8],  d   : ary[9],
+                      h : ary[10], hh  : ary[11], H: ary[12],
+                      m : ary[13], mm  : ary[14],
+                      s : ary[15], ss  : ary[16], S: ary[17]);
     };
     var _timeGone: String {
         switch (Date()._int - self._int) {
@@ -229,9 +120,15 @@ public extension Date {
     func equal(_ date: Date) -> Bool { return (self == date) };
 }
 
+extension Bundle {
+    var displayName: String {
+        return (object(forInfoDictionaryKey: "CFBundleDisplayName") as? String) ?? ""
+    }
+}
+
 public extension Int {
     
-    var _str : String { return String(self) };
+    var _str   : String { return String(self) };
     var _cgflt : CGFloat { return CGFloat(self) };
     var _date: Date { return Date(timeIntervalSince1970: TimeInterval(self)) };
     
@@ -272,10 +169,10 @@ public extension UIColor {
     };
     
     var _ciColor: CIColor { return CIColor(color: self) };
-    var _r: CGFloat { return (self._ciColor.red*255._cgflt) };
-    var _g: CGFloat { return (self._ciColor.green*255._cgflt) };
-    var _b: CGFloat { return (self._ciColor.blue*255._cgflt) };
-    var _a: CGFloat { return (self._ciColor.alpha) };
+    var _red: CGFloat { return (self._ciColor.red*255._cgflt) };
+    var _green: CGFloat { return (self._ciColor.green*255._cgflt) };
+    var _blue: CGFloat { return (self._ciColor.blue*255._cgflt) };
+    var _alpha: CGFloat { return (self._ciColor.alpha) };
 };
 public extension UIEdgeInsets {
     
@@ -428,50 +325,16 @@ public extension UIAlertAction {
 public let vw: CGFloat = UIScreen.main.bounds.size.width;
 public let vh: CGFloat = UIScreen.main.bounds.size.height;
 
-// regular
-public struct mode {
-    public static let pad: Bool   = (vh >= 999 && vw >= 768) || (vw >= 999 && vh >= 768);
-    public static let x: Bool     = (vh == 812 && vw == 375) || (vw == 812 && vh == 375) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let r: Bool     = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
-    public static let plus: Bool  = (vh == 736 && vw == 414) || (vw == 736 && vh == 414) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let norm: Bool  = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
-    public static let xNorm: Bool = (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
-    public static let xPlus: Bool = (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let rNorm: Bool = (vh == 667 && vw == 375) || (vw == 667 && vh == 375);
-    public static let rPlus: Bool = (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
-    public static let se: Bool    = (vh < 667);
-}
 
 public struct top {
-    public static let norm: CGFloat = (mode.x) ? 44 : 0;
-    public static let bar: CGFloat  = (mode.x) ? 44 : 20;
+    public static let norm: CGFloat = (device.x) ? 44 : 0;
+    public static let bar: CGFloat  = (device.x) ? 44 : 20;
 }
 
 public struct bottom {
-    public static let norm: CGFloat = (mode.x) ? 34 : 0;
-    public static let tab: CGFloat  = (mode.x) ? 34+49 : 49;
+    public static let norm: CGFloat = (device.x) ? 34 : 0;
+    public static let tab: CGFloat  = (device.x) ? 34+49 : 49;
 }
-
-//public var H: [CGFloat] = [25, 23, 21, 19, 17, 15]
-//public var p: [CGFloat] = [13, 11, 9]
-
-public struct size {
-    public struct font {
-        public struct h {
-            public static let _25: CGFloat = 25;
-            public static let _23: CGFloat = 23;
-            public static let _21: CGFloat = 21;
-            public static let _19: CGFloat = 19;
-            public static let _17: CGFloat = 17;
-        };
-        public struct p {
-            public static let _15: CGFloat = 15;
-            public static let _13: CGFloat = 13;
-            public static let _11: CGFloat = 11;
-            public static let _09: CGFloat = 9;
-        };
-    };
-};
 
 public struct time {
     public static let m = 60;
@@ -481,9 +344,9 @@ public struct time {
     public static let y = 60*60*24*365;
 };
 
-public struct col {
-    public static let bgc = UIColor(rgb: 239, 239, 244);
-    public static let del = UIColor(rgb: 193, 15, 29);
+public struct Colors {
+    public static let bgColor = UIColor(rgb: 239, 239, 244);
+    public static let delete  = UIColor(rgb: 193, 15, 29);
     public struct sys {
         public struct bgc {
             public static let dark = UIColor(rgb: 39, 30, 30);
@@ -518,9 +381,9 @@ public struct col {
 public struct ary {
     public static let month = (1...12).map { $0 };
     public static var year: [Int] = {
-        guard let y = Int(Date()._objc.yyyy) else { return []; };
+        guard let year = Int(Date()._objc.yyyy) else { return []; };
         var ary: [Int] = [];
-        for i in ((2019-60)...2019) { ary.insert(i, at: 0); };
+        ((year-60)...year).forEach { ary.insert($0, at: 0); };
         return ary
     }();
 };
@@ -540,69 +403,17 @@ public struct URLSchema {
     }
 };
 
-public func _ADD_LINE_BOTTOM(_ view: UIView,_ left: CGFloat) {
-    let line = UIView()
-    line.backgroundColor = col.white._10
-    line.autolayout()
-    view.addSubview(line)
-    
-//    line.l(equ: view.leftAnchor, left)
-//    line.b(equ: view.bottomAnchor, 0.5)
-//    line.r(equ: view.rightAnchor, -5)
-//    line.h(equ: nil, 0.5)
-}
-
-public let _CGRECT_PICKER: CGRect = CGRect(0,0,vw-20,100)
-
-public func bool(_ bool: Bool, True: @escaping ()->(), False: @escaping ()->()) {
-    switch bool {
-    case true : True();
-    case false: False();
-    };
-};
-
-// regular
 public struct device {
     public static let pad: Bool   = (vh >= 999 && vw >= 768) || (vw >= 999 && vh >= 768);
     public static let x: Bool     = (vh == 812 && vw == 375) || (vw == 812 && vh == 375) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
     public static let r: Bool     = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
     public static let plus: Bool  = (vh == 736 && vw == 414) || (vw == 736 && vh == 414) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
+    public static let norm: Bool  = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
     public static let xNorm: Bool = (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
     public static let xPlus: Bool = (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
     public static let rNorm: Bool = (vh == 667 && vw == 375) || (vw == 667 && vh == 375);
     public static let rPlus: Bool = (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
     public static let se: Bool    = (vh < 667);
-}
-
-//public enum divce {
-//    case pad;
-//    case x;
-//    case x_plus;
-//    case n;
-//    case n_plus;
-//    case se;
-//}
-
-public func PHONE(X_NORM: @escaping () -> Swift.Void, X_PLUS: @escaping () -> Swift.Void, NORM: @escaping () -> Swift.Void) {
-    switch (vw, vh) {
-    case let (i, j) where (j == 812 && i == 375) || (i == 812 && j == 375): X_NORM();
-    case let (i, j) where (j == 896 && i == 414) || (i == 896 && j == 414): X_PLUS();
-    default: NORM();
-    };
-};
-
-public func PDAlert(alert target: UIViewController,_ title: String,_ message: String,_ action: [UIAlertAction]) {
-    DispatchQueue.main.async {
-        let alert = UIAlertController(title, message, .alert).set { $0.action(action) };
-        target.present(alert, animated: true, completion: nil);
-    }
-}
-
-public func PDAlert(actionSheet target: UIViewController,_ title: String,_ message: String,_ action: [UIAlertAction]) {
-    DispatchQueue.main.async {
-        let alert = UIAlertController(title, message, .actionSheet).set { $0.action(action) };
-        target.present(alert, animated: true, completion: nil);
-    }
 }
 
 public struct panData {

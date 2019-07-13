@@ -16,6 +16,7 @@ public struct PDAttributed {
         case alignment;        // 對齊
         case font;
         case charSpacing;
+        case line;
         case lineBreakMode;    // 斷行
         case lineSpacing;      // 行間距
         case lineMinHeight;    // 最低行高
@@ -40,6 +41,7 @@ public func aText(color hex: String)                                       -> PD
 public func aText(color hex: String, a: CGFloat)                           -> PDAttributed { return PDAttributed(.color, UIColor(hex: hex, a)) };
 public func aText(alignment value: NSTextAlignment)     -> PDAttributed { return PDAttributed(.alignment, value) };
 public func aText(font value: UIFont)                   -> PDAttributed { return PDAttributed(.font, value) };
+public func aText(line value: Int)                      -> PDAttributed { return PDAttributed(.line, value) };
 public func aText(charSpacing value: Float)             -> PDAttributed { return PDAttributed(.charSpacing, value) };
 public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttributed { return PDAttributed(.lineBreakMode, value) };
 public func aText(lineSpacing value: CGFloat)           -> PDAttributed { return PDAttributed(.lineSpacing, value) };
@@ -58,10 +60,11 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
         values.forEach {
             switch $0.key {
             case .text            : if let value = $0.value as? String { text = value };
-            case .color       : if let value = $0.value as? UIColor { attributes[NSAttributedString.Key.foregroundColor] = value };
+            case .color           : if let value = $0.value as? UIColor { attributes[NSAttributedString.Key.foregroundColor] = value };
             case .charSpacing     : if let value = $0.value as? Float { attributes[NSAttributedString.Key.kern] = value };
-            case .alignment   : if let value = $0.value as? NSTextAlignment { style.alignment = value };
+            case .alignment       : if let value = $0.value as? NSTextAlignment { style.alignment = value };
             case .font            : if let value = $0.value as? UIFont { attributes[NSAttributedString.Key.font] = value };
+            case .line            : break;
             case .lineBreakMode   : if let value = $0.value as? NSLineBreakMode { style.lineBreakMode = value };
             case .lineSpacing     : if let value = $0.value as? CGFloat { style.lineSpacing = value };
             case .lineMinHeight   : if let value = $0.value as? CGFloat { style.minimumLineHeight = value };
@@ -79,13 +82,38 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
 }
 
 public extension UIButton {
-    func PDAttributed(normal values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .normal) };
-    func PDAttributed(highlight values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted) };
-    func PDAttributed(disabled values: [PDAttributed]) { self.setAttributedTitle(PDAttrbutedString(values), for: .disabled) };
+    func PDAttributed(normal values: [PDAttributed]) {
+        self.setAttributedTitle(PDAttrbutedString(values), for: .normal)
+        let ary = values.filter { return $0.key == .line }
+        if !(ary.isEmpty), let int = ary[0].value as? Int {
+            self.titleLabel?.numberOfLines = int;
+        };
+    };
+    func PDAttributed(highlight values: [PDAttributed]) {
+        self.setAttributedTitle(PDAttrbutedString(values), for: .highlighted)
+        let ary = values.filter { return $0.key == .line }
+        if !(ary.isEmpty), let int = ary[0].value as? Int {
+            self.titleLabel?.numberOfLines = int;
+        };
+    };
+    func PDAttributed(disabled values: [PDAttributed]) {
+        self.setAttributedTitle(PDAttrbutedString(values), for: .disabled);
+        let ary = values.filter { return $0.key == .line }
+        if !(ary.isEmpty), let int = ary[0].value as? Int {
+            self.titleLabel?.numberOfLines = int;
+        };
+        
+    };
 };
 
 public extension UILabel {
-    func PDAttributed(_ values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttributed(_ values: [PDAttributed]) {
+        self.attributedText = PDAttrbutedString(values)
+        let ary = values.filter { return $0.key == .line }
+        if !(ary.isEmpty), let int = ary[0].value as? Int {
+            self.numberOfLines = int;
+        };
+    };
 };
 
 public extension UITextField {

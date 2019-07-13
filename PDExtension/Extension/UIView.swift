@@ -11,19 +11,19 @@ import UIKit
 
 public extension UIView {
     
-    struct SHADOW {
-        public var  col: UIColor, offset: CGSize, radius: CGFloat, alpha: Float
-        public init(col: UIColor,_ offset: CGSize,_ radius: CGFloat,_ alpha: Float) {
-            self.col    = col;
-            self.offset = offset;
-            self.radius = radius;
-            self.alpha  = alpha;
-        };
-    };
-    
+//    struct SHADOW {
+//        public var  col: UIColor, offset: CGSize, radius: CGFloat, alpha: Float
+//        public init(col: UIColor,_ offset: CGSize,_ radius: CGFloat,_ alpha: Float) {
+//            self.col    = col;
+//            self.offset = offset;
+//            self.radius = radius;
+//            self.alpha  = alpha;
+//        };
+//    };
+//    
     var _bgColor: UIColor { return (self.backgroundColor ?? .clear) };
-    var _x: CGFloat { return (self.frame.origin.x) };
-    var _y: CGFloat { return (self.frame.origin.y) };
+    var _originX: CGFloat { return (self.frame.origin.x) };
+    var _originY: CGFloat { return (self.frame.origin.y) };
     var _width: CGFloat { return (self.frame.size.width) };
     var _height: CGFloat { return (self.frame.size.height) };
     var _alpha: CGFloat { return (self.alpha) };
@@ -100,13 +100,13 @@ public extension UIView {
     func set(width: CGFloat, height: CGFloat, alpha: CGFloat) { self.w(width);   self.h(height);  self.a(alpha) };
     func set(originX: CGFloat, originY: CGFloat, width: CGFloat)  { self.set(frame: originX, originY, width, self._height) };
     func set(originX: CGFloat, originY: CGFloat, height: CGFloat) { self.set(frame: originX, originY, self._width, height) };
-    func set(originX: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: originX, self._y, width, height) };
-    func set(originY: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: self._x, originY, width, height) };
+    func set(originX: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: originX, self._originY, width, height) };
+    func set(originY: CGFloat, width: CGFloat,   height: CGFloat) { self.set(frame: self._originX, originY, width, height) };
     
     func set(originX: CGFloat, originY: CGFloat, width: CGFloat, alpha: CGFloat) { self.set(frame: originX, originY, width, self._height); self.a(alpha) };
     func set(originX: CGFloat, originY: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: originX, originY, self._width, height); self.a(alpha) };
-    func set(originX: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: originX, self._y, width, height); self.a(alpha) };
-    func set(originY: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: self._x, originY, width, height); self.a(alpha) };
+    func set(originX: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: originX, self._originY, width, height); self.a(alpha) };
+    func set(originY: CGFloat, width: CGFloat, height: CGFloat, alpha: CGFloat) { self.set(frame: self._originX, originY, width, height); self.a(alpha) };
     
     func set(frame originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat) {
         self.frame = CGRect(originX, originY, width, height)
@@ -154,7 +154,7 @@ public extension UIView {
     };
     
     func set(shadow color: UIColor) {
-        let color = UIColor(rgb: color._r, color._g, color._b, color._a/5)
+        let color = UIColor(rgb: color._red, color._green, color._blue, color._alpha/5)
         self.layer.shadowColor   = color.cgColor;
         self.layer.shadowOffset  = CGSize(0, 0);
         self.layer.shadowRadius  = 5;
@@ -203,10 +203,10 @@ public extension UIView {
     }
     
     func size(toFit target: FIT,_ alignment: ALIGNMENT) {
-        let aTop   : CGFloat = self._y;
-        let aLeft  : CGFloat = self._x;
-        let aBottom: CGFloat = self._y+self._height;
-        let aRight : CGFloat = self._x+self._width;
+        let aTop   : CGFloat = self._originY;
+        let aLeft  : CGFloat = self._originX;
+        let aBottom: CGFloat = self._originY+self._height;
+        let aRight : CGFloat = self._originX+self._width;
         let aWidth : CGFloat = self._width;
         let aHeight: CGFloat = self._height;
         
