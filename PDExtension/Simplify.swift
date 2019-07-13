@@ -37,149 +37,6 @@ public func delay(second value: DispatchTime,_ completion: @escaping ()->Void) {
     DispatchQueue.main.asyncAfter(deadline: value, execute: completion)
 };
 
-public extension Bool {
-    
-    func function(TRUE: ()->(), FALSE: ()->()) {
-        if (self) {
-            TRUE();
-            return
-        };
-        FALSE();
-    };
-};
-
-public extension NSNumber {
-    
-    var _int: Int {
-        return Int(truncating: self)
-    }
-}
-
-public extension CGFloat {
-    
-    var _int: Int {
-        return Int(self)
-    }
-}
-
-public extension Date {
-    
-    struct object {
-        public var yy  : String;
-        public var yyyy: String;
-        public var M   : String;
-        public var MM  : String;
-        public var MMM : String;
-        public var MMMM: String;
-        public var E   : String;
-        public var EEEE: String;
-        public var dd  : String;
-        public var d   : String;
-        public var h   : String;
-        public var hh  : String;
-        public var H   : String;
-        public var m   : String;
-        public var mm  : String;
-        public var s   : String;
-        public var ss  : String;
-        public var S   : String;
-    }
-    
-    var _int : Int { return Int(self.timeIntervalSince1970); };
-    var _objc: object {
-        let form = DateFormatter().set { $0.dateFormat = "yy-yyyy-M-MM-MMM-MMMM-E-EEEE-dd-d-h-hh-H-m-mm-s-ss-S-SS-SSS-a" }
-        let ary = form.string(from: self).split("-")
-        return object(yy: ary[0],  yyyy: ary[1],  M: ary[2],
-                      MM: ary[3],  MMM : ary[4],  MMMM: ary[5],
-                      E : ary[6],  EEEE: ary[7],
-                      dd: ary[8],  d   : ary[9],
-                      h : ary[10], hh  : ary[11], H: ary[12],
-                      m : ary[13], mm  : ary[14],
-                      s : ary[15], ss  : ary[16], S: ary[17]);
-    };
-    var _timeGone: String {
-        switch (Date()._int - self._int) {
-        case let i where (i < 60)       : return "剛剛"
-        case let i where (i/time.m < 60): return "\(i/time.m) 分鐘"
-        case let i where (i/time.h < 24): return "\(i/time.h) 小時"
-        case let i where (i/time.d < 30): return "\(i/time.d) 天"
-        case let i where (i/time.M < 12): return "\(i/time.M) 個月";
-        case let i where (i/time.y > 1) : return "\(i/time.y) 年";
-        default                         : return "#error";
-        };
-    };
-    var _timeLeft: String {
-        let date: Int = self._int,
-        day : String = (date/time.d).differ(0) ? "\(date/time.d)d-" : "",
-        hour: String = ((date%time.d)/time.h).differ(0) ? "\((date%time.d)/time.h)h-" : "",
-        min : String = (((date%time.d)%time.h)/time.m).differ(0) ? "\(((date%time.d)%time.h)/time.m)m-" : "",
-        sec : String = (((date%time.d)%time.h)%time.m).differ(0) ? "\(((date%time.d)%time.h)%time.m)s" : "";
-        return "\(day)\(hour)\(min)\(sec)";
-    };
-    
-    func equal(_ date: Date) -> Bool { return (self == date) };
-}
-
-extension Bundle {
-    var displayName: String {
-        return (object(forInfoDictionaryKey: "CFBundleDisplayName") as? String) ?? ""
-    }
-}
-
-public extension Int {
-    
-    var _str   : String { return String(self) };
-    var _cgflt : CGFloat { return CGFloat(self) };
-    var _date: Date { return Date(timeIntervalSince1970: TimeInterval(self)) };
-    
-    func equal(_ int: Int) -> Bool { return (self == int); };
-    func differ(_ int: Int) -> Bool { return (self != int); };
-    
-}
-
-public extension UIColor {
-    
-    @objc convenience init(rgb red: CGFloat,_ green: CGFloat,_ blue: CGFloat) {
-        self.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1);
-    };
-    
-    @objc convenience init(rgb red: CGFloat,_ green: CGFloat,_ blue: CGFloat,_ alpha: CGFloat) {
-        self.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha);
-    };
-    
-    @objc convenience init(hex value: String) {
-        var str: String = value.trimmingCharacters(in: .whitespaces).replace(["#":""]),
-        rgb: UInt32 = 0;
-        switch (str.count != 6) {
-        case true: self.init(rgb: 0.5, 0.5, 0.5);
-        case false: Scanner(string: str).scanHexInt32(&rgb);
-        self.init(rgb: CGFloat((rgb & 0xFF0000) >> 16), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF));
-            print("rgb", CGFloat(rgb & 0xFF0000), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF))
-        };
-    };
-    
-    @objc convenience init(hex value: String,_ a: CGFloat) {
-        var str: String = value.trimmingCharacters(in: .whitespaces).replace(["#":""]),
-        rgb: UInt32 = 0;
-        switch (str.count != 6) {
-        case true : Scanner(string: str).scanHexInt32(&rgb);
-        self.init(rgb: CGFloat((rgb & 0xFF0000) >> 16), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF), a);
-        case false: self.init(rgb: 0.5, 0.5, 0.5, a);
-        };
-    };
-    
-    var _ciColor: CIColor { return CIColor(color: self) };
-    var _red: CGFloat { return (self._ciColor.red*255._cgflt) };
-    var _green: CGFloat { return (self._ciColor.green*255._cgflt) };
-    var _blue: CGFloat { return (self._ciColor.blue*255._cgflt) };
-    var _alpha: CGFloat { return (self._ciColor.alpha) };
-};
-public extension UIEdgeInsets {
-    
-    init(_ t: CGFloat,_ l: CGFloat,_ b: CGFloat,_ r: CGFloat) {
-        self.init(top: t, left: l, bottom: b, right: r);
-    };
-};
 
 public class Interactor: UIPercentDrivenInteractiveTransition {
     public var isStarted  = false
@@ -187,25 +44,15 @@ public class Interactor: UIPercentDrivenInteractiveTransition {
 }
 
 
-public extension CGRect {
-    
-    init(_ x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat) {
-        self.init(x: x, y: y, width: w, height: h);
-    };
-};
+extension Bundle {
+    var displayName: String {
+        return (object(forInfoDictionaryKey: "CFBundleDisplayName") as? String) ?? ""
+    }
+}
 
-public extension CGSize {
+public extension UIEdgeInsets {
     
-    init(_ w: CGFloat,_ h: CGFloat) {
-        self.init(width: w, height: h);
-    };
-};
-
-public extension CGPoint {
-    
-    init(_ x: CGFloat,_ y: CGFloat) {
-        self.init(x: x, y: y);
-    };
+    init(_ top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) { self.init(top: top, left: left, bottom: bottom, right: right) };
 };
 
 public extension MKMapView {
@@ -337,11 +184,11 @@ public struct bottom {
 }
 
 public struct time {
-    public static let m = 60;
-    public static let h = 60*60;
-    public static let d = 60*60*24;
-    public static let M = 60*60*24*30;
-    public static let y = 60*60*24*365;
+    public static let min   = 60;
+    public static let hour  = 60*60;
+    public static let day   = 60*60*24;
+    public static let month = 60*60*24*30;
+    public static let year  = 60*60*24*365;
 };
 
 public struct Colors {
@@ -408,7 +255,6 @@ public struct device {
     public static let x: Bool     = (vh == 812 && vw == 375) || (vw == 812 && vh == 375) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
     public static let r: Bool     = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
     public static let plus: Bool  = (vh == 736 && vw == 414) || (vw == 736 && vh == 414) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let norm: Bool  = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
     public static let xNorm: Bool = (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
     public static let xPlus: Bool = (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
     public static let rNorm: Bool = (vh == 667 && vw == 375) || (vw == 667 && vh == 375);

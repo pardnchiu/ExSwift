@@ -30,6 +30,9 @@
 		846AC78522DA459500C9FB10 /* GetValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78422DA459500C9FB10 /* GetValue.swift */; };
 		846AC78722DA45D800C9FB10 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78622DA45D800C9FB10 /* Cache.swift */; };
 		846AC78922DA46FF00C9FB10 /* Listener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78822DA46FF00C9FB10 /* Listener.swift */; };
+		846AC78B22DA4EAF00C9FB10 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78A22DA4EAF00C9FB10 /* Date.swift */; };
+		846AC78D22DA4ED500C9FB10 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78C22DA4ED500C9FB10 /* UIColor.swift */; };
+		846AC78F22DA4EF700C9FB10 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78E22DA4EF700C9FB10 /* Values.swift */; };
 		847F72CB22D79269008C289C /* UIProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847F72CA22D79269008C289C /* UIProgressView.swift */; };
 		84D3CABC22ACCFD50035A126 /* PDAttrbuted.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D3CABB22ACCFD50035A126 /* PDAttrbuted.swift */; };
 /* End PBXBuildFile section */
@@ -60,6 +63,9 @@
 		846AC78422DA459500C9FB10 /* GetValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetValue.swift; sourceTree = "<group>"; };
 		846AC78622DA45D800C9FB10 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		846AC78822DA46FF00C9FB10 /* Listener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listener.swift; sourceTree = "<group>"; };
+		846AC78A22DA4EAF00C9FB10 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		846AC78C22DA4ED500C9FB10 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		846AC78E22DA4EF700C9FB10 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
 		847F72CA22D79269008C289C /* UIProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProgressView.swift; sourceTree = "<group>"; };
 		84D3CABB22ACCFD50035A126 /* PDAttrbuted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAttrbuted.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,6 +84,12 @@
 		8409184A22CC853E0005B89A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				846AC78E22DA4EF700C9FB10 /* Values.swift */,
+				8409184222CC6CA30005B89A /* String.swift */,
+				846AC78A22DA4EAF00C9FB10 /* Date.swift */,
+				8409184822CC6EC90005B89A /* Dictionary.swift */,
+				8409184622CC6EA50005B89A /* Array.swift */,
+				846AC78C22DA4ED500C9FB10 /* UIColor.swift */,
 				842FCE0A22C893F50071750F /* UIView.swift */,
 				8409184422CC6CEC0005B89A /* UILabel.swift */,
 				8409184022CC69710005B89A /* UIButton.swift */,
@@ -87,9 +99,6 @@
 				8409184D22CC86730005B89A /* UICollectionView.swift */,
 				8409183D22CBC9990005B89A /* UIScrollView.swift */,
 				847F72CA22D79269008C289C /* UIProgressView.swift */,
-				8409184222CC6CA30005B89A /* String.swift */,
-				8409184622CC6EA50005B89A /* Array.swift */,
-				8409184822CC6EC90005B89A /* Dictionary.swift */,
 				841216B622C9F1900034760C /* PHImageManager.swift */,
 			);
 			path = Extension;
@@ -225,8 +234,11 @@
 				846491D122B1F62C0077CF41 /* PDAlert.swift in Sources */,
 				8409185022CCA1600005B89A /* UITableView.swift in Sources */,
 				8409184E22CC86730005B89A /* UICollectionView.swift in Sources */,
+				846AC78F22DA4EF700C9FB10 /* Values.swift in Sources */,
+				846AC78B22DA4EAF00C9FB10 /* Date.swift in Sources */,
 				8435652722D31FB8007256A0 /* UITextfield.swift in Sources */,
 				846AC78922DA46FF00C9FB10 /* Listener.swift in Sources */,
+				846AC78D22DA4ED500C9FB10 /* UIColor.swift in Sources */,
 				84142E3122CE459A005E7F4B /* PDRequest.swift in Sources */,
 				8409184322CC6CA30005B89A /* String.swift in Sources */,
 				846AC78522DA459500C9FB10 /* GetValue.swift in Sources */,
