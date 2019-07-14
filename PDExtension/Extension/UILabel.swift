@@ -24,15 +24,19 @@ public extension UILabel {
     func clear() { self.text = nil };
     
     func set(text value: String) { self.text = value };
+    func set(alignment value: NSTextAlignment) { self.textAlignment = value };
+    func set(breakMode value: NSLineBreakMode) { self.lineBreakMode = value };
+    func set(line value: Int) { self.numberOfLines = value };
+    func set(fitWidth value: Bool) { self.adjustsFontSizeToFitWidth = value };
+    
     func set(textColor value: UIColor) { self.textColor = value };
     func set(textColor r: CGFloat,_ g: CGFloat,_ b: CGFloat) { self.textColor = UIColor(rgb: r, g, b) };
     func set(textColor r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ a: CGFloat) { self.textColor = UIColor(rgb: r, g, b, a) };
     func set(textColor hex: String) { self.textColor = UIColor(hex: hex) };
     func set(textColor hex: String,_ a: CGFloat) { self.textColor = UIColor(hex: hex, a) };
-    func set(textAlignment value: NSTextAlignment) { self.textAlignment = value };
+    
     func set(font value: UIFont) { self.font = value };
+    func set(font size: CGFloat,_ name: String) { self.font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size) };
     func set(font size: CGFloat,_ weight: UIFont.Weight) { self.font = .systemFont(ofSize: size, weight: weight) };
-    func set(breakMode value: NSLineBreakMode) { self.lineBreakMode = value };
-    func set(line value: Int) { self.numberOfLines = value };
-    func set(fitWidth value: Bool) { self.adjustsFontSizeToFitWidth = value };
+    func set(fontItalic size: CGFloat) { UIFont.italicSystemFont(ofSize: size) };
 };

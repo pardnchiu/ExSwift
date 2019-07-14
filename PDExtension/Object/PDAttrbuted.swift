@@ -40,7 +40,10 @@ public func aText(color r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ a: CGFloat) -> PD
 public func aText(color hex: String)                                       -> PDAttributed { return PDAttributed(.color, UIColor(hex: hex)) };
 public func aText(color hex: String, a: CGFloat)                           -> PDAttributed { return PDAttributed(.color, UIColor(hex: hex, a)) };
 public func aText(alignment value: NSTextAlignment)     -> PDAttributed { return PDAttributed(.alignment, value) };
-public func aText(font value: UIFont)                   -> PDAttributed { return PDAttributed(.font, value) };
+public func aText(font value: UIFont)                         -> PDAttributed { return PDAttributed(.font, value) };
+public func aText(font size: CGFloat,_ name: String)          -> PDAttributed { return PDAttributed(.font, UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size)) };
+public func aText(font size: CGFloat,_ weight: UIFont.Weight) -> PDAttributed { return PDAttributed(.font, UIFont.systemFont(ofSize: size, weight: weight)) };
+public func aText(fontItalic size: CGFloat)                   -> PDAttributed { return PDAttributed(.font, UIFont.italicSystemFont(ofSize: size)) };
 public func aText(line value: Int)                      -> PDAttributed { return PDAttributed(.line, value) };
 public func aText(charSpacing value: Float)             -> PDAttributed { return PDAttributed(.charSpacing, value) };
 public func aText(lineBreakMode value: NSLineBreakMode) -> PDAttributed { return PDAttributed(.lineBreakMode, value) };
@@ -119,4 +122,8 @@ public extension UILabel {
 public extension UITextField {
     func PDAttributed(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
     func PDAttributed(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
+};
+
+public extension UITextView {
+    func PDAttributed(values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
 };

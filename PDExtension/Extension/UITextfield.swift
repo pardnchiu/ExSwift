@@ -23,9 +23,13 @@ public extension UITextField {
     func set(textColor hex: String) { self.textColor = UIColor(hex: hex) };
     func set(textColor hex: String,_ a: CGFloat) { self.textColor = UIColor(hex: hex, a) };
     
-    func set(textAlignment value: NSTextAlignment) { self.textAlignment = value };
-    func set(placeholder value: String) { self.placeholder = value };
     func set(font value: UIFont) { self.font = value };
+    func set(font size: CGFloat,_ name: String) { self.font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size) };
+    func set(font size: CGFloat,_ weight: UIFont.Weight) { self.font = .systemFont(ofSize: size, weight: weight) };
+    func set(fontItalic size: CGFloat) { UIFont.italicSystemFont(ofSize: size) };
+    
+    func set(alignment value: NSTextAlignment) { self.textAlignment = value };
+    func set(placeholder value: String) { self.placeholder = value };
     func set(keyboardType value: UIKeyboardType) { self.keyboardType = value };
     func set(UIKeyboardAppearance value: UIKeyboardAppearance) { self.keyboardAppearance = value };
     func set(protocol value: UITextFieldDelegate) { self.delegate = value };

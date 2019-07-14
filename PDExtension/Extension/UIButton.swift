@@ -79,9 +79,13 @@ public extension UIButton {
         self.contentVerticalAlignment   = vertical;
     };
     func set(breakMode value: NSLineBreakMode) { self.titleLabel?.lineBreakMode = value };
-    func set(font value: CGFloat,_ weight: UIFont.Weight) { self.titleLabel?.font = .systemFont(ofSize: value, weight: weight) };
     func set(line value: Int) { self.titleLabel?.numberOfLines = value };
     func set(fitWidth value: Bool) { self.titleLabel?.adjustsFontSizeToFitWidth = value };
+    
+    func set(font value: UIFont) { self.titleLabel?.font = value };
+    func set(font size: CGFloat,_ name: String) { self.titleLabel?.font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size) };
+    func set(font size: CGFloat,_ weight: UIFont.Weight) { self.titleLabel?.font = .systemFont(ofSize: size, weight: weight) };
+    func set(fontItalic size: CGFloat) { self.titleLabel?.font = UIFont.italicSystemFont(ofSize: size) };
     
     func set(textColor value: UIColor?,_ state: UIControl.State) { self.setTitleColor(value, for: state) };
     func set(textColor r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ state: UIControl.State) { self.setTitleColor(UIColor(rgb: r, g, b), for: state) };
