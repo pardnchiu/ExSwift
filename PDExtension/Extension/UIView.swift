@@ -24,6 +24,8 @@ public extension UIView {
     var _bgColor: UIColor { return (self.backgroundColor ?? .clear) };
     var _originX: CGFloat { return (self.frame.origin.x) };
     var _originY: CGFloat { return (self.frame.origin.y) };
+    var _centerX: CGFloat { return (self.center.x) };
+    var _centerY: CGFloat { return (self.center.y) };
     var _width: CGFloat { return (self.frame.size.width) };
     var _height: CGFloat { return (self.frame.size.height) };
     var _alpha: CGFloat { return (self.alpha) };
@@ -84,13 +86,16 @@ public extension UIView {
     func set(width value: CGFloat) { self.w(value) };
     func set(height value: CGFloat) { self.h(value) };
     func set(alpha value: CGFloat) { self.a(value) };
+    func set(centerX value: CGFloat) { self.center.x = value };
+    func set(centerY value: CGFloat) { self.center.y = value };
     
-    func set(originX: CGFloat, originY: CGFloat) { self.x(originX); self.y(originY) };
+    func set(originX: CGFloat, originY: CGFloat) { self.frame.origin = CGPoint(originX, originY) };
     func set(originX: CGFloat, width: CGFloat) { self.x(originX); self.w(width) };
     func set(originX: CGFloat, height: CGFloat) { self.x(originX); self.h(height) };
     func set(originY: CGFloat, width: CGFloat) { self.y(originY); self.w(width) };
     func set(originY: CGFloat, height: CGFloat) { self.y(originY); self.h(height) };
-    func set(width: CGFloat, height: CGFloat) { self.w(width);   self.h(height) };
+    func set(width: CGFloat, height: CGFloat) { self.frame.size = CGSize(width, height) };
+    func set(centerX: CGFloat, centerY: CGFloat) { self.center = CGPoint(centerX, centerY) };
     
     func set(originX: CGFloat, originY: CGFloat, alpha: CGFloat) { self.x(originX); self.y(originY); self.a(alpha) };
     func set(originX: CGFloat, width: CGFloat, alpha: CGFloat) { self.x(originX); self.w(width);   self.a(alpha) };

@@ -179,9 +179,12 @@ public struct top {
 }
 
 public struct bottom {
-    public static let norm: CGFloat = (device.x) ? 34 : 0;
-    public static let tab: CGFloat  = (device.x) ? 34+49 : 49;
+    public static let norm: CGFloat = (device.x ? 34 : 0);
+    public static let tab: CGFloat  = (device.x ? 34+49 : 49);
 }
+
+public let navY: CGFloat = (device.x ? 46 : 22);
+public let navH: CGFloat = 40;
 
 public struct time {
     public static let min   = 60;
