@@ -23,8 +23,8 @@ public extension UITableView {
     var _header: UIView? { return (self.tableHeaderView) };
     var _footer: UIView? { return (self.tableFooterView) };
     
-    var _headerH: CGFloat { return (self.tableHeaderView?._height ?? 0) };
-    var _footerH: CGFloat { return (self.tableFooterView?._height ?? 0) };
+    var _headerH: CGFloat { return (self.tableHeaderView?._fH ?? 0) };
+    var _footerH: CGFloat { return (self.tableFooterView?._fH ?? 0) };
 };
 
 public extension UITableView {

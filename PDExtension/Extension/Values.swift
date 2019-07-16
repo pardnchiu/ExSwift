@@ -50,3 +50,8 @@ public extension CGPoint {
     
     init(_ x: CGFloat,_ y: CGFloat) { self.init(x: x, y: y) };
 };
+
+public extension IndexPath {
+    
+    init(_ row: Int,_ section: Int) { self.init(row: row, section: section) };
+};

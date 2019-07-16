@@ -11,39 +11,43 @@ import UIKit
 
 public extension UIScrollView {
     
-    var _top    : CGFloat { return self.contentInset.top };
-    var _left   : CGFloat { return self.contentInset.left };
-    var _bottom : CGFloat { return self.contentInset.bottom };
-    var _right  : CGFloat { return self.contentInset.right };
-    var _offsetX: CGFloat { return self.contentOffset.x };
-    var _offsetY: CGFloat { return self.contentOffset.y };
-    var _innerWidth : CGFloat { return self.contentSize.width };
-    var _innerHeight: CGFloat { return self.contentSize.height };
+    var _t: CGFloat { return self.contentInset.top };
+    var _l: CGFloat { return self.contentInset.left };
+    var _b: CGFloat { return self.contentInset.bottom };
+    var _r: CGFloat { return self.contentInset.right };
+    var _iX: CGFloat { return self.contentOffset.x };
+    var _iY: CGFloat { return self.contentOffset.y };
+    var _iW: CGFloat { return self.contentSize.width };
+    var _iH: CGFloat { return self.contentSize.height };
     
     func t(_ value: CGFloat) { self.contentInset.top = value };
     func l(_ value: CGFloat) { self.contentInset.left = value };
     func b(_ value: CGFloat) { self.contentInset.bottom = value };
     func r(_ value: CGFloat) { self.contentInset.right = value };
     
-    func set(top value: CGFloat) { self.t(value) };
-    func set(left value: CGFloat) { self.l(value) };
-    func set(bottom value: CGFloat) { self.b(value) };
-    func set(right value: CGFloat) { self.r(value) };
-    func set(top: CGFloat, left: CGFloat)   { self.t(top); self.l(left) };
-    func set(top: CGFloat, bottom: CGFloat) { self.t(top); self.b(bottom) };
-    func set(top: CGFloat, right: CGFloat)  { self.t(top); self.r(right) };
-    func set(left: CGFloat, bottom: CGFloat) { self.l(left); self.b(bottom) };
-    func set(left: CGFloat, right: CGFloat)  { self.l(left); self.r(right) };
-    func set(bottom: CGFloat, right: CGFloat)  { self.b(bottom); self.r(right) };
-    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(padding: top, left, bottom, self._right) };
-    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(padding: top, left, self._bottom, right) };
-    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: top, self._left, bottom, right) };
-    func set(left: CGFloat,bottom: CGFloat, right: CGFloat)  { self.set(padding: self._top, left, bottom, right) };
+    func set(t value: CGFloat) { self.t(value) };
+    func set(l value: CGFloat) { self.l(value) };
+    func set(b value: CGFloat) { self.b(value) };
+    func set(r value: CGFloat) { self.r(value) };
+    func set(t: CGFloat, l: CGFloat) { self.t(t); self.l(l) };
+    func set(t: CGFloat, b: CGFloat) { self.t(t); self.b(b) };
+    func set(t: CGFloat, r: CGFloat) { self.t(t); self.r(r) };
+    func set(l: CGFloat, b: CGFloat) { self.l(l); self.b(b) };
+    func set(l: CGFloat, r: CGFloat) { self.l(l); self.r(r) };
+    func set(b: CGFloat, r: CGFloat) { self.b(b); self.r(r) };
+    func set(t: CGFloat, l: CGFloat, b: CGFloat) { self.set(padding: t, l, b, self._r) };
+    func set(t: CGFloat, l: CGFloat, r: CGFloat) { self.set(padding: t, l, self._b, r) };
+    func set(t: CGFloat, b: CGFloat, r: CGFloat) { self.set(padding: t, self._l, b, r) };
+    func set(l: CGFloat, b: CGFloat, r: CGFloat) { self.set(padding: self._t, l, b, r) };
     func set(padding top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
         self.contentInset = UIEdgeInsets(top, left, bottom, right)
     };
     
     func set(inner width: CGFloat,_ height: CGFloat) { self.contentSize = CGSize(width, height) };
+    func set(inner point: CGPoint)  { self.contentOffset = point };
+    func set(iX value: CGFloat) { self.contentOffset.x = value };
+    func set(iY value: CGFloat) { self.contentOffset.y = value };
+    
     func set(protocal delegate: UIScrollViewDelegate) { self.delegate = delegate };
     func set(scrollEnable value: Bool) { self.isScrollEnabled = value };
     func set(indicator vertical: Bool, _ horizontal: Bool) {
@@ -59,10 +63,6 @@ public extension UIScrollView {
             self.contentInsetAdjustmentBehavior = value;
         };
     };
-    
-    func set(offset point: CGPoint)  { self.contentOffset = point };
-    func set(offsetX value: CGFloat) { self.contentOffset.x = value };
-    func set(offsetY value: CGFloat) { self.contentOffset.y = value };
     
     func offsetX(to value: CGFloat,_ time: Double) { animation(time) { self.contentOffset.x = value }};
     func offsetY(to value: CGFloat,_ time: Double) { animation(time) { self.contentOffset.y = value }};

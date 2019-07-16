@@ -36,6 +36,18 @@ public extension UICollectionView {
     func scroll(to index: IndexPath,_ position: UICollectionView.ScrollPosition,_ animate: Bool) {
         self.scrollToItem(at: index, at: position, animated: animate);
     };
+    
+    func insert(indexPaths: [IndexPath],_ completion: ((Bool)->Void)?) {
+        self.performBatchUpdates({
+            self.insertItems(at: indexPaths);
+        }, completion: completion)
+    }
+    
+    func delete(indexPaths: [IndexPath],_ completion: ((Bool)->Void)?) {
+        self.performBatchUpdates({
+            self.deleteItems(at: indexPaths);
+        }, completion: completion)
+    }
 };
 
 public extension UICollectionViewFlowLayout {
