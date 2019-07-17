@@ -102,5 +102,5 @@ public extension UIButton {
     func set(tapDown target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchDown) };
     func set(tapCancel target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchCancel) };
 
-    func set(enable: Bool) { self.isEnabled = enable };
+    func set(enable: Bool) { self.isEnabled = enable; self.set(a: enable ? 1 : 0.5) };
 };
