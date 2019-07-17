@@ -48,6 +48,16 @@ public extension Array {
         guard let ary = self as? [UIButton] else { return; };
         for i in ary { i.addTarget(target, action: action, for: .touchUpInside); };
     };
+    
+    func clear() {
+        self.forEach {
+            if let item = ($0 as? UIButton ) { item.setTitle(nil, for: .normal) };
+            if let item = ($0 as? UILabel ) { item.text = nil  };
+            if let item = ($0 as? UIImageView) { item.image = nil };
+            if let item = ($0 as? UITextField) { item.text = nil };
+            if let item = ($0 as? UITextView)  { item.text = nil };
+        }
+    }
 };
 
 public extension NSArray {

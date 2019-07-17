@@ -326,4 +326,7 @@ public extension UIView {
             completion(nil)
         }
     }
+    
+    func bring(toFront ary: [UIView?]) { ary.forEach { self.bringSubviewToFront($0 ?? UIView()) } }
+    
 };

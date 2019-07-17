@@ -25,7 +25,6 @@ public extension UIColor {
         case true: self.init(rgb: 0.5, 0.5, 0.5);
         case false: Scanner(string: str).scanHexInt32(&rgb);
         self.init(rgb: CGFloat((rgb & 0xFF0000) >> 16), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF));
-        print("rgb", CGFloat(rgb & 0xFF0000), CGFloat((rgb & 0x00FF00) >> 8), CGFloat(rgb & 0x0000FF))
         };
     };
     
