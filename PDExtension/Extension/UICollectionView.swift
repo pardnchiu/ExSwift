@@ -27,6 +27,10 @@ public extension UICollectionView {
     func set(cell value: AnyClass) { self.register(value.self, forCellWithReuseIdentifier: "\(value)") };
     func set(cells values: [AnyClass]) { values.forEach { self.register($0.self, forCellWithReuseIdentifier: "\($0)") } }
     
+    func cell(_ indexPath: IndexPath) -> UICollectionViewCell? {
+        return self.cellForItem(at: indexPath);
+    };
+    
     func cell(reuse tag: String,_ indexPath: IndexPath) -> UICollectionViewCell {
         return self.dequeueReusableCell(withReuseIdentifier: tag, for: indexPath);
     };
