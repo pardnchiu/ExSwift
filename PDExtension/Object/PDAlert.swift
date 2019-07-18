@@ -107,7 +107,7 @@ public func PDAlert(input root: UIViewController, title: String, message: String
                 texefield.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor;
                 
             case .lineTop, .lineBottom:
-                let line = UIView().set {
+                let line = UIView().body {
                     $0.translatesAutoresizingMaskIntoConstraints = false;
                     $0.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25);
                 }

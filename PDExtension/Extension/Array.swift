@@ -52,7 +52,13 @@ public extension Array {
     func clear() {
         self.forEach {
             if let item = ($0 as? UIButton ) { item.setTitle(nil, for: .normal) };
-            if let item = ($0 as? UILabel ) { item.text = nil  };
+            if let item = ($0 as? UILabel ) {
+                if item.attributedText != nil {
+                    item.PDAttributed(text: "")
+                } else {
+                    item.text = ""
+                }
+            };
             if let item = ($0 as? UIImageView) { item.image = nil };
             if let item = ($0 as? UITextField) { item.text = nil };
             if let item = ($0 as? UITextView)  { item.text = nil };

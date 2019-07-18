@@ -18,10 +18,8 @@ public extension UIProgressView {
     
     convenience init(_ frame: CGRect,_ style: UIProgressView.Style) {
         self.init(progressViewStyle: style);
-        switch frame {
-        case .zero: self.autolayout();
-        default   : self.frame = frame;
-        };
+        self.frame = frame
+        self.set(autolayout: frame != .zero);
     };
     
     func set(color front: UIColor, color back: UIColor) {

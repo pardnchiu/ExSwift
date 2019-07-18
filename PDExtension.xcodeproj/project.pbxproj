@@ -24,6 +24,7 @@
 		842FCE0B22C893F50071750F /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842FCE0A22C893F50071750F /* UIView.swift */; };
 		8435652722D31FB8007256A0 /* UITextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8435652622D31FB8007256A0 /* UITextfield.swift */; };
 		8452BA9622C655D000A3A553 /* PDCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452BA9522C655D000A3A553 /* PDCamera.swift */; };
+		8454571F22E07DB50073119C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8454571E22E07DB50073119C /* Data.swift */; };
 		846491CA22B15C550077CF41 /* Simplify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846491C922B15C550077CF41 /* Simplify.swift */; };
 		846491D122B1F62C0077CF41 /* PDAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846491D022B1F62C0077CF41 /* PDAlert.swift */; };
 		846AC78322DA455A00C9FB10 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846AC78222DA455A00C9FB10 /* Permission.swift */; };
@@ -57,6 +58,7 @@
 		842FCE0A22C893F50071750F /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8435652622D31FB8007256A0 /* UITextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextfield.swift; sourceTree = "<group>"; };
 		8452BA9522C655D000A3A553 /* PDCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDCamera.swift; sourceTree = "<group>"; };
+		8454571E22E07DB50073119C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		846491C922B15C550077CF41 /* Simplify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Simplify.swift; sourceTree = "<group>"; };
 		846491D022B1F62C0077CF41 /* PDAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDAlert.swift; sourceTree = "<group>"; };
 		846AC78222DA455A00C9FB10 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				846AC78E22DA4EF700C9FB10 /* Values.swift */,
 				8409184222CC6CA30005B89A /* String.swift */,
 				846AC78A22DA4EAF00C9FB10 /* Date.swift */,
+				8454571E22E07DB50073119C /* Data.swift */,
 				8409184822CC6EC90005B89A /* Dictionary.swift */,
 				8409184622CC6EA50005B89A /* Array.swift */,
 				846AC78C22DA4ED500C9FB10 /* UIColor.swift */,
@@ -235,6 +238,7 @@
 				8409185022CCA1600005B89A /* UITableView.swift in Sources */,
 				8409184E22CC86730005B89A /* UICollectionView.swift in Sources */,
 				846AC78F22DA4EF700C9FB10 /* Values.swift in Sources */,
+				8454571F22E07DB50073119C /* Data.swift in Sources */,
 				846AC78B22DA4EAF00C9FB10 /* Date.swift in Sources */,
 				8435652722D31FB8007256A0 /* UITextfield.swift in Sources */,
 				846AC78922DA46FF00C9FB10 /* Listener.swift in Sources */,

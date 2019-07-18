@@ -59,7 +59,7 @@ public func aText(direction value: NSWritingDirection)  -> PDAttributed { return
 public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
     var attributes: [NSAttributedString.Key:Any] = [:];
     var text: String = "";
-    let style = NSMutableParagraphStyle().set { (style) in
+    let style = NSMutableParagraphStyle().body { (style) in
         values.forEach {
             switch $0.key {
             case .text            : if let value = $0.value as? String { text = value };
@@ -105,7 +105,6 @@ public extension UIButton {
         if !(ary.isEmpty), let int = ary[0].value as? Int {
             self.titleLabel?.numberOfLines = int;
         };
-        
     };
 };
 
@@ -117,6 +116,22 @@ public extension UILabel {
             self.numberOfLines = int;
         };
     };
+    
+    func PDAttributed(text str: String) {
+        guard let target = self.attributedText else { print("nil"); return }
+        let new = NSMutableAttributedString(attributedString: target)
+        new.mutableString.setString(str)
+        self.attributedText = new
+        //mutableString.setString(value)
+    }
+    
+    func set(attributeTextColor value: UIColor) {
+        let new = NSMutableAttributedString(attributedString: self.attributedText!)
+        let str = new.string
+        new.addAttribute(NSAttributedString.Key.foregroundColor, value: value , range: (str as NSString).range(of: str))
+        self.attributedText = new
+        //mutableString.setString(value)
+    }
 };
 
 public extension UITextField {

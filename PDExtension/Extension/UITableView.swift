@@ -34,11 +34,8 @@ public extension UITableView {
     };
     
     convenience init(_ frame: CGRect,_ style: UITableView.Style) {
-        switch frame {
-        case .zero: self.init(frame: .zero, style: style);
-        self.autolayout();
-        default   : self.init(frame: frame, style: style);
-        };
+        self.init(frame: frame, style: style);
+        self.set(autolayout: frame != .zero);
     };
     
     func set(autoRowHeight value: CGFloat) {

@@ -11,16 +11,6 @@ import UIKit
 
 public extension UIView {
     
-//    struct SHADOW {
-//        public var  col: UIColor, offset: CGSize, radius: CGFloat, alpha: Float
-//        public init(col: UIColor,_ offset: CGSize,_ radius: CGFloat,_ alpha: Float) {
-//            self.col    = col;
-//            self.offset = offset;
-//            self.radius = radius;
-//            self.alpha  = alpha;
-//        };
-//    };
-//    
     var _bgC: UIColor { return (self.backgroundColor ?? .clear) };
     var _oX: CGFloat { return (self.frame.origin.x) };
     var _oY: CGFloat { return (self.frame.origin.y) };
@@ -38,10 +28,8 @@ public extension UIView {
     };
     
     @objc convenience init(_ frame: CGRect) {
-        switch (frame) {
-        case .zero: self.init(); self.autolayout();
-        default   : self.init(frame: frame);
-        };
+        self.init(frame: frame);
+        self.set(autolayout: frame != .zero);
     };
     
     func superView<T: UIView>(of: T.Type) -> T? {
@@ -53,7 +41,6 @@ public extension UIView {
         return nil;
     };
     
-    func autolayout() { self.translatesAutoresizingMaskIntoConstraints = false };
     func removeSubviews() { self.subviews.forEach { $0.removeFromSuperview() } };
     func removeSublayers() { self.layer.sublayers?.forEach { $0.removeFromSuperlayer() } };
     
@@ -66,27 +53,43 @@ public extension UIView {
     func set(a value: CGFloat) { self.alpha = value };
     
     func set(oX: CGFloat, oY: CGFloat) { self.frame.origin = CGPoint(oX, oY) };
-    func set(fW: CGFloat, fH: CGFloat) { self.frame.size = CGSize(fW, fH) };
-    func set(cX: CGFloat, cY: CGFloat) { self.center = CGPoint(cX, cY) };
+    func set(oX: CGFloat, cY: CGFloat) { self.set(oX: oX); self.set(cY: cY) };
     func set(oX: CGFloat, fW: CGFloat) { self.set(oX: oX); self.set(fW: fW) };
     func set(oX: CGFloat, fH: CGFloat) { self.set(oX: oX); self.set(fH: fH) };
+    func set(oX: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(a: a) };
+    
+    func set(oY: CGFloat, cX: CGFloat) { self.set(oY: oY); self.set(cX: cX) };
     func set(oY: CGFloat, fW: CGFloat) { self.set(oY: oY); self.set(fW: fW) };
     func set(oY: CGFloat, fH: CGFloat) { self.set(oY: oY); self.set(fH: fH) };
-    func set(oX: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(a: a) };
     func set(oY: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(a: a) };
+    
+    func set(fW: CGFloat, cX: CGFloat) { self.set(fW: fW); self.set(cX: cX) };
+    func set(fW: CGFloat, cY: CGFloat) { self.set(fW: fW); self.set(cY: cY) };
+    func set(fW: CGFloat, fH: CGFloat) { self.frame.size = CGSize(fW, fH) };
     func set(fW: CGFloat, a: CGFloat) { self.set(fW: fW); self.set(a: a) };
+    
+    func set(fH: CGFloat, cX: CGFloat) { self.set(fH: fH); self.set(cX: cX) };
+    func set(fH: CGFloat, cY: CGFloat) { self.set(fH: fH); self.set(cY: cY) };
     func set(fH: CGFloat, a: CGFloat) { self.set(fH: fH); self.set(a: a) };
     
-    func set(oX: CGFloat, oY: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(oY: oY); self.set(a: a) };
-    func set(oX: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fW: fW); self.set(a: a) };
-    func set(oX: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fH: fH); self.set(a: a) };
-    func set(oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fW: fW); self.set(a: a) };
-    func set(oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fH: fH); self.set(a: a) };
-    func set(fW: CGFloat, fH: CGFloat, a: CGFloat) { self.set(fW: fW); self.set(fH: fH);  self.set(a: a) };
+    func set(cX: CGFloat, cY: CGFloat) { self.center = CGPoint(cX, cY) };
+    func set(cX: CGFloat, a: CGFloat) { self.set(cX: cX); self.set(a: a) };
+    
     func set(oX: CGFloat, oY: CGFloat, fW: CGFloat) { self.set(frame: oX, oY, fW, self._fH) };
     func set(oX: CGFloat, oY: CGFloat, fH: CGFloat) { self.set(frame: oX, oY, self._fW, fH) };
+    func set(oX: CGFloat, oY: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(oY: oY); self.set(a: a) };
+    
     func set(oX: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: oX, self._oY, fW, fH) };
+    func set(oX: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fW: fW); self.set(a: a) };
+    
+    func set(oX: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fH: fH); self.set(a: a) };
+    
+    func set(oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fW: fW); self.set(a: a) };
     func set(oY: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: self._oX, oY, fW, fH) };
+    
+    func set(oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fH: fH); self.set(a: a) };
+    
+    func set(fW: CGFloat, fH: CGFloat, a: CGFloat) { self.set(fW: fW); self.set(fH: fH);  self.set(a: a) };
     
     func set(oX: CGFloat, oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(frame: oX, oY, fW, self._fH); self.set(a: a) };
     func set(oX: CGFloat, oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: oX, oY, self._fW, fH); self.set(a: a) };
@@ -141,12 +144,11 @@ public extension UIView {
     func to(oX: CGFloat, oY: CGFloat, fW: CGFloat, a: CGFloat,_ time: Double) { animation(time) { self.set(oX: oX, oY: oY, fW: fW, a: a) } };
     func to(oX: CGFloat, oY: CGFloat, fH: CGFloat, a: CGFloat,_ time: Double) { animation(time) { self.set(oX: oX, oY: oY, fH: fH, a: a) } };
     
-    func set(hidden value: Bool) {
-        self.isHidden = value;
-    };
+    func set(autolayout bool: Bool) { self.translatesAutoresizingMaskIntoConstraints = bool };
+    func set(hidden bool: Bool) { self.isHidden = bool };
     
-    func set(radius value: CGFloat,_ mask: Bool) {
-        self.layer.cornerRadius  = value;
+    func set(radius cgflt: CGFloat,_ mask: Bool) {
+        self.layer.cornerRadius  = cgflt;
         self.layer.masksToBounds = mask;
     };
     
@@ -236,20 +238,22 @@ public extension UIView {
         let aHeight: CGFloat = self._fH;
         
         self.sizeToFit();
-        switch (target) {
-        case .width:
-            switch (alignment) {
-            case .right : self.set(oX: aRight-self._fW, oY: aTop, fH: aHeight)
-            case .center: self.set(oX: aRight-aWidth/2-self._fW/2, oY: aTop, fH: aHeight)
-            default     : break;
-            }
-        case .height:
-            switch (alignment) {
-            case .bottom: self.set(oX: aLeft, oY: aBottom-self._fH, fW: aWidth)
-            case .center: self.set(oX: aLeft, oY: aBottom-aHeight/2-self._fH/2, fW: aWidth)
-            default: break;
-            }
-        };
+        DispatchQueue.main.async {
+            switch (target) {
+            case .width:
+                switch (alignment) {
+                case .right : self.set(oX: aRight-self._fW, oY: aTop, fH: aHeight)
+                case .center: self.set(oX: aRight-aWidth/2-self._fW/2, oY: aTop, fH: aHeight)
+                default     : break;
+                }
+            case .height:
+                switch (alignment) {
+                case .bottom: self.set(oX: aLeft, oY: aBottom-self._fH, fW: aWidth)
+                case .center: self.set(oX: aLeft, oY: aBottom-aHeight/2-self._fH/2, fW: aWidth)
+                default: break;
+                }
+            };
+        }
     };
     
     func x(equal to: NSLayoutXAxisAnchor,_ value: CGFloat) { self.centerXAnchor.equal(to: to, value).isActive = true };
@@ -304,7 +308,7 @@ public extension UIView {
     };
     
     func set(tap target: Any?,_ taps: Int,_ touches: Int,_ selector: Selector?) {
-        let tap = UITapGestureRecognizer(target: target, action: selector).set {
+        let tap = UITapGestureRecognizer(target: target, action: selector).body {
             $0.numberOfTapsRequired    = taps;
             $0.numberOfTouchesRequired = touches;
         };

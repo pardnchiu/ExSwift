@@ -13,11 +13,8 @@ public extension UIImageView {
     
     // set frame
     convenience init(_ frame: CGRect,_ image: UIImage?) {
-        switch (frame) {
-        case .zero: self.init();
-        self.autolayout();
-        default   : self.init(frame: frame);
-        };
+        self.init(frame: frame);
+        self.set(autolayout: frame != .zero);
         self.image = image;
         self.contentMode = .scaleAspectFit;
         self.clipsToBounds = true;
@@ -32,11 +29,8 @@ public extension UIImageView {
     };
     
     convenience init(_ frame: CGRect,_ img: UIImage?,_ mode: UIView.ContentMode) {
-        switch (frame) {
-        case .zero: self.init();
-        self.autolayout();
-        default   : self.init(frame: frame);
-        };
+        self.init(frame: frame);
+        self.set(autolayout: frame != .zero);
         self.image = img;
         self.contentMode = mode;
         self.clipsToBounds = true;

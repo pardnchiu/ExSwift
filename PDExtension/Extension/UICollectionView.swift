@@ -16,10 +16,8 @@ public extension UICollectionView {
     };
     
     @objc convenience init(_ frame: CGRect,_ layout: UICollectionViewLayout) {
-        switch frame {
-        case .zero: self.init(frame: .zero, collectionViewLayout: layout); self.autolayout();
-        default:    self.init(frame: frame, collectionViewLayout: layout);
-        };
+        self.init(frame: frame, collectionViewLayout: layout);
+        self.set(autolayout: frame != .zero);
     };
     
     func set(protocol delegate: UICollectionViewDelegate,_ dataSource: UICollectionViewDataSource) {

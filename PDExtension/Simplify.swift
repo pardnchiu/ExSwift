@@ -14,7 +14,7 @@ import Photos
 public protocol simplify {}
 public extension simplify where Self: AnyObject {
     
-    func set(_ block: (Self) throws -> Void) rethrows -> Self {
+    func body(_ block: (Self) throws -> Void) rethrows -> Self {
         try block(self);
         return self
     };
@@ -24,6 +24,7 @@ extension CGPoint : simplify {};
 extension CGRect  : simplify {};
 extension CGSize  : simplify {};
 extension CGVector: simplify {};
+
 
 public func animation(_ time: TimeInterval,_ animate: @escaping ()->Void ) {
     UIView.animate(withDuration: time, animations: animate);
@@ -37,6 +38,91 @@ public func delay(second value: DispatchTime,_ completion: @escaping ()->Void) {
     DispatchQueue.main.asyncAfter(deadline: value, execute: completion)
 };
 
+enum scr {
+    case _16_9
+    case _16_9_plus
+    
+}
+
+public func iphoneType() -> String {
+    
+    var systemInfo = utsname()
+    uname(&systemInfo)
+    
+    let platform = withUnsafePointer(to: &systemInfo.machine.0) { ptr in
+        return String(cString: ptr)
+    }
+    
+    if platform == "iPhone1,1" { return "iPhone 2G"}
+    if platform == "iPhone1,2" { return "iPhone 3G"}
+    if platform == "iPhone2,1" { return "iPhone 3GS"}
+    if platform == "iPhone3,1" { return "iPhone 4"}
+    if platform == "iPhone3,2" { return "iPhone 4"}
+    if platform == "iPhone3,3" { return "iPhone 4"}
+    if platform == "iPhone4,1" { return "iPhone 4S"}
+    if platform == "iPhone5,1" { return "iPhone 5"}
+    if platform == "iPhone5,2" { return "iPhone 5"}
+    if platform == "iPhone5,3" { return "iPhone 5C"}
+    if platform == "iPhone5,4" { return "iPhone 5C"}
+    if platform == "iPhone6,1" { return "iPhone 5S"}
+    if platform == "iPhone6,2" { return "iPhone 5S"}
+    if platform == "iPhone7,1" { return "iPhone 6 Plus"}
+    if platform == "iPhone7,2" { return "iPhone 6"}
+    if platform == "iPhone8,1" { return "iPhone 6S"}
+    if platform == "iPhone8,2" { return "iPhone 6S Plus"}
+    if platform == "iPhone8,4" { return "iPhone SE"}
+    if platform == "iPhone9,1" { return "iPhone 7"}
+    if platform == "iPhone9,2" { return "iPhone 7 Plus"}
+    if platform == "iPhone10,1" { return "iPhone 8"}
+    if platform == "iPhone10,2" { return "iPhone 8 Plus"}
+    if platform == "iPhone10,3" { return "iPhone X"}
+    if platform == "iPhone10,4" { return "iPhone 8"}
+    if platform == "iPhone10,5" { return "iPhone 8 Plus"}
+    if platform == "iPhone10,6" { return "iPhone X"}
+    
+    if platform == "iPod1,1" { return "iPod Touch 1G"}
+    if platform == "iPod2,1" { return "iPod Touch 2G"}
+    if platform == "iPod3,1" { return "iPod Touch 3G"}
+    if platform == "iPod4,1" { return "iPod Touch 4G"}
+    if platform == "iPod5,1" { return "iPod Touch 5G"}
+    
+    if platform == "iPad1,1" { return "iPad 1"}
+    if platform == "iPad2,1" { return "iPad 2"}
+    if platform == "iPad2,2" { return "iPad 2"}
+    if platform == "iPad2,3" { return "iPad 2"}
+    if platform == "iPad2,4" { return "iPad 2"}
+    if platform == "iPad2,5" { return "iPad Mini 1"}
+    if platform == "iPad2,6" { return "iPad Mini 1"}
+    if platform == "iPad2,7" { return "iPad Mini 1"}
+    if platform == "iPad3,1" { return "iPad 3"}
+    if platform == "iPad3,2" { return "iPad 3"}
+    if platform == "iPad3,3" { return "iPad 3"}
+    if platform == "iPad3,4" { return "iPad 4"}
+    if platform == "iPad3,5" { return "iPad 4"}
+    if platform == "iPad3,6" { return "iPad 4"}
+    if platform == "iPad4,1" { return "iPad Air"}
+    if platform == "iPad4,2" { return "iPad Air"}
+    if platform == "iPad4,3" { return "iPad Air"}
+    if platform == "iPad4,4" { return "iPad Mini 2"}
+    if platform == "iPad4,5" { return "iPad Mini 2"}
+    if platform == "iPad4,6" { return "iPad Mini 2"}
+    if platform == "iPad4,7" { return "iPad Mini 3"}
+    if platform == "iPad4,8" { return "iPad Mini 3"}
+    if platform == "iPad4,9" { return "iPad Mini 3"}
+    if platform == "iPad5,1" { return "iPad Mini 4"}
+    if platform == "iPad5,2" { return "iPad Mini 4"}
+    if platform == "iPad5,3" { return "iPad Air 2"}
+    if platform == "iPad5,4" { return "iPad Air 2"}
+    if platform == "iPad6,3" { return "iPad Pro 9.7"}
+    if platform == "iPad6,4" { return "iPad Pro 9.7"}
+    if platform == "iPad6,7" { return "iPad Pro 12.9"}
+    if platform == "iPad6,8" { return "iPad Pro 12.9"}
+    
+    if platform == "i386"   { return "iPhone Simulator"}
+    if platform == "x86_64" { return "iPhone Simulator"}
+    
+    return platform
+}
 
 public class Interactor: UIPercentDrivenInteractiveTransition {
     public var isStarted  = false
@@ -89,11 +175,9 @@ public extension UIVisualEffectView {
     }
     
     @objc convenience init(_ frame: CGRect,_ style: UIBlurEffect.Style) {
-        self.init(effect: UIBlurEffect(style: style))
-        switch (frame) {
-        case .zero: self.autolayout();
-        default:    self.frame = frame;
-        }
+        self.init(effect: UIBlurEffect(style: style));
+        self.frame = frame;
+        self.set(autolayout: frame != .zero);
     }
 }
 
@@ -108,21 +192,16 @@ public extension UIActivityIndicatorView {
     @objc convenience init(_ frame: CGRect,_ style: UIActivityIndicatorView.Style) {
         self.init(style: style);
         self.hidesWhenStopped = true;
-        switch (frame) {
-        case .zero: self.autolayout();
-        default:    self.frame = frame;
-        };
+        self.frame = frame;
+        self.set(autolayout: frame != .zero);
     }
 }
 
 public extension UIPickerView {
     
     convenience init(_ frame: CGRect,_ delegate: UIPickerViewDelegate) {
-        switch (frame) {
-        case .zero: self.init();
-        self.autolayout();
-        default:    self.init(frame: frame);
-        }
+        self.init(frame: frame);
+        self.set(autolayout: frame != .zero);
         self.delegate = delegate;
     };
     
@@ -253,16 +332,19 @@ public struct URLSchema {
     }
 };
 
+let sSide = (vw < vh ? vw : vh)
+let lSide = (vw < vh ? vh : vw)
+let ratio = (sSide/lSide*100)._int
 public struct device {
-    public static let pad: Bool   = (vh >= 999 && vw >= 768) || (vw >= 999 && vh >= 768);
-    public static let x: Bool     = (vh == 812 && vw == 375) || (vw == 812 && vh == 375) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let r: Bool     = (vh == 667 && vw == 375) || (vw == 667 && vh == 375) || (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
-    public static let plus: Bool  = (vh == 736 && vw == 414) || (vw == 736 && vh == 414) || (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let xNorm: Bool = (vh == 812 && vw == 375) || (vw == 812 && vh == 375);
-    public static let xPlus: Bool = (vh == 896 && vw == 414) || (vw == 896 && vh == 414);
-    public static let rNorm: Bool = (vh == 667 && vw == 375) || (vw == 667 && vh == 375);
-    public static let rPlus: Bool = (vh == 736 && vw == 414) || (vw == 736 && vh == 414);
-    public static let se: Bool    = (vh < 667);
+    public static let pad: Bool = (ratio >= 69);
+    public static let x: Bool  = (ratio == 46)
+    public static let N: Bool  = (ratio == 56)
+    public static let L: Bool  = (lSide == 896 || lSide == 736)
+    public static let xS: Bool = (ratio == 46 && lSide == 812)
+    public static let xL: Bool = (ratio == 46 && lSide == 896)
+    public static let nS: Bool = (ratio == 56 && lSide == 667)
+    public static let nL: Bool = (ratio == 56 && lSide == 736)
+    public static let se: Bool = (vh < 667);
 }
 
 public struct panData {

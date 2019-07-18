@@ -103,4 +103,11 @@ public extension UIButton {
     func set(tapCancel target: Any?,_ action: Selector) { self.addTarget(target, action: action, for: .touchCancel) };
 
     func set(enable: Bool) { self.isEnabled = enable; self.set(a: enable ? 1 : 0.5) };
+    
+    func set(attributeText value: String) {
+        let newAttributedString = NSMutableAttributedString(attributedString: self.attributedTitle(for: .normal)!)
+        newAttributedString.mutableString.setString(value)
+        self.setAttributedTitle(newAttributedString, for: .normal)
+        //mutableString.setString(value)
+    }
 };
