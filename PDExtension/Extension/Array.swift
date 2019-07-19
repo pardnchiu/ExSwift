@@ -64,6 +64,12 @@ public extension Array {
             if let item = ($0 as? UITextView)  { item.text = nil };
         }
     }
+    
+    func exist(_ value: Any) -> Bool {
+        if let ary = self as? [Int], let int = value as? Int { return ary.filter { return $0 == int }.count == 0 }
+        if let ary = self as? [NSNumber], let int = value as? NSNumber { return ary.filter { return $0 == int }.count == 0 }
+        return false
+    }
 };
 
 public extension NSArray {

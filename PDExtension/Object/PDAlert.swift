@@ -59,23 +59,23 @@ public struct PDInputType {
     };
 };
 
-public func PDAlert(alert root: UIViewController, title: String, message: String, actions: [PDAction]) {
+public func PDAlert(alert root: UIViewController?, title: String, message: String, actions: [PDAction]) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert);
     actions.forEach { (action) in
         alert.addAction(UIAlertAction(title: action.title, style: action.style, handler: action.action));
     };
-    root.present(alert, animated: true, completion: nil);
+    root?.present(alert, animated: true, completion: nil);
 };
 
-public func PDAlert(actionSheet root: UIViewController, title: String, message: String, actions: [PDAction]) {
+public func PDAlert(actionSheet root: UIViewController?, title: String, message: String, actions: [PDAction]) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet);
     actions.forEach { (action) in
         alert.addAction(UIAlertAction(title: action.title, style: action.style, handler: action.action));
     };
-    root.present(alert, animated: true, completion: nil);
+    root?.present(alert, animated: true, completion: nil);
 };
 
-public func PDAlert(input root: UIViewController, title: String, message: String, inputs: [PDInput], comfirm: (String, ([String])->()), actions: [PDAction]) {
+public func PDAlert(input root: UIViewController?, title: String, message: String, inputs: [PDInput], comfirm: (String, ([String])->()), actions: [PDAction]) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert);
     
     inputs.forEach { (input) in
@@ -142,7 +142,7 @@ public func PDAlert(input root: UIViewController, title: String, message: String
         alert.addAction(UIAlertAction(title: action.title, style: action.style, handler: action.action));
     };
     
-    root.present(alert, animated: true, completion: nil);
+    root?.present(alert, animated: true, completion: nil);
     
     alert.textFields?.forEach {
         if let container = $0.superview, let effectView = container.superview?.subviews.first, effectView is UIVisualEffectView {

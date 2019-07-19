@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-public func listener(add root: UIViewController,_ tag: String,_ selector: Selector,_ object: Any?) {
+public func listener(add observer: Any,_ tag: String,_ selector: Selector,_ object: Any?) {
     switch (tag) {
     case "keyboardWillAppear":
-        NotificationCenter.default.addObserver(root, selector: selector, name: UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(observer, selector: selector, name: UIResponder.keyboardWillShowNotification, object: nil);
     default:
-        NotificationCenter.default.addObserver(root, selector: selector, name: NSNotification.Name(rawValue: tag), object: object)
+        NotificationCenter.default.addObserver(observer, selector: selector, name: NSNotification.Name(rawValue: tag), object: object)
     }
 }
 

@@ -84,6 +84,16 @@ public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
     return NSAttributedString(string: text, attributes: attributes);
 }
 
+public extension NSAttributedString {
+    
+//    func set(text: String) -> NSAttributedString {
+//        let new = NSMutableAttributedString(attributedString: self)
+//        let str = new.string
+//        new.mutableString.setString(new.string+str)
+//        return new
+//    }
+}
+
 public extension UIButton {
     func PDAttributed(normal values: [PDAttributed]) {
         self.setAttributedTitle(PDAttrbutedString(values), for: .normal)
@@ -115,6 +125,10 @@ public extension UILabel {
         if !(ary.isEmpty), let int = ary[0].value as? Int {
             self.numberOfLines = int;
         };
+        let ary2 = values.filter { return $0.key == .alignment }
+        if !(ary2.isEmpty), let alignment = ary2[0].value as? NSTextAlignment {
+            self.textAlignment = alignment
+        };
     };
     
     func PDAttributed(text str: String) {
@@ -135,10 +149,44 @@ public extension UILabel {
 };
 
 public extension UITextField {
-    func PDAttributed(txt values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
-    func PDAttributed(phd values: [PDAttributed]) { self.attributedPlaceholder = PDAttrbutedString(values) };
+    func PDAttributed(txt values: [PDAttributed]) {
+        self.attributedText = PDAttrbutedString(values)
+        let ary = values.filter { return $0.key == .alignment }
+        if !(ary.isEmpty), let alignment = ary[0].value as? NSTextAlignment {
+            self.textAlignment = alignment
+        };
+    };
+    func PDAttributed(phd values: [PDAttributed]) {
+        self.attributedPlaceholder = PDAttrbutedString(values)
+        let ary = values.filter { return $0.key == .alignment }
+        if !(ary.isEmpty), let alignment = ary[0].value as? NSTextAlignment {
+            self.textAlignment = alignment
+        };
+    };
+    
+    func PDAttributed(text str: String) {
+        guard let target = self.attributedText else { print("nil"); return }
+        let new = NSMutableAttributedString(attributedString: target)
+        new.mutableString.setString(str)
+        self.attributedText = new
+        //mutableString.setString(value)
+    }
 };
 
 public extension UITextView {
-    func PDAttributed(values: [PDAttributed]) { self.attributedText = PDAttrbutedString(values) };
+    func PDAttributed(values: [PDAttributed]) {
+        self.attributedText = PDAttrbutedString(values)
+        let ary = values.filter { return $0.key == .alignment }
+        if !(ary.isEmpty), let alignment = ary[0].value as? NSTextAlignment {
+            self.textAlignment = alignment
+        };
+    };
+    
+    func PDAttributed(text str: String) {
+        guard let target = self.attributedText else { print("nil"); return }
+        let new = NSMutableAttributedString(attributedString: target)
+        new.mutableString.setString(str)
+        self.attributedText = new
+        //mutableString.setString(value)
+    }
 };
