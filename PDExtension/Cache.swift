@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+public enum CACHE {
+    case dictionary
+    case array
+}
+
 public func cache(save value: [String:Any],_ path: String,_ name: String) {
     let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
@@ -22,6 +27,12 @@ public func cache(load path: String,_ name: String,_ completion: @escaping ([Str
     let dic = NSDictionary(contentsOfFile: file) as? [String:Any];
     completion(dic);
 };
+
+public func array(load path: String,_ name: String,_ completion: @escaping (NSArray?)->()) {
+    let doc: String = NSHomeDirectory()+"/Library/Caches/\(path)";
+    let file: String = doc+"/\(name).plist";
+    completion(NSArray(contentsOfFile: file));
+}
 
 public func cache(delete path: String,_ name: String) {
     let fileManager = FileManager.default;
