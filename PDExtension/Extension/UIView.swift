@@ -16,6 +16,8 @@ public extension UIView {
     var _oY: CGFloat { return (self.frame.origin.y) };
     var _cX: CGFloat { return (self.center.x) };
     var _cY: CGFloat { return (self.center.y) };
+    var _rX: CGFloat { return (self._oX+self._fW) };
+    var _bY: CGFloat { return (self._oY+self._fH) };
     var _fW: CGFloat { return (self.frame.size.width) };
     var _fH: CGFloat { return (self.frame.size.height) };
     var _a: CGFloat { return (self.alpha) };

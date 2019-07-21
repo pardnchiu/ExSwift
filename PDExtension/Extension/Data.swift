@@ -17,8 +17,8 @@ public extension Data {
             let dic = try JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? [String:Any]
             return dic ?? [:]
         } catch {
-            print(self._str, "can't be encoded.")
-            return [:]
+//            print(self._str, "can't be encoded.")
+            return ["error":"1", "msg":"data [\(self._str)], can.t be trans to json."]
         };
-    }
-}
+    };
+};
