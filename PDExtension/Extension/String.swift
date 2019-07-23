@@ -30,9 +30,17 @@ public extension String {
         
         return String(format: hash as String);
     };
-    var no_Space: String { return self.trimmingCharacters(in: .whitespaces) };
-    var empty: Bool { return self.no_Space.isEmpty };
+    var _noSpace: String { return self.trimmingCharacters(in: .whitespaces) };
+    var _empty: Bool { return self._noSpace.isEmpty };
     var _url: URL? { return URL(string: self) };
+    
+    
+    
+    func replace(_ key: String,_ value: String) -> String {
+        return self.replacingOccurrences(of: key, with: value, options: .literal, range: nil)
+    }
+    
+    // old
     
     func split(_ str: Character) -> [String] {
         var ary: [String] = []
