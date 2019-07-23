@@ -14,7 +14,7 @@ import Photos
 public protocol simplify {}
 public extension simplify where Self: AnyObject {
     
-    func body(_ block: (Self) throws -> Void) rethrows -> Self {
+    func set(_ block: (Self) throws -> Void) rethrows -> Self {
         try block(self);
         return self
     };

@@ -310,7 +310,7 @@ public extension UIView {
     };
     
     func set(tap target: Any?,_ taps: Int,_ touches: Int,_ selector: Selector?) {
-        let tap = UITapGestureRecognizer(target: target, action: selector).body {
+        let tap = UITapGestureRecognizer(target: target, action: selector).set {
             $0.numberOfTapsRequired    = taps;
             $0.numberOfTouchesRequired = touches;
         };

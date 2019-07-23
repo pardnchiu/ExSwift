@@ -33,7 +33,7 @@ public extension Date {
     
     var _int : Int { return Int(self.timeIntervalSince1970); };
     var _objc: object {
-        let form = DateFormatter().body { $0.dateFormat = "yy-yyyy-M-MM-MMM-MMMM-E-EEEE-dd-d-h-hh-H-m-mm-s-ss-S-SS-SSS-a" }
+        let form = DateFormatter().set { $0.dateFormat = "yy-yyyy-M-MM-MMM-MMMM-E-EEEE-dd-d-h-hh-H-m-mm-s-ss-S-SS-SSS-a" }
         let ary = form.string(from: self).split("-")
         return object(yy: ary[0],  yyyy: ary[1],  M: ary[2],
                       MM: ary[3],  MMM : ary[4],  MMMM: ary[5],

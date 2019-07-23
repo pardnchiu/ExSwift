@@ -56,7 +56,7 @@ public extension String {
     };
     
     func w(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ h:CGFloat) -> CGFloat {
-        let label: UILabel = UILabel(0, 0, CGFloat.greatestFiniteMagnitude, h).body {
+        let label: UILabel = UILabel(0, 0, CGFloat.greatestFiniteMagnitude, h).set {
             $0.PDText([
                 lText(text: self),
                 lText(font: size, weight),
@@ -69,7 +69,7 @@ public extension String {
     };
     
     func h(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ w:CGFloat) -> CGFloat{
-        let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).body {
+        let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).set {
             $0.PDText([
                 lText(text: self),
                 lText(font: size, weight),
@@ -82,13 +82,13 @@ public extension String {
     };
     
     func h(_ size: CGFloat,_ weight: UIFont.Weight,_ line: Int,_ w:CGFloat,_ lineSpace: CGFloat,_ lineHeight: CGFloat) -> CGFloat{
-        let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).body {
+        let label: UILabel = UILabel(0, 0, w, CGFloat.greatestFiniteMagnitude).set {
             $0.PDText([
                 lText(text: self),
                 lText(font: size, weight),
                 lText(line: line)
                 ])
-            let paraph = NSMutableParagraphStyle().body {
+            let paraph = NSMutableParagraphStyle().set {
                 $0.lineSpacing = lineSpace;
                 $0.minimumLineHeight = lineHeight
             };

@@ -59,7 +59,7 @@ public func aText(direction value: NSWritingDirection)  -> PDAttributed { return
 public func PDAttrbutedString(_ values: [PDAttributed]) -> NSAttributedString {
     var attributes: [NSAttributedString.Key:Any] = [:];
     var text: String = "";
-    let style = NSMutableParagraphStyle().body { (style) in
+    let style = NSMutableParagraphStyle().set { (style) in
         values.forEach {
             switch $0.key {
             case .text            : if let value = $0.value as? String { text = value };
