@@ -204,10 +204,24 @@ public extension UIView {
         self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
     };
     
+    func set(scale x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ a: CGFloat) {
+        self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
+        self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+        self.alpha     = a
+    };
+    
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ time: Double) {
         animation(time) {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
             self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+        };
+    };
+    
+    func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ a: CGFloat,_ time: Double) {
+        animation(time) {
+            self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
+            self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+            self.alpha     = a
         };
     };
     
