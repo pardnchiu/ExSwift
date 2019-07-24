@@ -17,7 +17,6 @@ public extension Bool {
 };
 
 public extension Int {
-    
     var _str   : String { return String(self) };
     var _cgflt : CGFloat { return CGFloat(self) };
     var _date: Date { return Date(timeIntervalSince1970: TimeInterval(self)) };
@@ -27,31 +26,25 @@ public extension Int {
 }
 
 public extension NSNumber {
-    
     var _int: Int { return Int(truncating: self) };
 }
 
 public extension CGFloat {
-    
     var _int: Int { return Int(self) };
 }
 
 public extension CGRect {
-    
     init(_ x: CGFloat,_ y: CGFloat,_ width: CGFloat,_ height: CGFloat) { self.init(x: x, y: y, width: width, height: height) };
 };
 
 public extension CGSize {
-    
     init(_ width: CGFloat,_ height: CGFloat) { self.init(width: width, height: height) };
 };
 
 public extension CGPoint {
-    
     init(_ x: CGFloat,_ y: CGFloat) { self.init(x: x, y: y) };
 };
 
 public extension IndexPath {
-    
     init(_ row: Int,_ section: Int) { self.init(row: row, section: section) };
 };

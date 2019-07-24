@@ -1,14 +1,54 @@
-//
+
 //  PHImageManagerExtension.swift
 //  PDExtension
 //
 //  Created by Pardn Chiu on 2019/7/1.
 //  Copyright © 2019 Pardn Co., Ltd. All rights reserved.
-//
 
-//import Foundation
-//import Photos
-//
+
+import Foundation
+import Photos
+
+public extension PHAsset {
+    
+    var isVideo: Bool { return self.mediaType == .video };
+    var isImage: Bool { return self.mediaType == .image };
+    
+    func get(data completion: @escaping (Data, String)->Void) {
+        PHImageManager.default().requestAVAsset(forVideo: self, options: nil, resultHandler: { (asset, audioMix, info) in
+            DispatchQueue.main.async {
+                switch self.isVideo {
+                case true:
+                    if
+                        let asset = asset as? AVURLAsset,
+                        let data  = try? Data(contentsOf: asset.url) {
+                        let url = URL(fileURLWithPath: "\(asset.url)");
+                        let mimetype = mimeType(pathExtension: url.pathExtension);
+                        switch mimetype {
+                        case "video/mp4"      : completion(data, ".mp4")
+                        case "video/quicktime": completion(data, ".mov")
+                        default               : completion(data, mimetype)
+                        }
+                    };
+                case false:
+                    // 原檔上傳不壓縮
+                    let options = PHImageRequestOptions().set {
+                        $0.version      = .current
+                        $0.deliveryMode = .highQualityFormat
+                        $0.resizeMode   = .exact
+                        $0.isNetworkAccessAllowed = true
+                        $0.isSynchronous          = true
+                    }
+                    PHImageManager.default().requestImage(for: self, targetSize: CGSize(CGFloat(self.pixelWidth), CGFloat(self.pixelHeight)), contentMode: .aspectFill, options: options, resultHandler: { (image, info) in
+                        if let data = image?.jpegData(compressionQuality: 1) {
+                            completion(data, ".jpg")
+                        };
+                    });
+                };
+            };
+        });
+    }
+}
 //public struct PDAsset {
 //    public enum body {
 //        case asset;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AC34ED622E7D1E6003A4D16 /* PDTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC34ED522E7D1E6003A4D16 /* PDTask.swift */; };
 		8409183A22CBBB4A0005B89A /* PDLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409183922CBBB4A0005B89A /* PDLayout.swift */; };
 		8409183E22CBC9990005B89A /* UIScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409183D22CBC9990005B89A /* UIScrollView.swift */; };
 		8409184122CC69710005B89A /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8409184022CC69710005B89A /* UIButton.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AC34ED522E7D1E6003A4D16 /* PDTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDTask.swift; sourceTree = "<group>"; };
 		8409183922CBBB4A0005B89A /* PDLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDLayout.swift; sourceTree = "<group>"; };
 		8409183D22CBC9990005B89A /* UIScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollView.swift; sourceTree = "<group>"; };
 		8409184022CC69710005B89A /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				8409183922CBBB4A0005B89A /* PDLayout.swift */,
 				8409185122CCB96B0005B89A /* PDText.swift */,
 				84142E3022CE459A005E7F4B /* PDRequest.swift */,
+				1AC34ED522E7D1E6003A4D16 /* PDTask.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				842EB7DF22D4AA34004CEAA5 /* UIImageView.swift in Sources */,
 				841216B722C9F1900034760C /* PHImageManager.swift in Sources */,
 				8409183E22CBC9990005B89A /* UIScrollView.swift in Sources */,
+				1AC34ED622E7D1E6003A4D16 /* PDTask.swift in Sources */,
 				8452BA9622C655D000A3A553 /* PDCamera.swift in Sources */,
 				8409184722CC6EA50005B89A /* Array.swift in Sources */,
 				847F72CB22D79269008C289C /* UIProgressView.swift in Sources */,

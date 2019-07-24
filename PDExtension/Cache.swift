@@ -25,13 +25,17 @@ public func cache(load path: String,_ name: String,_ completion: @escaping ([Str
     let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
     let dic = NSDictionary(contentsOfFile: file) as? [String:Any];
-    completion(dic);
+    DispatchQueue.main.async {
+        completion(dic);
+    }
 };
 
 public func array(load path: String,_ name: String,_ completion: @escaping (NSArray?)->()) {
     let doc: String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
-    completion(NSArray(contentsOfFile: file));
+    DispatchQueue.main.async {
+        completion(NSArray(contentsOfFile: file));
+    }
 }
 
 public func cache(delete path: String,_ name: String) {

@@ -15,15 +15,6 @@ public func get(data url: URL?, completion: @escaping (Data?, URLResponse?, Erro
     URLSession.shared.dataTask(with: url, completionHandler: completion).resume();
 };
 
-public func PDTask(data request: URLRequest,_ completion: @escaping (Error?, Data?)->Void) -> URLSessionDataTask {
-    return URLSession.shared.dataTask(with: request) { data, response, error in
-        DispatchQueue.main.async {
-            if let error = error { completion(error, nil); return };
-            if let data = data { completion(nil, data); return };
-        };
-    };
-};
-
 public func get(image url: URL?,_ completion: @escaping (UIImage?)->Void) {
     //    guard let url = value else { return }
     //    URLSession.shared.dataTask(with: url) { (data, response, error) in

@@ -9,6 +9,23 @@
 import Foundation
 import UIKit
 
+public class NoPasteTextField: UITextField {
+    
+    //    override func caretRect(for position: UITextPosition) -> CGRect {
+    //        return CGRect.zero
+    //    }
+    //
+    //    override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+    //        return []
+    //    }
+    
+    override public func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        //action == #selector(copy(_:)) || action == #selector(selectAll(_:))
+        if action == #selector(paste(_:)) { return false }
+        return super.canPerformAction(action, withSender: sender)
+    }
+}
+
 public extension UITextField {
     
     var _text: String { return self.text ?? "" };

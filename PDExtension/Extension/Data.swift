@@ -21,4 +21,10 @@ public extension Data {
             return ["error":"1", "msg":"data [\(self._str)], can.t be trans to json."]
         };
     };
+    
+    mutating func append(_ string: String, using encoding: String.Encoding = .utf8) {
+        if let data = string.data(using: encoding) {
+            append(data)
+        }
+    }
 };
