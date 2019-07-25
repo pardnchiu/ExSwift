@@ -72,4 +72,16 @@ public extension Array {
         if let ary = self as? [Int], let int = value as? Int { return ary.filter { return $0 != int } }
         return []
     }
+    func forEach(do function: @escaping(Element)->Void, completion: @escaping ()->Void) {
+        var int: Int = 0
+        self.forEach {
+            function($0)
+            int += 1
+            if (int == self.count-1) {
+                completion()
+            }
+        };
+    };
+    
+    
 };
