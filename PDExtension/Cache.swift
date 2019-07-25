@@ -14,7 +14,8 @@ public enum CACHE {
     case array
 }
 
-public func cache(save value: [String:Any],_ path: String,_ name: String) {
+public func cache(save value: [String:Any]?,_ path: String,_ name: String) {
+    guard let value = value else { return };
     let doc : String = NSHomeDirectory()+"/Library/Caches/\(path)";
     let file: String = doc+"/\(name).plist";
     try! FileManager.default.createDirectory(atPath: doc, withIntermediateDirectories: true, attributes: nil);

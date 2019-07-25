@@ -29,8 +29,8 @@ public extension UIButton {
         };
     };
     
-    var _text: String  { return (self.titleLabel?.text ?? "") };
-    var _textColor: colors {
+    var _str: String  { return (self.titleLabel?.text ?? "") };
+    var _strColor: colors {
         let normal    = (self.titleColor(for: .disabled) ?? .clear);
         let highlight = (self.titleColor(for: .highlighted) ?? .clear);
         let disable   = (self.titleColor(for: .disabled) ?? .clear);

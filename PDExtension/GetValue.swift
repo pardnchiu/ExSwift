@@ -10,27 +10,17 @@ import Foundation
 import UIKit
 import MapKit
 
-public func get(data url: URL?, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-    guard let url = url else { return }
-    URLSession.shared.dataTask(with: url, completionHandler: completion).resume();
-};
-
 public func get(image url: URL?,_ completion: @escaping (UIImage?)->Void) {
-    //    guard let url = value else { return }
-    //    URLSession.shared.dataTask(with: url) { (data, response, error) in
-    //        DispatchQueue.main.async() {
-    //            if let _ = error { completion(nil); return };
-    //            guard let data = data else { completion(nil); return };
-    //            completion(UIImage(data: data))
-    //        };
-    //        }.resume();
-    get(data: url) { (data, response, error) in
-        DispatchQueue.main.async() {
-            if let _ = error { completion(nil); return };
-            guard let data = data else { completion(nil); return };
+    PDTask(url: url) { (error, data) in
+        if let error = error {
+            print(error.localizedDescription);
+            completion(nil);
+            return
+        };
+        if let data = data {
             completion(UIImage(data: data))
         };
-    };
+    }?.resume()
 };
 
 public func get(image filename: String,_ completion: @escaping (UIImage?)->Void) {

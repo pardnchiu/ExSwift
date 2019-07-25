@@ -112,7 +112,7 @@ public extension PHImageManager {
             };
         };
         guard let target = asset else { completion(nil); return };
-        self.requestImage(for: target, targetSize: size ?? CGSize(target.pixelWidth._cgflt, target.pixelHeight._cgflt), contentMode: contentMode, options: options, resultHandler: { (image, info) in
+        self.requestImage(for: target, targetSize: size ?? CGSize(target.pixelWidth._cgFloat, target.pixelHeight._cgFloat), contentMode: contentMode, options: options, resultHandler: { (image, info) in
             completion(image);
         });
     };

@@ -11,16 +11,16 @@ import UIKit
 
 public extension UIView {
     
-    var _bgC: UIColor { return (self.backgroundColor ?? .clear) };
-    var _oX: CGFloat { return (self.frame.origin.x) };
-    var _oY: CGFloat { return (self.frame.origin.y) };
-    var _cX: CGFloat { return (self.center.x) };
-    var _cY: CGFloat { return (self.center.y) };
-    var _rX: CGFloat { return (self._oX+self._fW) };
-    var _bY: CGFloat { return (self._oY+self._fH) };
-    var _fW: CGFloat { return (self.frame.size.width) };
-    var _fH: CGFloat { return (self.frame.size.height) };
-    var _a: CGFloat { return (self.alpha) };
+    var _bgColor: UIColor { return (self.backgroundColor ?? .clear) };
+    var _originX: CGFloat { return (self.frame.origin.x) };
+    var _originY: CGFloat { return (self.frame.origin.y) };
+    var _centerX: CGFloat { return (self.center.x) };
+    var _centerY: CGFloat { return (self.center.y) };
+    var _rightX : CGFloat { return (self._originX+self._frameW) };
+    var _bottomY: CGFloat { return (self._originY+self._frameH) };
+    var _frameW : CGFloat { return (self.frame.size.width) };
+    var _frameH : CGFloat { return (self.frame.size.height) };
+    var _alpha  : CGFloat { return (self.alpha) };
 };
 
 public extension UIView {
@@ -77,26 +77,26 @@ public extension UIView {
     func set(cX: CGFloat, cY: CGFloat) { self.center = CGPoint(cX, cY) };
     func set(cX: CGFloat, a: CGFloat) { self.set(cX: cX); self.set(a: a) };
     
-    func set(oX: CGFloat, oY: CGFloat, fW: CGFloat) { self.set(frame: oX, oY, fW, self._fH) };
-    func set(oX: CGFloat, oY: CGFloat, fH: CGFloat) { self.set(frame: oX, oY, self._fW, fH) };
+    func set(oX: CGFloat, oY: CGFloat, fW: CGFloat) { self.set(frame: oX, oY, fW, self._frameH) };
+    func set(oX: CGFloat, oY: CGFloat, fH: CGFloat) { self.set(frame: oX, oY, self._frameW, fH) };
     func set(oX: CGFloat, oY: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(oY: oY); self.set(a: a) };
     
-    func set(oX: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: oX, self._oY, fW, fH) };
+    func set(oX: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: oX, self._originY, fW, fH) };
     func set(oX: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fW: fW); self.set(a: a) };
     
     func set(oX: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oX: oX); self.set(fH: fH); self.set(a: a) };
     
     func set(oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fW: fW); self.set(a: a) };
-    func set(oY: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: self._oX, oY, fW, fH) };
+    func set(oY: CGFloat, fW: CGFloat, fH: CGFloat) { self.set(frame: self._originX, oY, fW, fH) };
     
     func set(oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(oY: oY); self.set(fH: fH); self.set(a: a) };
     
     func set(fW: CGFloat, fH: CGFloat, a: CGFloat) { self.set(fW: fW); self.set(fH: fH);  self.set(a: a) };
     
-    func set(oX: CGFloat, oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(frame: oX, oY, fW, self._fH); self.set(a: a) };
-    func set(oX: CGFloat, oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: oX, oY, self._fW, fH); self.set(a: a) };
-    func set(oX: CGFloat, fW: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: oX, self._oY, fW, fH); self.set(a: a) };
-    func set(oY: CGFloat, fF: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: self._oX, oY, fF, fH); self.set(a: a) };
+    func set(oX: CGFloat, oY: CGFloat, fW: CGFloat, a: CGFloat) { self.set(frame: oX, oY, fW, self._frameH); self.set(a: a) };
+    func set(oX: CGFloat, oY: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: oX, oY, self._frameW, fH); self.set(a: a) };
+    func set(oX: CGFloat, fW: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: oX, self._originY, fW, fH); self.set(a: a) };
+    func set(oY: CGFloat, fF: CGFloat, fH: CGFloat, a: CGFloat) { self.set(frame: self._originX, oY, fF, fH); self.set(a: a) };
     
     func set(frame originX: CGFloat,_ originY: CGFloat,_ width: CGFloat,_ height: CGFloat) {
         self.frame = CGRect(originX, originY, width, height)
@@ -149,38 +149,13 @@ public extension UIView {
     func set(autolayout bool: Bool) { self.translatesAutoresizingMaskIntoConstraints = bool };
     func set(hidden bool: Bool) { self.isHidden = bool };
     
-    func set(radius cgflt: CGFloat,_ mask: Bool) {
-        self.layer.cornerRadius  = cgflt;
-        self.layer.masksToBounds = mask;
-    };
+    func set(radius cgflt: CGFloat,_ mask: Bool) { self.layer.cornerRadius  = cgflt; self.layer.masksToBounds = mask };
     
-    func set(border color: UIColor, width: CGFloat) {
-        self.layer.borderColor = color.cgColor;
-        self.layer.borderWidth = width;
-    };
-    
-    func set(border r: CGFloat,_ g: CGFloat,_ b: CGFloat, width: CGFloat) {
-        self.layer.borderColor = UIColor(rgb: r, g, b).cgColor;
-        self.layer.borderWidth = width;
-        
-    };
-    
-    func set(border r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ a: CGFloat, width: CGFloat) {
-        self.layer.borderColor = UIColor(rgb: r, g, b, a).cgColor;
-        self.layer.borderWidth = width;
-        
-    };
-    
-    func set(border hex: String, width: CGFloat) {
-        self.layer.borderColor = UIColor(hex: hex).cgColor;
-        self.layer.borderWidth = width;
-        
-    };
-    
-    func set(border hex: String,_ a: CGFloat, width: CGFloat) {
-        self.layer.borderColor = UIColor(hex: hex, a).cgColor;
-        self.layer.borderWidth = width;
-    };
+    func set(border color: UIColor, width: CGFloat) { self.layer.borderColor = color.cgColor; self.layer.borderWidth = width };
+    func set(border r: CGFloat,_ g: CGFloat,_ b: CGFloat, width: CGFloat) { self.set(border: UIColor(rgb: r, g, b), width: width) };
+    func set(border r: CGFloat,_ g: CGFloat,_ b: CGFloat,_ a: CGFloat, width: CGFloat) { self.set(border: UIColor(rgb: r, g, b, a), width: width) };
+    func set(border hex: String, width: CGFloat) { self.set(border: UIColor(hex: hex), width: width) };
+    func set(border hex: String,_ a: CGFloat, width: CGFloat) { self.set(border: UIColor(hex: hex, a), width: width) };
     
     func set(shadow color: UIColor) {
         let color = UIColor(rgb: color._red, color._green, color._blue, color._alpha/5)
@@ -201,26 +176,26 @@ public extension UIView {
     
     func set(scale x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat) {
         self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-        self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+        self.transform = self.transform.scaledBy(x: w/self._frameW, y: h/self._frameH);
     };
     
     func set(scale x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ a: CGFloat) {
         self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-        self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+        self.transform = self.transform.scaledBy(x: w/self._frameW, y: h/self._frameH);
         self.alpha     = a
     };
     
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ time: Double) {
         animation(time) {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-            self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+            self.transform = self.transform.scaledBy(x: w/self._frameW, y: h/self._frameH);
         };
     };
     
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ a: CGFloat,_ time: Double) {
         animation(time) {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-            self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+            self.transform = self.transform.scaledBy(x: w/self._frameW, y: h/self._frameH);
             self.alpha     = a
         };
     };
@@ -228,7 +203,7 @@ public extension UIView {
     func set(scaleTo x: CGFloat,_ y: CGFloat,_ w: CGFloat,_ h: CGFloat,_ time: Double,_ completion: ((Bool)->Void)?) {
         animation(time, {
             self.layer.position = CGPoint(x: x+w/2, y: y+h/2);
-            self.transform = self.transform.scaledBy(x: w/self._fW, y: h/self._fH);
+            self.transform = self.transform.scaledBy(x: w/self._frameW, y: h/self._frameH);
         }, completion)
     }
     
@@ -246,26 +221,26 @@ public extension UIView {
     }
     
     func size(toFit target: FIT,_ alignment: ALIGNMENT) {
-        let aTop   : CGFloat = self._oY;
-        let aLeft  : CGFloat = self._oX;
-        let aBottom: CGFloat = self._oY+self._fH;
-        let aRight : CGFloat = self._oX+self._fW;
-        let aWidth : CGFloat = self._fW;
-        let aHeight: CGFloat = self._fH;
+        let aTop   : CGFloat = self._originY;
+        let aLeft  : CGFloat = self._originX;
+        let aBottom: CGFloat = self._originY+self._frameH;
+        let aRight : CGFloat = self._originX+self._frameW;
+        let aWidth : CGFloat = self._frameW;
+        let aHeight: CGFloat = self._frameH;
         
         self.sizeToFit();
         DispatchQueue.main.async {
             switch (target) {
             case .width:
                 switch (alignment) {
-                case .right : self.set(oX: aRight-self._fW, oY: aTop, fH: aHeight)
-                case .center: self.set(oX: aRight-aWidth/2-self._fW/2, oY: aTop, fH: aHeight)
+                case .right : self.set(oX: aRight-self._frameW, oY: aTop, fH: aHeight)
+                case .center: self.set(oX: aRight-aWidth/2-self._frameW/2, oY: aTop, fH: aHeight)
                 default     : break;
                 }
             case .height:
                 switch (alignment) {
-                case .bottom: self.set(oX: aLeft, oY: aBottom-self._fH, fW: aWidth)
-                case .center: self.set(oX: aLeft, oY: aBottom-aHeight/2-self._fH/2, fW: aWidth)
+                case .bottom: self.set(oX: aLeft, oY: aBottom-self._frameH, fW: aWidth)
+                case .center: self.set(oX: aLeft, oY: aBottom-aHeight/2-self._frameH/2, fW: aWidth)
                 default: break;
                 }
             };

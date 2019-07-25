@@ -82,7 +82,16 @@ private func PDRequest(file url: URL,_ parms: [String: String]?,_ files: [PDRequ
 }
 
 private func PDTask(_ request: URLRequest,_ completion: @escaping (Error?, Data?)->Void) -> URLSessionDataTask {
-    return URLSession.shared.dataTask(with: request) { data, response, error in
+    return URLSession.shared.dataTask(with: request) { (data, response, error) in
+        DispatchQueue.main.async {
+            completion(error, data);
+        };
+    };
+};
+
+public func PDTask(url: URL?,_ completion: @escaping (Error?, Data?)->Void) -> URLSessionDataTask? {
+    guard let url = url else { return nil }
+    return URLSession.shared.dataTask(with: url) { (data, response, error) in
         DispatchQueue.main.async {
             completion(error, data);
         };

@@ -45,21 +45,21 @@ public extension Date {
     };
     var _timeGone: String {
         switch (Date()._int - self._int) {
-        case let i where (i < time.min)     : return "剛剛";
-        case let i where (i/time.min < 60)  : return "\(i/time.min) 分鐘";
-        case let i where (i/time.hour < 24) : return "\(i/time.hour) 小時";
-        case let i where (i/time.day < 30)  : return "\(i/time.day) 天";
-        case let i where (i/time.month < 12): return "\(i/time.month) 個月";
-        case let i where (i/time.year > 1)  : return "\(i/time.year) 年";
-        default                             : return "";
+        case let i where (i < _TIME_BASE.m)   : return "剛剛";
+        case let i where (i/_TIME_BASE.m < 60): return "\(i/_TIME_BASE.m) 分鐘";
+        case let i where (i/_TIME_BASE.h < 24): return "\(i/_TIME_BASE.h) 小時";
+        case let i where (i/_TIME_BASE.d < 30): return "\(i/_TIME_BASE.d) 天";
+        case let i where (i/_TIME_BASE.M < 12): return "\(i/_TIME_BASE.M) 個月";
+        case let i where (i/_TIME_BASE.y > 1) : return "\(i/_TIME_BASE.y) 年";
+        default                               : return "";
         };
     };
     var _timeLeft: String {
         let date: Int = self._int,
-        day : String = (date/time.day).differ(0) ? "\(date/time.day)d-" : "",
-        hour: String = ((date%time.day)/time.hour).differ(0) ? "\((date%time.day)/time.hour)h-" : "",
-        min : String = (((date%time.day)%time.hour)/time.min).differ(0) ? "\(((date%time.day)%time.hour)/time.min)m-" : "",
-        sec : String = (((date%time.day)%time.hour)%time.min).differ(0) ? "\(((date%time.day)%time.hour)%time.min)s" : "";
+        day : String = (date/_TIME_BASE.d).differ(0) ? "\(date/_TIME_BASE.d)d-" : "",
+        hour: String = ((date%_TIME_BASE.d)/_TIME_BASE.h).differ(0) ? "\((date%_TIME_BASE.d)/_TIME_BASE.h)h-" : "",
+        min : String = (((date%_TIME_BASE.d)%_TIME_BASE.h)/_TIME_BASE.m).differ(0) ? "\(((date%_TIME_BASE.d)%_TIME_BASE.h)/_TIME_BASE.m)m-" : "",
+        sec : String = (((date%_TIME_BASE.d)%_TIME_BASE.h)%_TIME_BASE.m).differ(0) ? "\(((date%_TIME_BASE.d)%_TIME_BASE.h)%_TIME_BASE.m)s" : "";
         return "\(day)\(hour)\(min)\(sec)";
     };
     

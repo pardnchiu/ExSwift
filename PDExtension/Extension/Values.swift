@@ -17,9 +17,12 @@ public extension Bool {
 };
 
 public extension Int {
-    var _str   : String { return String(self) };
-    var _cgflt : CGFloat { return CGFloat(self) };
-    var _date: Date { return Date(timeIntervalSince1970: TimeInterval(self)) };
+    var _str    : String { return String(self) };
+    var _cgFloat: CGFloat { return CGFloat(self) };
+    var _float  : Float { return Float(self) };
+    var _number : NSNumber { return NSNumber(integerLiteral: self) };
+    var _double : Double { return Double(integerLiteral: Int64(self)) };
+    var _date   : Date { return Date(timeIntervalSince1970: TimeInterval(self)) };
     
     func equal(_ int: Int) -> Bool { return (self == int); };
     func differ(_ int: Int) -> Bool { return (self != int); };

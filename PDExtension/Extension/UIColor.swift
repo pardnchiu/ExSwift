@@ -39,8 +39,8 @@ public extension UIColor {
     };
     
     var _ciColor: CIColor { return CIColor(color: self) };
-    var _red: CGFloat { return (self._ciColor.red*255._cgflt) };
-    var _green: CGFloat { return (self._ciColor.green*255._cgflt) };
-    var _blue: CGFloat { return (self._ciColor.blue*255._cgflt) };
+    var _red: CGFloat { return (self._ciColor.red*255._cgFloat) };
+    var _green: CGFloat { return (self._ciColor.green*255._cgFloat) };
+    var _blue: CGFloat { return (self._ciColor.blue*255._cgFloat) };
     var _alpha: CGFloat { return (self._ciColor.alpha) };
 };

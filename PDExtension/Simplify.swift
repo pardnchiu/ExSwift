@@ -38,12 +38,6 @@ public func delay(second value: DispatchTime,_ completion: @escaping ()->Void) {
     DispatchQueue.main.asyncAfter(deadline: value, execute: completion)
 };
 
-enum scr {
-    case _16_9
-    case _16_9_plus
-    
-}
-
 public func iphoneType() -> String {
     
     var systemInfo = utsname()
@@ -128,7 +122,6 @@ public class Interactor: UIPercentDrivenInteractiveTransition {
     public var isStarted  = false
     public var isFinished = false
 }
-
 
 extension Bundle {
     var displayName: String {
@@ -251,30 +244,33 @@ public extension UIAlertAction {
 public let vw: CGFloat = UIScreen.main.bounds.size.width;
 public let vh: CGFloat = UIScreen.main.bounds.size.height;
 
+public let navY: CGFloat = (_DEVICE.x ? 46 : 22);
 
-public struct top {
-    public static let norm: CGFloat = (device.x) ? 44 : 0;
-    public static let bar: CGFloat  = (device.x) ? 44 : 20;
+private let sSide = (vw < vh ? vw : vh)
+private let lSide = (vw < vh ? vh : vw)
+private let ratio = (sSide/lSide*100)._int
+public struct _DEVICE {
+    public static let pad: Bool = (ratio >= 69);
+    public static let x: Bool  = (ratio == 46)
+    public static let N: Bool  = (ratio == 56)
+    public static let L: Bool  = (lSide == 896 || lSide == 736)
+    public static let xS: Bool = (ratio == 46 && lSide == 812)
+    public static let xL: Bool = (ratio == 46 && lSide == 896)
+    public static let nS: Bool = (ratio == 56 && lSide == 667)
+    public static let nL: Bool = (ratio == 56 && lSide == 736)
+    public static let se: Bool = (vh < 667);
 }
 
-public struct bottom {
-    public static let norm: CGFloat = (device.x ? 34 : 0);
-    public static let tab: CGFloat  = (device.x ? 34+49 : 49);
-}
-
-public let navY: CGFloat = (device.x ? 46 : 22);
-public let navH: CGFloat = 40;
-
-public struct time {
-    public static let min   = 60;
-    public static let hour  = 60*60;
-    public static let day   = 60*60*24;
-    public static let month = 60*60*24*30;
-    public static let year  = 60*60*24*365;
+public struct _TIME_BASE {
+    public static let m = 60;
+    public static let h = 60*60;
+    public static let d = 60*60*24;
+    public static let M = 60*60*24*30;
+    public static let y = 60*60*24*365;
 };
 
-public struct Colors {
-    public static let bgColor = UIColor(rgb: 239, 239, 244);
+public struct _COLOR {
+    public static let bgColor = UIColor(hex: "efefef")//UIColor(rgb: 239, 239, 244);
     public static let delete  = UIColor(rgb: 193, 15, 29);
     public struct sys {
         public struct bgc {
@@ -307,7 +303,7 @@ public struct Colors {
     };
 };
 
-public struct ary {
+public struct _ARRAY {
     public static let month = (1...12).map { $0 };
     public static var year: [Int] = {
         guard let year = Int(Date()._objc.yyyy) else { return []; };
@@ -331,21 +327,6 @@ public struct URLSchema {
         public static let web = "https://m.facebook.com/";
     }
 };
-
-let sSide = (vw < vh ? vw : vh)
-let lSide = (vw < vh ? vh : vw)
-let ratio = (sSide/lSide*100)._int
-public struct device {
-    public static let pad: Bool = (ratio >= 69);
-    public static let x: Bool  = (ratio == 46)
-    public static let N: Bool  = (ratio == 56)
-    public static let L: Bool  = (lSide == 896 || lSide == 736)
-    public static let xS: Bool = (ratio == 46 && lSide == 812)
-    public static let xL: Bool = (ratio == 46 && lSide == 896)
-    public static let nS: Bool = (ratio == 56 && lSide == 667)
-    public static let nL: Bool = (ratio == 56 && lSide == 736)
-    public static let se: Bool = (vh < 667);
-}
 
 public struct panData {
     let contentOffset: CGPoint
