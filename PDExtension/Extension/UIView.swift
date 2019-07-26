@@ -112,6 +112,7 @@ public extension UIView {
     func add(fH value: CGFloat) { self.frame.size.height += value };
     func add(a value: CGFloat) { self.alpha += value };
     
+    func to(bgC value: UIColor,_ time: Double) { animation(time) { self.set(bgC: value) } };
     func to(oX value: CGFloat,_ time: Double) { animation(time) { self.set(oX: value) } };
     func to(oY value: CGFloat,_ time: Double) { animation(time) { self.set(oY: value) } };
     func to(fW value: CGFloat,_ time: Double) { animation(time) { self.set(fW: value) } };

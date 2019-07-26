@@ -50,7 +50,18 @@ public extension UITextField {
     func set(keyboardType value: UIKeyboardType) { self.keyboardType = value };
     func set(UIKeyboardAppearance value: UIKeyboardAppearance) { self.keyboardAppearance = value };
     func set(protocol value: UITextFieldDelegate) { self.delegate = value };
+    func set(enable bool: Bool) { self.isEnabled = bool };
     
     func set(right view: UIView,_ mode: UITextField.ViewMode) { self.rightView = view; self.rightViewMode = mode };
     func set(left view: UIView,_ mode: UITextField.ViewMode) { self.leftView = view; self.leftViewMode = mode };
+}
+
+public extension UITextView {
+    
+    func set(font value: UIFont) { self.font = value };
+    func set(font size: CGFloat,_ name: String) { self.font = UIFont(name: name, size: size) ?? UIFont.systemFont(ofSize: size) };
+    func set(font size: CGFloat,_ weight: UIFont.Weight) { self.font = .systemFont(ofSize: size, weight: weight) };
+    func set(fontItalic size: CGFloat) { UIFont.italicSystemFont(ofSize: size) };
+    
+    func set(protocol value: UITextViewDelegate) { self.delegate = value };
 }

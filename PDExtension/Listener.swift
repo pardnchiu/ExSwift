@@ -22,6 +22,6 @@ public func listener(set tag: String,_ dic: [String:Any]) {
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: tag), object: nil, userInfo: dic)
 }
 
-public func listener(delete root: UIViewController,_ tag: String) {
-    NotificationCenter.default.removeObserver(root, name: NSNotification.Name(rawValue: tag), object: nil)
+public func listener(delete observer: Any,_ tag: String) {
+    NotificationCenter.default.removeObserver(observer, name: NSNotification.Name(rawValue: tag), object: nil)
 }

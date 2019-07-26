@@ -25,6 +25,8 @@ public extension UITableView {
     
     var _headerH: CGFloat { return (self.tableHeaderView?._frameH ?? 0) };
     var _footerH: CGFloat { return (self.tableFooterView?._frameH ?? 0) };
+    
+    var _cells: [UITableViewCell]? { return (self.visibleCells) };
 };
 
 public extension UITableView {

@@ -60,7 +60,7 @@ public extension Array {
         }
     }
     
-    func value(contain value: Any) -> Bool {
+    func value(expect value: Any) -> Bool {
         if let ary = self as? [Int], let int = value as? Int { return ary.filter { return $0 == int }.count == 0 }
         if let ary = self as? [NSNumber], let int = value as? NSNumber { return ary.filter { return $0 == int }.count == 0 }
         if let ary = self as? [String], let str = value as? String { return ary.filter { return $0 == str }.count == 0 }
