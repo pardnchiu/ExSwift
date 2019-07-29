@@ -54,6 +54,15 @@ public extension UITextField {
     
     func set(right view: UIView,_ mode: UITextField.ViewMode) { self.rightView = view; self.rightViewMode = mode };
     func set(left view: UIView,_ mode: UITextField.ViewMode) { self.leftView = view; self.leftViewMode = mode };
+    
+    func set(right x: CGFloat,_ y: CGFloat,_ width: CGFloat,_ height: CGFloat,_ mode: UITextField.ViewMode) {
+        self.rightView = UIView(x, y, width, height);
+        self.rightViewMode = mode
+    };
+    func set(left x: CGFloat,_ y: CGFloat,_ width: CGFloat,_ height: CGFloat,_ mode: UITextField.ViewMode) {
+        self.leftView = UIView(x, y, width, height);
+        self.leftViewMode = mode
+    };
 }
 
 public extension UITextView {

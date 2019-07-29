@@ -261,6 +261,9 @@ public struct _DEVICE {
     public static let se: Bool = (vh < 667);
 }
 
+public var tabH: CGFloat = (_DEVICE.x ? 34 : 0)+49;
+public var navH: CGFloat = (_DEVICE.x ? 44 : 20)+44;
+
 public struct _TIME_BASE {
     public static let m = 60;
     public static let h = 60*60;

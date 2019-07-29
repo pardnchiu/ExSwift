@@ -11,7 +11,7 @@ import UIKit
 
 public extension UIButton {
     
-    struct colors {
+    struct COLOR {
         public var normal: UIColor, highlight: UIColor, disable: UIColor;
         public init(_ normal: UIColor,_ highlight: UIColor,_ disable: UIColor) {
             self.normal    = normal;
@@ -20,7 +20,7 @@ public extension UIButton {
         };
     };
     
-    struct images {
+    struct IMAGE {
         public var normal: UIImage, highlight: UIImage, disable: UIImage;
         public init(_ normal: UIImage,_ highlight: UIImage,_ disable: UIImage) {
             self.normal    = normal;
@@ -29,23 +29,23 @@ public extension UIButton {
         };
     };
     
-    var _str: String  { return (self.titleLabel?.text ?? "") };
-    var _strColor: colors {
+    var str: String  { return (self.titleLabel?.text ?? "") };
+    var tColors: COLOR {
         let normal    = (self.titleColor(for: .disabled) ?? .clear);
         let highlight = (self.titleColor(for: .highlighted) ?? .clear);
         let disable   = (self.titleColor(for: .disabled) ?? .clear);
-        return colors(normal, highlight, disable);
+        return COLOR(normal, highlight, disable);
     }
-    var _image: images {
+    var images: IMAGE {
         let normal    = (self.image(for: .normal) ?? UIImage());
         let highlight = (self.image(for: .highlighted) ?? UIImage());
         let disable   = (self.image(for: .disabled) ?? UIImage());
-        return images(normal, highlight, disable);
+        return IMAGE(normal, highlight, disable);
     }
-    var _top    : CGFloat { return self.contentEdgeInsets.top };
-    var _left   : CGFloat { return self.contentEdgeInsets.left };
-    var _bottom : CGFloat { return self.contentEdgeInsets.bottom };
-    var _right  : CGFloat { return self.contentEdgeInsets.right };
+    var it: CGFloat { return self.contentEdgeInsets.top };
+    var il: CGFloat { return self.contentEdgeInsets.left };
+    var ib: CGFloat { return self.contentEdgeInsets.bottom };
+    var ir: CGFloat { return self.contentEdgeInsets.right };
 }
 
 public extension UIButton {
@@ -65,10 +65,10 @@ public extension UIButton {
     func set(left: CGFloat, bottom: CGFloat) { self.l(left); self.b(bottom) };
     func set(left: CGFloat, right: CGFloat)  { self.l(left); self.r(right) };
     func set(bottom: CGFloat, right: CGFloat)  { self.b(bottom); self.r(right) };
-    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(padding: top, left, bottom, self._right) };
-    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(padding: top, left, self._bottom, right) };
-    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: top, self._left, bottom, right) };
-    func set(left: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: self._top, left, bottom, right) };
+    func set(top: CGFloat, left: CGFloat, bottom: CGFloat) { self.set(padding: top, left, bottom, self.ir) };
+    func set(top: CGFloat, left: CGFloat, right: CGFloat)  { self.set(padding: top, left, self.ib, right) };
+    func set(top: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: top, self.il, bottom, right) };
+    func set(left: CGFloat, bottom: CGFloat, right: CGFloat)  { self.set(padding: self.it, left, bottom, right) };
     func set(padding top: CGFloat,_ left: CGFloat,_ bottom: CGFloat,_ right: CGFloat) {
         self.contentEdgeInsets = UIEdgeInsets(top, left, bottom, right);
     };

@@ -11,8 +11,8 @@ import UIKit
 
 public extension UILabel {
     
-    var _str: String { return (self.text ?? "") };
-    var _strColor: UIColor { return (self.textColor) };
+    var str: String { return (self.text ?? "") };
+    var tColor: UIColor { return (self.textColor) };
 };
 
 public extension UILabel {
