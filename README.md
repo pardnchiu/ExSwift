@@ -1,6 +1,6 @@
-# PDExtension Swift ver.
+# PDExtension (Swift ver.)
 
-- 名稱: PDExtension
+- 名稱: PDExtension (Swift ver.)
 - 開發: [Pardn Chiu](mailto:chiuchingwei@icloud.com)
 - 授權: [MIT License](./LICENSE)
 
