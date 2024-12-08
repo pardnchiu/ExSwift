@@ -1,8 +1,28 @@
-*此項目還是舊版代碼*
-製作新版 Framework ，後續會釋出方便進行導入。
+此項目仍是2019年的舊版代碼
+新版 Framework 正在優化中，後續將釋出給各位方便整合導入。
 
-優化各項目擴展
-新版功能如下
+新版框架特色與功能優化
+
+新版框架將對項目進行全面升級，針對各項擴展進行優化，並引入以下核心改進：
+- 避免與原生方法衝突
+  所有自定義擴展功能將採用繼承方式，獨立命名空間，確保穩定性和兼容性。
+- 統一命名與類型設計
+  新版將對常見 UIKit 元件提供專屬子類，結構清晰，使用更靈活。
+  例如：
+  - UIView → ExView
+  - UILabel → ExLabel
+  - UIStackView → ExStack
+- ex 轉換功能
+  除了直接宣告 Ex 元件，也支持通過 .ex 快速將原生 UIKit 元件轉換為對應的 Ex 元件。
+  ```Swift
+  let view = UIView()
+  view.ex.background(color: .red) // 自動轉換為 ExView 並應用擴展
+  
+  let label = UILabel()
+  label.ex.text("Hello", color: .blue) // 自動轉換為 ExLabel
+  ```
+- 高效功能整合
+新版框架將集成多項優化功能，簡化開發流程，提升代碼可讀性與可維護性。
 
 <details>
 <summary>Enum 擴展</summary>
@@ -24,7 +44,7 @@
 </details>
 
 <details>
-<summary>UIView 擴展</summary>
+<summary>ExView 擴展</summary>
 
 > [!NOTE]
 > 提供了一系列便捷的鏈式調用函數，快速設置 UIView 的屬性，包括背景、圓角、邊框、陰影、縮放、旋轉等功能。
@@ -62,7 +82,7 @@
 
 - 基本視圖操作
   ```Swift
-  let myView = UIView()
+  let myView = ExView()
       .frame(x: 50, y: 100, width: 200, height: 100)
       .background(color: .blue)
       .alpha(0.8)
@@ -80,7 +100,7 @@
 - 添加子視圖與子層
   ```Swift
   myView.subview([
-      UIView()
+      ExView()
           .frame(x: 10, y: 10, width: 50, height: 50)
           .background(color: .red)
   ])
@@ -88,16 +108,16 @@
 - 巢狀結構添加元件
   ```Swift
   myView.subview([
-      UIView()
+      ExView()
         .frame(x: 0, y: 0, width: 300, height: 400)
         .background(color: .white)
         .subview([
             // 子視圖 1：標題容器
-            UIView()
+            ExView()
                 .frame(x: 10, y: 10, width: 280, height: 50)
                 .background(color: .lightGray)
                 .subview([
-                    UILabel()
+                    ExLabel()
                         .frame(x: 10, y: 10, width: 260, height: 30)
                         .background(color: .clear)
                         .if(true) { label in
@@ -108,11 +128,11 @@
                 ]),
     
             // 子視圖 2：按鈕容器
-            UIView()
+            ExView()
                 .frame(x: 10, y: 70, width: 280, height: 300)
                 .background(color: .gray)
                 .subview([
-                    UIButton()
+                    ExButton()
                         .frame(x: 20, y: 20, width: 120, height: 40)
                         .background(color: .blue)
                         .if(true) { button in
@@ -120,7 +140,7 @@
                             button.setTitleColor(.white, for: .normal)
                         },
     
-                    UIButton()
+                    ExButton()
                         .frame(x: 140, y: 20, width: 120, height: 40)
                         .background(color: .red)
                         .if(true) { button in
