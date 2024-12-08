@@ -2,6 +2,7 @@
 製作新版 Framework ，後續會釋出方便進行導入。
 
 優化各項目擴展
+新版功能如下
 
 <details>
 <summary>UIView</summary>
