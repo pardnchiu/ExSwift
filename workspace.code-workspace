@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"qaram"
+        ],
+        "liveServer.settings.port": 8081
+	}
+}
