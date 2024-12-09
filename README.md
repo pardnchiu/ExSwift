@@ -5,22 +5,14 @@
 
 新版擴展將對項目進行全面升級，針對各項擴展進行優化，並引入以下核心改進：
 - 避免與原生方法衝突
-  所有自定義擴展功能將採用繼承方式，獨立命名空間，確保穩定性和兼容性。
+  除了少量需要在原生擴展以外，剩餘自定義擴展功能將採用繼承方式，獨立命名空間，確保穩定性和兼容性。
 - 統一命名與類型設計
   新版將對常見 UIKit 元件提供專屬子類，結構清晰，使用更靈活。
   例如：
   - UIView → ExView
   - UILabel → ExLabel
-  - UIStackView → ExStack
-- ex 轉換功能
-  除了直接宣告 Ex 元件，也支持通過 .ex 快速將原生 UIKit 元件轉換為對應的 Ex 元件。
-  ```Swift
-  let view = UIView()
-  view.ex.background(color: .red) // 自動轉換為 ExView 並應用擴展
-  
-  let label = UILabel()
-  label.ex.text("Hello", color: .blue) // 自動轉換為 ExLabel
-  ```
+  - UIStackView → ExStackView
+
 - 高效功能整合
 新版框架將集成多項優化功能，簡化開發流程，提升代碼可讀性與可維護性。
 
