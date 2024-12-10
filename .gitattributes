@@ -1,2 +1,11 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# 加密專案檔案
+ExSwift/** filter=git-crypt diff=git-crypt
+ExSwift.xcodeproj/** filter=git-crypt diff=git-crypt
+ExSwiftTests/** filter=git-crypt diff=git-crypt
+
+# 指定文件的語言，將 .swift 文件計入 Swift 語言統計
+*.swift linguist-language=Swift
+
+# 視文件為文檔類型，忽略語言統計
+*.md linguist-documentation
+*.json linguist-documentation
