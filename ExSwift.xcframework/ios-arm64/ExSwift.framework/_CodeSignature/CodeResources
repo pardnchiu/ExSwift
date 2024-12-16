@@ -4,29 +4,25 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
-		<data>
-		1wOd8LU9P6Akw+RJewuoXrBpbuI=
-		</data>
 		<key>Headers/ExSwift.h</key>
 		<data>
 		mdo0Rx34ZrwzBfusytiBwnfG18M=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		m6fqDhRJ7xXtWmCahQ6DBjUXjAY=
+		g9CahMm5rymFu0srV1qbctiiQvY=
 		</data>
 		<key>Modules/ExSwift.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		Q5TOxTWZOEVaIFO9qO8Y171gPUg=
+		dSFIrSzMh3sB312PC5aFUqA7J6c=
 		</data>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		kDPeD/gnb+eXQQytPMDyup7ow3g=
+		5qp7bQRFt9/ifdK3aNe/Sy15LSQ=
 		</data>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		7hhT0n3bxgMscRnX5xAo9/CLYBg=
+		j50TYInDOuJGaucoEAMivMu3U9A=
 		</data>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -34,11 +30,11 @@
 		</data>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		7hhT0n3bxgMscRnX5xAo9/CLYBg=
+		j50TYInDOuJGaucoEAMivMu3U9A=
 		</data>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		nDTE1f4VHH18mDy5rUYaiRBRSUs=
+		TeBNffy4RLeE44Qg8hYNT54uiF0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -58,21 +54,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0rHzhRpoUuBTXlf7Df6ulq9gKO8y5FienVlEOo0Phqs=
+			6k3dTRffHbm12jTbTq62cK+Nkqnq0yQX/unYHa2o884=
 			</data>
 		</dict>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Zjfg8Fn0YALjVR/iyVJ90CK3+KcAO30bQfufx+EG1/M=
+			/0u2qFqpJSUJRP5JGTl9s262E79cxuGYG0yV0jPjLFM=
 			</data>
 		</dict>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wt4eQLiCuH2I0lxm3S3Op542otwEG1lK12TTPVffEvo=
+			n83ogulWUQdgxBZsk9c4Ee1PreVHkloPsYFQ3/PxXPY=
 			</data>
 		</dict>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -86,14 +82,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wt4eQLiCuH2I0lxm3S3Op542otwEG1lK12TTPVffEvo=
+			n83ogulWUQdgxBZsk9c4Ee1PreVHkloPsYFQ3/PxXPY=
 			</data>
 		</dict>
 		<key>Modules/ExSwift.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ty5ZlCEbjgEGFWSEMgPU/NTyHydS/QFmuI3y4iHWVuI=
+			4wpLg618afKk6gQD95IEXFiW9iDKyNKU0BGx1vd38Lg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

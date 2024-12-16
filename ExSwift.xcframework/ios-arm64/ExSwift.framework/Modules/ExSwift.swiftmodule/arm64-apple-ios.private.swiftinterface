@@ -9,19 +9,665 @@ import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-extension SwiftUICore.Color {
-  public init(rgb red: Swift.Int, _ green: Swift.Int, _ blue: Swift.Int)
-  public init(rgba red: Swift.Int, _ green: Swift.Int, _ blue: Swift.Int, _ opacity: Swift.Double = 1.0)
-  public init(hex: Swift.String)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExHScroll : ExSwift.ExScrollView {
+  @_Concurrency.MainActor @preconcurrency convenience public init(indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @objc deinit
 }
-extension SwiftUICore.Image {
-  public init(url: Swift.String)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExScroll : ExSwift.ExScrollView {
+  @_Concurrency.MainActor @preconcurrency convenience public init(axis: UIKit.NSLayoutConstraint.Axis? = nil, indicator: Swift.Bool? = nil, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(axis: UIKit.NSLayoutConstraint.Axis? = nil, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, axis: UIKit.NSLayoutConstraint.Axis? = nil, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, axis: UIKit.NSLayoutConstraint.Axis? = nil, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @objc deinit
+}
+public struct ExStateFont {
+  public init(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil)
+  public static func normal(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateFont
+  public static func highlighted(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateFont
+  public static func disabled(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateFont
+  public static func selected(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateFont
+  public static func focused(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateFont
+}
+@_functionBuilder public struct ExStateFontBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStateFont) -> [ExSwift.ExStateFont]
+  public static func buildBlock(_ components: [ExSwift.ExStateFont]) -> [ExSwift.ExStateFont]
+  public static func buildBlock(_ components: [ExSwift.ExStateFont]...) -> [ExSwift.ExStateFont]
+  public static func buildExpression(_ expression: ExSwift.ExStateFont) -> [ExSwift.ExStateFont]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStateFont]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStateFont) -> [ExSwift.ExStateFont]
+  public static func buildExpression(_ expression: [ExSwift.ExStateFont]) -> [ExSwift.ExStateFont]
+  public static func buildIf(_ component: [ExSwift.ExStateFont]?) -> [ExSwift.ExStateFont]
+  public static func buildEither(first component: [ExSwift.ExStateFont]) -> [ExSwift.ExStateFont]
+  public static func buildEither(second component: [ExSwift.ExStateFont]) -> [ExSwift.ExStateFont]
+  public static func buildArray(_ components: [[ExSwift.ExStateFont]]) -> [ExSwift.ExStateFont]
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExScrollView : UIKit.UIScrollView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func config(axis: UIKit.NSLayoutConstraint.Axis? = nil, indicator: Swift.Bool? = nil, bounces: Swift.Bool? = nil, delegate: (any UIKit.UIScrollViewDelegate)? = nil) -> ExSwift.ExScrollView
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(button bool: Swift.Bool, _ _self: (ExSwift.ExScrollView) throws -> Swift.Void) rethrows -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExVScroll : ExSwift.ExScrollView {
+  @_Concurrency.MainActor @preconcurrency convenience public init(indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExScrollView?, indicator: Swift.Bool = true, bounces: Swift.Bool = true, delegate: (any UIKit.UIScrollViewDelegate)? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @objc deinit
+}
+@_functionBuilder public struct ExLayerBuilder {
+  public static func buildBlock(_ component: QuartzCore.CALayer) -> [QuartzCore.CALayer]
+  public static func buildBlock(_ components: [QuartzCore.CALayer]) -> [QuartzCore.CALayer]
+  public static func buildBlock(_ components: [QuartzCore.CALayer]...) -> [QuartzCore.CALayer]
+  public static func buildExpression(_ expression: QuartzCore.CALayer) -> [QuartzCore.CALayer]
+  public static func buildExpression(_ expression: Swift.Void) -> [QuartzCore.CALayer]
+  public static func buildExpression(_ expression: () -> QuartzCore.CALayer) -> [QuartzCore.CALayer]
+  public static func buildExpression(_ expression: [QuartzCore.CALayer]) -> [QuartzCore.CALayer]
+  public static func buildIf(_ component: [QuartzCore.CALayer]?) -> [QuartzCore.CALayer]
+  public static func buildEither(first component: [QuartzCore.CALayer]) -> [QuartzCore.CALayer]
+  public static func buildEither(second component: [QuartzCore.CALayer]) -> [QuartzCore.CALayer]
+  public static func buildArray(_ components: [[QuartzCore.CALayer]]) -> [QuartzCore.CALayer]
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExHStack : ExSwift.ExStackView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var axis: UIKit.NSLayoutConstraint.Axis {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var alignment: UIKit.UIStackView.Alignment {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency convenience public init(distribution: ExSwift.ExStackDistribution = .equalSpacing, verticalAlignment: ExSwift.ExStackVerticalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(distribution: ExSwift.ExStackDistribution = .equalSpacing, verticalAlignment: ExSwift.ExStackVerticalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, distribution: ExSwift.ExStackDistribution = .equalSpacing, verticalAlignment: ExSwift.ExStackVerticalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, distribution: ExSwift.ExStackDistribution = .equalSpacing, verticalAlignment: ExSwift.ExStackVerticalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @objc deinit
+}
+public struct ExStateText {
+  public init(state: UIKit.UIControl.State, text: Swift.String? = nil, subtitle: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil)
+  public static func normal(text: Swift.String? = nil, subtitle: Swift.String? = nil, textColor: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> ExSwift.ExStateText
+  public static func highlighted(text: Swift.String? = nil, subtitle: Swift.String? = nil, textColor: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> ExSwift.ExStateText
+  public static func disabled(text: Swift.String? = nil, subtitle: Swift.String? = nil, textColor: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> ExSwift.ExStateText
+  public static func selected(text: Swift.String? = nil, subtitle: Swift.String? = nil, textColor: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> ExSwift.ExStateText
+  public static func focused(text: Swift.String? = nil, subtitle: Swift.String? = nil, textColor: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> ExSwift.ExStateText
+}
+@_functionBuilder public struct ExStateTextBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStateText) -> [ExSwift.ExStateText]
+  public static func buildBlock(_ components: [ExSwift.ExStateText]) -> [ExSwift.ExStateText]
+  public static func buildBlock(_ components: [ExSwift.ExStateText]...) -> [ExSwift.ExStateText]
+  public static func buildExpression(_ expression: ExSwift.ExStateText) -> [ExSwift.ExStateText]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStateText]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStateText) -> [ExSwift.ExStateText]
+  public static func buildExpression(_ expression: [ExSwift.ExStateText]) -> [ExSwift.ExStateText]
+  public static func buildIf(_ component: [ExSwift.ExStateText]?) -> [ExSwift.ExStateText]
+  public static func buildEither(first component: [ExSwift.ExStateText]) -> [ExSwift.ExStateText]
+  public static func buildEither(second component: [ExSwift.ExStateText]) -> [ExSwift.ExStateText]
+  public static func buildArray(_ components: [[ExSwift.ExStateText]]) -> [ExSwift.ExStateText]
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExStack : ExSwift.ExStackView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var alignment: UIKit.UIStackView.Alignment {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency convenience public init(axis: UIKit.NSLayoutConstraint.Axis = .vertical, distribution: ExSwift.ExStackDistribution = .equalSpacing, alignment: UIKit.UIStackView.Alignment, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(axis: UIKit.NSLayoutConstraint.Axis = .vertical, distribution: ExSwift.ExStackDistribution = .equalSpacing, alignment: UIKit.UIStackView.Alignment, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, axis: UIKit.NSLayoutConstraint.Axis = .vertical, distribution: ExSwift.ExStackDistribution = .equalSpacing, alignment: UIKit.UIStackView.Alignment, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, axis: UIKit.NSLayoutConstraint.Axis = .vertical, distribution: ExSwift.ExStackDistribution = .equalSpacing, alignment: UIKit.UIStackView.Alignment, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExStackView : UIKit.UIStackView, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var distribution: UIKit.UIStackView.Distribution {
+    @objc get
+    @objc set
+  }
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func config(axis: UIKit.NSLayoutConstraint.Axis = .vertical, distribution: UIKit.UIStackView.Distribution = .equalSpacing, alignment: UIKit.UIStackView.Alignment = .fill, spacing: CoreFoundation.CGFloat = 0) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func subview(@ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView]) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func removeArrangedSubview(_ view: UIKit.UIView)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExVStack : ExSwift.ExStackView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var axis: UIKit.NSLayoutConstraint.Axis {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var alignment: UIKit.UIStackView.Alignment {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency convenience public init(distribution: ExSwift.ExStackDistribution = .equalSpacing, horizontalAlignment: ExSwift.ExStackHorizontalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(distribution: ExSwift.ExStackDistribution = .equalSpacing, horizontalAlignment: ExSwift.ExStackHorizontalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, distribution: ExSwift.ExStackDistribution = .equalSpacing, horizontalAlignment: ExSwift.ExStackHorizontalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExStackView?, distribution: ExSwift.ExStackDistribution = .equalSpacing, horizontalAlignment: ExSwift.ExStackHorizontalAlignment = .fill, spacing: CoreFoundation.CGFloat = 0, @ExSwift.ExViewBuilder subviewBuilder: () -> [UIKit.UIView])
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExButton : UIKit.UIButton, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency convenience public init(@ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ title: Swift.String? = nil, subTitle: Swift.String? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ title: Swift.String? = nil, subTitle: Swift.String? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExButton?)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExButton?, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExButton?, _ title: Swift.String? = nil, subTitle: Swift.String? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExButton?, _ title: Swift.String? = nil, subTitle: Swift.String? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func background(for state: UIKit.UIControl.State? = nil, color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func background(@ExSwift.ExStateBackgroundBuilder _ state: () -> [ExSwift.ExStateBackground]) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func radius(_ value: CoreFoundation.CGFloat? = nil, corner: [UIKit.UIRectCorner]? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func text(for state: UIKit.UIControl.State? = nil, _ value: Swift.String? = nil, subTitle: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil, verticalAlignment: UIKit.UIControl.ContentVerticalAlignment? = nil, horzontalAlignment: UIKit.UIControl.ContentHorizontalAlignment? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func text(@ExSwift.ExStateTextBuilder _ state: () -> [ExSwift.ExStateText]) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func font(for state: UIKit.UIControl.State? = nil, _ value: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func font(@ExSwift.ExStateFontBuilder _ layout: () -> [ExSwift.ExStateFont]) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func subTitleFont(for state: UIKit.UIControl.State? = nil, _ font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func subTitleFont(@ExSwift.ExStateSubFontBuilder _ layout: () -> [ExSwift.ExStateSubFont]) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func image(for state: UIKit.UIControl.State? = nil, _ image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func image(@ExSwift.ExStateImageBuilder _ layout: () -> [ExSwift.ExStateImage]) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func padding(for state: UIKit.UIControl.State? = nil, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func padding(@ExSwift.ExStatePaddingBuilder _ layout: () -> [ExSwift.ExStatePadding]) -> Self
+  @_Concurrency.MainActor @preconcurrency public func onTouch(_ event: UIKit.UIControl.Event, _ action: ObjectiveC.Selector) -> Self
+  public typealias ExButtonActionClosure = (ExSwift.ExButton) -> Swift.Void
+  @_Concurrency.MainActor @preconcurrency public func onTouch(_ event: UIKit.UIControl.Event, _ closure: @escaping ExSwift.ExButton.ExButtonActionClosure) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(button bool: Swift.Bool, _ _self: (ExSwift.ExButton) throws -> Swift.Void) rethrows -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+public struct ExStateSubFont {
+  public init(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil)
+  public static func normal(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateSubFont
+  public static func highlighted(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateSubFont
+  public static func disabled(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateSubFont
+  public static func selected(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateSubFont
+  public static func focused(state: UIKit.UIControl.State, font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> ExSwift.ExStateSubFont
+}
+@_functionBuilder public struct ExStateSubFontBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStateSubFont) -> [ExSwift.ExStateSubFont]
+  public static func buildBlock(_ components: [ExSwift.ExStateSubFont]) -> [ExSwift.ExStateSubFont]
+  public static func buildBlock(_ components: [ExSwift.ExStateSubFont]...) -> [ExSwift.ExStateSubFont]
+  public static func buildExpression(_ expression: ExSwift.ExStateSubFont) -> [ExSwift.ExStateSubFont]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStateSubFont]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStateSubFont) -> [ExSwift.ExStateSubFont]
+  public static func buildExpression(_ expression: [ExSwift.ExStateSubFont]) -> [ExSwift.ExStateSubFont]
+  public static func buildIf(_ component: [ExSwift.ExStateSubFont]?) -> [ExSwift.ExStateSubFont]
+  public static func buildEither(first component: [ExSwift.ExStateSubFont]) -> [ExSwift.ExStateSubFont]
+  public static func buildEither(second component: [ExSwift.ExStateSubFont]) -> [ExSwift.ExStateSubFont]
+  public static func buildArray(_ components: [[ExSwift.ExStateSubFont]]) -> [ExSwift.ExStateSubFont]
+}
+@_functionBuilder public struct ExSubBuilder {
+  public static func buildBlock(_ component: UIKit.UIView) -> UIKit.UIView
+  public static func buildExpression(_ expression: UIKit.UIView) -> UIKit.UIView
+  public static func buildExpression(_ expression: () -> UIKit.UIView) -> UIKit.UIView
+  public static func buildOptional(_ component: UIKit.UIView?) -> UIKit.UIView
+  public static func buildEither(first component: UIKit.UIView) -> UIKit.UIView
+  public static func buildEither(second component: UIKit.UIView) -> UIKit.UIView
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExCollectionView : UIKit.UICollectionView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UICollectionViewDelegate)? = nil, dataSource dataSocurcValue: (any UIKit.UICollectionViewDataSource)? = nil, layout layoutValue: UIKit.UICollectionViewLayout)
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func header(_ header: Swift.AnyClass?, _ id: Swift.String) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func cell(id: Swift.String, cell: Swift.AnyClass?) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func scroll(to index: Foundation.IndexPath, _ position: UIKit.UICollectionView.ScrollPosition, _ animate: Swift.Bool) -> Self
+  @_Concurrency.MainActor @preconcurrency public func insert(indexPaths: [Foundation.IndexPath], _ completion: ((Swift.Bool) -> Swift.Void)?) -> Self
+  @_Concurrency.MainActor @preconcurrency public func delete(indexPaths: [Foundation.IndexPath], _ completion: ((Swift.Bool) -> Swift.Void)?) -> Self
+  @_Concurrency.MainActor @preconcurrency public func cell(indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell?
+  @_Concurrency.MainActor @preconcurrency public func cell(reuse tag: Swift.String, indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect, collectionViewLayout layout: UIKit.UICollectionViewLayout)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+extension UIKit.UICollectionViewFlowLayout {
+  @_Concurrency.MainActor @preconcurrency public func set(spacing lineSpacing: CoreFoundation.CGFloat, _ itemSpacing: CoreFoundation.CGFloat, _ direction: UIKit.UICollectionView.ScrollDirection)
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExImage : UIKit.UIImageView, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ image: UIKit.UIImage? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ images: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ image: UIKit.UIImage? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ images: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExImage?, _ image: UIKit.UIImage? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExImage?, _ images: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExImage?, _ image: UIKit.UIImage? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExImage?, _ images: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func image(_ imageTarget: UIKit.UIImage? = nil, tintColor: UIKit.UIColor? = nil, mode: UIKit.UIView.ContentMode? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func carousel(_ list: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil, state: ExSwift.ExSwitchState? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func resizeToFit(_ mode: ExSwift.ExContentMode? = nil) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExText : UIKit.UILabel, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency convenience public init(@ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ title: Swift.String? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ title: Swift.String? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExText?)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExText?, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExText?, _ title: Swift.String? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExText?, _ title: Swift.String? = nil, @ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func text(_ value: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil, line: Swift.Int? = nil, breakMode: UIKit.NSLineBreakMode? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func font(_ value: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil, sizeToFit: Swift.Bool? = nil) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var intrinsicContentSize: CoreFoundation.CGSize {
+    @objc get
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func drawText(in rect: CoreFoundation.CGRect)
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func padding(_ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExText
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(label bool: Swift.Bool, _ _self: (ExSwift.ExText) throws -> Swift.Void) rethrows -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExTableView : UIKit.UITableView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UITableViewDelegate)? = nil, dataSource dataSourceValue: (any UIKit.UITableViewDataSource)? = nil)
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func cell(id: Swift.String, cell: Swift.AnyClass?) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect, style: UIKit.UITableView.Style)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExTextField : UIKit.UITextField, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency convenience public init(@ExSwift.ExViewBuilder builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate: (any UIKit.UITextFieldDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate: (any UIKit.UITextFieldDelegate)? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextField?)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextField?, delegate: (any UIKit.UITextFieldDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextField?, delegate: (any UIKit.UITextFieldDelegate)? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func delegate(_ delegate: (any UIKit.UITextFieldDelegate)?) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func frame(rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil, x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func text(_ value: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil, type: UIKit.UITextContentType? = nil, placeholder: Swift.String? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func font(_ value: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil, sizeToFit: Swift.Bool? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func keyboard(type: UIKit.UIKeyboardType? = nil, appearance: UIKit.UIKeyboardAppearance? = nil, returnKey: UIKit.UIReturnKeyType? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func leftView(mode: UIKit.UITextField.ViewMode? = nil, rightMode: UIKit.UITextField.ViewMode? = nil, @ExSwift.ExSubBuilder builder: () -> UIKit.UIView) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func rightView(mode: UIKit.UITextField.ViewMode? = nil, rightMode: UIKit.UITextField.ViewMode? = nil, @ExSwift.ExSubBuilder builder: () -> UIKit.UIView) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(label bool: Swift.Bool, _ _self: (ExSwift.ExTextField) throws -> Swift.Void) rethrows -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExTextView : UIKit.UITextView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate: (any UIKit.UITextViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(delegate: (any UIKit.UITextViewDelegate)? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextView?)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextView?, delegate: (any UIKit.UITextViewDelegate)? = nil)
+  @_Concurrency.MainActor @preconcurrency convenience public init(_ variable: inout ExSwift.ExTextView?, delegate: (any UIKit.UITextViewDelegate)? = nil, @ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func delegate(_ delegate: (any UIKit.UITextViewDelegate)?) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func frame(rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil, x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var text: Swift.String? {
+    @objc get
+    @objc set
+  }
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func text(_ value: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil, type: UIKit.UITextContentType? = nil, placeholder: Swift.String? = nil) -> Self
+  @_Concurrency.MainActor @preconcurrency public var placeholder: Swift.String? {
+    get
+    set
+  }
+  @objc deinit
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var font: UIKit.UIFont? {
+    @objc get
+    @objc set
+  }
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func font(_ value: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil, sizeToFit: Swift.Bool? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func keyboard(type: UIKit.UIKeyboardType? = nil, appearance: UIKit.UIKeyboardAppearance? = nil, returnKey: UIKit.UIReturnKeyType? = nil) -> Self
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(label bool: Swift.Bool, _ _self: (ExSwift.ExTextView) throws -> Swift.Void) rethrows -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class ExZStack : UIKit.UIView, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  @_Concurrency.MainActor @preconcurrency public init(@ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView])
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func `if`(_ bool: Swift.Bool, _ void: (Self) throws -> Swift.Void) rethrows -> Self
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExVisualEffectView : UIKit.UIVisualEffectView, ExSwift.ExViewProtocol {
+  @_Concurrency.MainActor @preconcurrency convenience public init(style: UIKit.UIBlurEffect.Style)
+  @discardableResult
+  @_Concurrency.MainActor @preconcurrency public func subview(_ views: [UIKit.UIView]) -> Self
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(effect: UIKit.UIVisualEffect?)
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}
+public enum ExContentMode {
+  case scaleAspectFill
+  case scaleAspectFit
+  public static func == (a: ExSwift.ExContentMode, b: ExSwift.ExContentMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExEdge {
+  case top
+  case bottom
+  case leading
+  case trailing
+  case horizontal
+  case vertical
+  case all
+  public static func == (a: ExSwift.ExEdge, b: ExSwift.ExEdge) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExStackDistribution {
+  case equalSpacing
+  case fillEqually
+  public static func == (a: ExSwift.ExStackDistribution, b: ExSwift.ExStackDistribution) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExStackHorizontalAlignment {
+  case leading
+  case trailing
+  case center
+  case fill
+  public static func == (a: ExSwift.ExStackHorizontalAlignment, b: ExSwift.ExStackHorizontalAlignment) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExStackVerticalAlignment {
+  case top
+  case bottom
+  case center
+  case fill
+  public static func == (a: ExSwift.ExStackVerticalAlignment, b: ExSwift.ExStackVerticalAlignment) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExSwitchState {
+  case on
+  case off
+  public static func == (a: ExSwift.ExSwitchState, b: ExSwift.ExSwitchState) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol ExScrollViewProtocol : AnyObject {
+}
+extension ExSwift.ExScrollViewProtocol where Self : UIKit.UIScrollView {
+  @discardableResult
+  public func indicator(_ value: Swift.Bool? = nil, vertical: Swift.Bool? = nil, horizontal: Swift.Bool? = nil) -> Self
+  @discardableResult
+  public func bounces(_ value: Swift.Bool? = nil, vertical: Swift.Bool? = nil, horizontal: Swift.Bool? = nil) -> Self
+  @discardableResult
+  public func padding(_ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> Self
+}
+public protocol ExSwiftProtocol {
+}
+extension ExSwift.ExSwiftProtocol where Self : AnyObject {
+  @discardableResult
+  public func `_`(_ _self: (Self) throws -> Swift.Void) rethrows -> Self
+}
+extension ObjectiveC.NSObject : ExSwift.ExSwiftProtocol {
+}
+extension ExSwift.ExViewProtocol where Self : UIKit.UIView {
+  @discardableResult
+  public func leftEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func leftGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func leftLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerXEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerXGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerXLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func rightEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func rightGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func rightLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func topEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func topGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func topLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerYEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerYGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func centerYLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func bottomEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func bottomGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func bottomLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func widthEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func widthGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func widthLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func heightEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func heightGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func heightLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func layout(@ExSwift.ExLayoutBuilder _ layout: () -> [ExSwift.ExLayout?]) -> Self
+}
+public protocol ExViewProtocol : AnyObject {
+}
+extension ExSwift.ExViewProtocol where Self : UIKit.UIView {
+  public var parentViewController: UIKit.UIViewController? {
+    get
+  }
+  @discardableResult
+  public func layoutPriority(vertical: UIKit.UILayoutPriority? = nil, horizontal: UIKit.UILayoutPriority? = nil, verticalHugging: UIKit.UILayoutPriority? = nil, horizontalHugging: UIKit.UILayoutPriority? = nil, verticalCompression: UIKit.UILayoutPriority? = nil, horizontalCompression: UIKit.UILayoutPriority? = nil) -> Self
+  @discardableResult
+  public func frame(rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil, x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func background(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, tintColor: UIKit.UIColor? = nil) -> Self
+  @discardableResult
+  public func alpha(_ value: CoreFoundation.CGFloat) -> Self
+  @discardableResult
+  public func radius(_ value: CoreFoundation.CGFloat? = nil, corner: [UIKit.UIRectCorner]? = nil) -> Self
+  @discardableResult
+  public func clip(view: Swift.Bool? = nil, layer clipLayer: Swift.Bool? = nil) -> Self
+  @discardableResult
+  public func shadow(x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, color: UIKit.UIColor? = nil, opacity: Swift.Float? = nil) -> Self
+  @discardableResult
+  public func border(color: UIKit.UIColor, width: CoreFoundation.CGFloat, target: [ExSwift.ExEdge]? = nil) -> Self
+  @discardableResult
+  public func scale(width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, ratio: CoreFoundation.CGFloat? = nil) -> Self
+  @discardableResult
+  public func rotate(_ angle: CoreFoundation.CGFloat) -> Self
+  @discardableResult
+  public func subview(@ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView]) -> Self
+  @discardableResult
+  public func subview(_ views: [UIKit.UIView]) -> Self
+  @discardableResult
+  public func subview(@ExSwift.ExLayerBuilder _ builder: () -> [QuartzCore.CALayer]) -> Self
+  @discardableResult
+  public func sublayer(_ layers: [QuartzCore.CALayer]) -> Self
+  @discardableResult
+  public func bringToFront(@ExSwift.ExViewBuilder _ builder: () -> [UIKit.UIView]) -> Self
+  @discardableResult
+  public func bringToFront(_ views: [UIKit.UIView]) -> Self
+  public func draw(_ width: CoreFoundation.CGFloat, _ height: CoreFoundation.CGFloat, _ completion: @escaping (UIKit.UIImage?) -> Swift.Void)
+}
+public struct ExStateImage {
+  public init(state: UIKit.UIControl.State, image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil)
+  public static func normal(image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStateImage
+  public static func highLighted(image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStateImage
+  public static func disabled(image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStateImage
+  public static func selected(image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStateImage
+  public static func focused(image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStateImage
+}
+@_functionBuilder public struct ExStateImageBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStateImage) -> [ExSwift.ExStateImage]
+  public static func buildBlock(_ components: [ExSwift.ExStateImage]) -> [ExSwift.ExStateImage]
+  public static func buildBlock(_ components: [ExSwift.ExStateImage]...) -> [ExSwift.ExStateImage]
+  public static func buildExpression(_ expression: ExSwift.ExStateImage) -> [ExSwift.ExStateImage]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStateImage]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStateImage) -> [ExSwift.ExStateImage]
+  public static func buildExpression(_ expression: [ExSwift.ExStateImage]) -> [ExSwift.ExStateImage]
+  public static func buildIf(_ component: [ExSwift.ExStateImage]?) -> [ExSwift.ExStateImage]
+  public static func buildEither(first component: [ExSwift.ExStateImage]) -> [ExSwift.ExStateImage]
+  public static func buildEither(second component: [ExSwift.ExStateImage]) -> [ExSwift.ExStateImage]
+  public static func buildArray(_ components: [[ExSwift.ExStateImage]]) -> [ExSwift.ExStateImage]
+}
+public enum ExLayoutTag {
+  case top
+  case bottom
+  case left
+  case right
+  case centerX
+  case centerY
+  case width
+  case height
+  public static func == (a: ExSwift.ExLayoutTag, b: ExSwift.ExLayoutTag) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ExLayoutCompare {
+  case equalTo
+  case greaterThan
+  case lessThan
+  public static func == (a: ExSwift.ExLayoutCompare, b: ExSwift.ExLayoutCompare) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ExLayout {
+  public init(anchor: ExSwift.ExLayoutTag, target: UIKit.UIView? = nil, targetAnchor: ExSwift.ExLayoutTag? = nil, compare: ExSwift.ExLayoutCompare? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil)
+  public func constraint(view: UIKit.UIView) -> UIKit.NSLayoutConstraint?
+}
+public func topEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func topGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func topLessThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerYEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerYGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerYLessThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func bottomEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func bottomGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func bottomLessThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func leftEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func leftGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func leftLessThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerXEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerXGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func centerXLessThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func rightEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func rightGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func rightLessThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func widthEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func widthGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func widthLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func heightEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func heightGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+public func heightLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, value: CoreFoundation.CGFloat? = nil, priority: UIKit.UILayoutPriority? = nil) -> ExSwift.ExLayout?
+@_functionBuilder public struct ExLayoutBuilder {
+  public static func buildBlock(_ component: ExSwift.ExLayout?) -> [ExSwift.ExLayout?]
+  public static func buildBlock(_ components: [ExSwift.ExLayout?]) -> [ExSwift.ExLayout?]
+  public static func buildBlock(_ components: [ExSwift.ExLayout?]...) -> [ExSwift.ExLayout?]
+  public static func buildExpression(_ expression: ExSwift.ExLayout?) -> [ExSwift.ExLayout?]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExLayout?]
+  public static func buildExpression(_ expression: () -> ExSwift.ExLayout?) -> [ExSwift.ExLayout?]
+  public static func buildExpression(_ expression: [ExSwift.ExLayout?]) -> [ExSwift.ExLayout?]
+  public static func buildIf(_ component: [ExSwift.ExLayout]?) -> [ExSwift.ExLayout]
+  public static func buildEither(first component: [ExSwift.ExLayout?]) -> [ExSwift.ExLayout?]
+  public static func buildEither(second component: [ExSwift.ExLayout?]) -> [ExSwift.ExLayout?]
+  public static func buildArray(_ components: [[ExSwift.ExLayout?]]) -> [ExSwift.ExLayout?]
+}
+public struct ExStatePadding {
+  public init(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil)
+  public static func normal(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStatePadding
+  public static func highlighted(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStatePadding
+  public static func disabled(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStatePadding
+  public static func selected(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStatePadding
+  public static func focused(state: UIKit.UIControl.State, _ value: CoreFoundation.CGFloat? = nil, vertical: CoreFoundation.CGFloat? = nil, horizontal: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExStatePadding
+}
+@_functionBuilder public struct ExStatePaddingBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStatePadding) -> [ExSwift.ExStatePadding]
+  public static func buildBlock(_ components: [ExSwift.ExStatePadding]) -> [ExSwift.ExStatePadding]
+  public static func buildBlock(_ components: [ExSwift.ExStatePadding]...) -> [ExSwift.ExStatePadding]
+  public static func buildExpression(_ expression: ExSwift.ExStatePadding) -> [ExSwift.ExStatePadding]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStatePadding]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStatePadding) -> [ExSwift.ExStatePadding]
+  public static func buildExpression(_ expression: [ExSwift.ExStatePadding]) -> [ExSwift.ExStatePadding]
+  public static func buildIf(_ component: [ExSwift.ExStatePadding]?) -> [ExSwift.ExStatePadding]
+  public static func buildEither(first component: [ExSwift.ExStatePadding]) -> [ExSwift.ExStatePadding]
+  public static func buildEither(second component: [ExSwift.ExStatePadding]) -> [ExSwift.ExStatePadding]
+  public static func buildArray(_ components: [[ExSwift.ExStatePadding]]) -> [ExSwift.ExStatePadding]
+}
+@_functionBuilder public struct ExViewBuilder {
+  public static func buildBlock(_ component: UIKit.UIView) -> [UIKit.UIView]
+  public static func buildBlock(_ components: [UIKit.UIView]) -> [UIKit.UIView]
+  public static func buildBlock(_ components: [UIKit.UIView]...) -> [UIKit.UIView]
+  public static func buildExpression(_ expression: UIKit.UIView) -> [UIKit.UIView]
+  public static func buildExpression(_ expression: Swift.Void) -> [UIKit.UIView]
+  public static func buildExpression(_ expression: () -> UIKit.UIView) -> [UIKit.UIView]
+  public static func buildExpression(_ expression: [UIKit.UIView]) -> [UIKit.UIView]
+  public static func buildIf(_ component: [UIKit.UIView]?) -> [UIKit.UIView]
+  public static func buildEither(first component: [UIKit.UIView]) -> [UIKit.UIView]
+  public static func buildEither(second component: [UIKit.UIView]) -> [UIKit.UIView]
+  public static func buildArray(_ components: [[UIKit.UIView]]) -> [UIKit.UIView]
 }
 extension QuartzCore.CAGradientLayer {
   public func frame(_ x: CoreFoundation.CGFloat, _ y: CoreFoundation.CGFloat, _ w: CoreFoundation.CGFloat, _ h: CoreFoundation.CGFloat) -> QuartzCore.CAGradientLayer
   public func bg(clr: UIKit.UIColor) -> QuartzCore.CAGradientLayer
   public func point(start x: CoreFoundation.CGFloat, _ y: CoreFoundation.CGFloat) -> QuartzCore.CAGradientLayer
   public func point(end x: CoreFoundation.CGFloat, _ y: CoreFoundation.CGFloat) -> QuartzCore.CAGradientLayer
+}
+extension SwiftUICore.Color {
+  public init(rgb red: Swift.Int, _ green: Swift.Int, _ blue: Swift.Int)
+  public init(rgba red: Swift.Int, _ green: Swift.Int, _ blue: Swift.Int, _ opacity: Swift.Double = 1.0)
+  public init(hex: Swift.String)
 }
 extension Foundation.Date {
   public var int: Swift.Int {
@@ -33,6 +679,30 @@ extension Foundation.Date {
   public var left: Swift.String {
     get
   }
+}
+public struct ExStateBackground {
+  public init(state: UIKit.UIControl.State, color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil)
+  public static func normal(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> ExSwift.ExStateBackground
+  public static func hightlighted(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> ExSwift.ExStateBackground
+  public static func disabled(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> ExSwift.ExStateBackground
+  public static func selected(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> ExSwift.ExStateBackground
+  public static func focused(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> ExSwift.ExStateBackground
+}
+@_functionBuilder public struct ExStateBackgroundBuilder {
+  public static func buildBlock(_ component: ExSwift.ExStateBackground) -> [ExSwift.ExStateBackground]
+  public static func buildBlock(_ components: [ExSwift.ExStateBackground]) -> [ExSwift.ExStateBackground]
+  public static func buildBlock(_ components: [ExSwift.ExStateBackground]...) -> [ExSwift.ExStateBackground]
+  public static func buildExpression(_ expression: ExSwift.ExStateBackground) -> [ExSwift.ExStateBackground]
+  public static func buildExpression(_ expression: Swift.Void) -> [ExSwift.ExStateBackground]
+  public static func buildExpression(_ expression: () -> ExSwift.ExStateBackground) -> [ExSwift.ExStateBackground]
+  public static func buildExpression(_ expression: [ExSwift.ExStateBackground]) -> [ExSwift.ExStateBackground]
+  public static func buildIf(_ component: [ExSwift.ExStateBackground]?) -> [ExSwift.ExStateBackground]
+  public static func buildEither(first component: [ExSwift.ExStateBackground]) -> [ExSwift.ExStateBackground]
+  public static func buildEither(second component: [ExSwift.ExStateBackground]) -> [ExSwift.ExStateBackground]
+  public static func buildArray(_ components: [[ExSwift.ExStateBackground]]) -> [ExSwift.ExStateBackground]
+}
+extension SwiftUICore.Image {
+  public init(url: Swift.String)
 }
 extension Swift.Int {
   public var string: Swift.String {
@@ -83,240 +753,6 @@ extension Swift.String {
   public func firstReplace(regex: Swift.Bool? = nil, _ key: Swift.String, _ value: Swift.String) -> Swift.String
   public func replaceAll(regex: Swift.Bool? = nil, _ key: Swift.String, _ value: Swift.String) -> Swift.String
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExButton : UIKit.UIButton, ExSwift.ExViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func background(for state: UIKit.UIControl.State? = nil, color: UIKit.UIColor? = nil, imageTarget: UIKit.UIImage? = nil, contentMode: UIKit.UIView.ContentMode? = nil, tintColor: UIKit.UIColor? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func text(for state: UIKit.UIControl.State? = nil, _ value: Swift.String? = nil, subtitle: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.UIButton.Configuration.TitleAlignment? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func font(for state: UIKit.UIControl.State? = nil, _ font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func subTitleFont(for state: UIKit.UIControl.State? = nil, _ subTitle: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func image(for state: UIKit.UIControl.State? = nil, _ image: UIKit.UIImage? = nil, size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, radius: CoreFoundation.CGFloat? = nil, radiusCorner: [UIKit.UIRectCorner]? = nil, placement: UIKit.NSDirectionalRectEdge? = nil, gap: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func padding(for state: UIKit.UIControl.State? = nil, _ value: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func `if`(button bool: Swift.Bool, _ _self: (UIKit.UIButton) throws -> Swift.Void) rethrows -> Self
-  @_Concurrency.MainActor @preconcurrency public func action(for event: UIKit.UIControl.Event, _ action: ObjectiveC.Selector) -> Self
-  public typealias ExButtonActionClosure = (ExSwift.ExButton) -> Swift.Void
-  @_Concurrency.MainActor @preconcurrency public func action(for event: UIKit.UIControl.Event = .touchUpInside, _ closure: @escaping ExSwift.ExButton.ExButtonActionClosure) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExCollectionView : UIKit.UICollectionView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UICollectionViewDelegate)? = nil, dataSource dataSocurcValue: (any UIKit.UICollectionViewDataSource)? = nil, layout layoutValue: UIKit.UICollectionViewLayout)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func header(_ header: Swift.AnyClass?, _ id: Swift.String) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func cell(id: Swift.String, cell: Swift.AnyClass?) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func scroll(to index: Foundation.IndexPath, _ position: UIKit.UICollectionView.ScrollPosition, _ animate: Swift.Bool) -> Self
-  @_Concurrency.MainActor @preconcurrency public func insert(indexPaths: [Foundation.IndexPath], _ completion: ((Swift.Bool) -> Swift.Void)?) -> Self
-  @_Concurrency.MainActor @preconcurrency public func delete(indexPaths: [Foundation.IndexPath], _ completion: ((Swift.Bool) -> Swift.Void)?) -> Self
-  @_Concurrency.MainActor @preconcurrency public func cell(indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell?
-  @_Concurrency.MainActor @preconcurrency public func cell(reuse tag: Swift.String, indexPath: Foundation.IndexPath) -> UIKit.UICollectionViewCell
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect, collectionViewLayout layout: UIKit.UICollectionViewLayout)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-extension UIKit.UICollectionViewFlowLayout {
-  @_Concurrency.MainActor @preconcurrency public func set(spacing lineSpacing: CoreFoundation.CGFloat, _ itemSpacing: CoreFoundation.CGFloat, _ direction: UIKit.UICollectionView.ScrollDirection)
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExImageView : UIKit.UIImageView, ExSwift.ExViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func image(_ imageTarget: UIKit.UIImage? = nil, tintColor: UIKit.UIColor? = nil, mode: UIKit.UIView.ContentMode? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func carousel(list: [UIKit.UIImage]? = nil, sec: Swift.Double? = nil, state: ExSwift.ExSwiftSwitch? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func resizeToFit(_ mode: ExSwift.ExSwiftContentMode? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func radius(_ value: CoreFoundation.CGFloat? = nil, corner: [UIKit.UIRectCorner]? = nil) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(image: UIKit.UIImage?)
-  @available(iOS 3.0, *)
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(image: UIKit.UIImage?, highlightedImage: UIKit.UIImage?)
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExLabel : UIKit.UILabel, ExSwift.ExViewProtocol {
-  @_Concurrency.MainActor @preconcurrency public var ExLabelContentInset: UIKit.UIEdgeInsets {
-    get
-    set
-  }
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var intrinsicContentSize: CoreFoundation.CGSize {
-    @objc get
-  }
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func drawText(in rect: CoreFoundation.CGRect)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func text(_ value: Swift.String? = "", color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil, line: Swift.Int? = nil, breakMode: UIKit.NSLineBreakMode? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func font(_ fontStyle: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil, sizeToFit: Swift.Bool? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func padding(_ value: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> ExSwift.ExLabel
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func `if`(label bool: Swift.Bool, _ _self: (UIKit.UILabel) throws -> Swift.Void) rethrows -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-public protocol ExScrollViewProtocol : AnyObject {
-}
-extension ExSwift.ExScrollViewProtocol where Self : UIKit.UIScrollView {
-  @discardableResult
-  public func indicator(_ value: Swift.Bool? = nil, vertical: Swift.Bool? = nil, horizontal: Swift.Bool? = nil) -> Self
-  @discardableResult
-  public func padding(_ value: CoreFoundation.CGFloat? = nil, top: CoreFoundation.CGFloat? = nil, left: CoreFoundation.CGFloat? = nil, bottom: CoreFoundation.CGFloat? = nil, right: CoreFoundation.CGFloat? = nil) -> Self
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExScrollView : UIKit.UIScrollView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UIScrollViewDelegate)? = nil)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func horizontal(delegate: (any UIKit.UIScrollViewDelegate)? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func horizontal(contentSize value: CoreFoundation.CGSize, indicator: Swift.Bool? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func vertical(contentSize value: CoreFoundation.CGSize, indicator: Swift.Bool? = nil) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExStackView : UIKit.UIStackView, ExSwift.ExViewProtocol {
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func horizontal(distribution: UIKit.UIStackView.Distribution? = nil, alignment: UIKit.UIStackView.Alignment? = nil, gap: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func vertical(distribution: UIKit.UIStackView.Distribution? = nil, alignment: UIKit.UIStackView.Alignment? = nil, gap: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func subview(_ views: [UIKit.UIView]) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExTableView : UIKit.UITableView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UITableViewDelegate)? = nil, dataSource dataSourceValue: (any UIKit.UITableViewDataSource)? = nil)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func cell(id: Swift.String, cell: Swift.AnyClass?) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect, style: UIKit.UITableView.Style)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExTextField : UIKit.UITextField, ExSwift.ExViewProtocol {
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func text(_ text: Swift.String? = nil, color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil, placeholder: Swift.String? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func font(_ font: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil, sizeToFit: Swift.Bool? = nil) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExTextView : UIKit.UITextView, ExSwift.ExViewProtocol, ExSwift.ExScrollViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(delegate delegateValue: (any UIKit.UITextViewDelegate)? = nil)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func text(_ value: Swift.String? = "", color: UIKit.UIColor? = nil, alignment: UIKit.NSTextAlignment? = nil) -> Self
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func font(_ fontStyle: UIKit.UIFont? = nil, name: Swift.String? = nil, size: CoreFoundation.CGFloat? = nil, weight: UIKit.UIFont.Weight? = nil, italic: Swift.Bool? = nil) -> Self
-  @available(iOS 7.0, *)
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect, textContainer: UIKit.NSTextContainer?)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExView : UIKit.UIView, ExSwift.ExViewProtocol {
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func `if`(_ bool: Swift.Bool, _ void: (Self) throws -> Swift.Void) rethrows -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
-public protocol ExViewProtocol : AnyObject {
-}
-extension ExSwift.ExViewProtocol where Self : UIKit.UIView {
-  public var parentViewController: UIKit.UIViewController? {
-    get
-  }
-  @discardableResult
-  public func frame(x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, rect: CoreFoundation.CGRect? = nil, origin: CoreFoundation.CGPoint? = nil, size: CoreFoundation.CGSize? = nil) -> Self
-  @discardableResult
-  public func background(color: UIKit.UIColor? = nil, image: UIKit.UIImage? = nil, tintColor: UIKit.UIColor? = nil) -> Self
-  @discardableResult
-  public func alpha(_ value: CoreFoundation.CGFloat) -> Self
-  @discardableResult
-  public func radius(_ value: CoreFoundation.CGFloat? = nil, corner: [UIKit.UIRectCorner]? = nil) -> Self
-  @discardableResult
-  public func clip(view: Swift.Bool = true, layer clipLayer: Swift.Bool = true) -> Self
-  @discardableResult
-  public func shadow(x: CoreFoundation.CGFloat? = nil, y: CoreFoundation.CGFloat? = nil, blur: CoreFoundation.CGFloat? = nil, color: UIKit.UIColor? = nil, alpha: Swift.Float? = nil) -> Self
-  @discardableResult
-  public func border(color: UIKit.UIColor, width: CoreFoundation.CGFloat, target: [ExSwift.ExSwiftEdgeSet]? = nil) -> Self
-  @discardableResult
-  public func scale(width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil, ratio: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func rotate(_ angle: CoreFoundation.CGFloat) -> Self
-  @discardableResult
-  public func subview(_ views: [UIKit.UIView]) -> Self
-  @discardableResult
-  public func sublayer(_ layers: [QuartzCore.CALayer]) -> Self
-  @discardableResult
-  public func bringToFront(_ views: [UIKit.UIView]) -> Self
-  public func draw(_ width: CoreFoundation.CGFloat, _ height: CoreFoundation.CGFloat, _ completion: @escaping (UIKit.UIImage?) -> Swift.Void)
-  @discardableResult
-  public func leftEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func leftGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func leftLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerXEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerXGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerXLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func rightEqualTo(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func rightGreaterThan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func rightLessTgan(left: UIKit.UIView? = nil, centerX: UIKit.UIView? = nil, right: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func topEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func topGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func topLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerYEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerYGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func centerYLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func bottomEqualTo(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func bottomGreaterThan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func bottomLessTgan(top: UIKit.UIView? = nil, centerY: UIKit.UIView? = nil, bottom: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func widthEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func widthGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func widthLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func heightEqualTo(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func heightGreaterThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-  @discardableResult
-  public func heightLessThan(width: UIKit.UIView? = nil, height: UIKit.UIView? = nil, _ value: CoreFoundation.CGFloat? = nil) -> Self
-}
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class ExVisualEffectView : UIKit.UIVisualEffectView, ExSwift.ExViewProtocol {
-  @_Concurrency.MainActor @preconcurrency convenience public init(style: UIKit.UIBlurEffect.Style)
-  @discardableResult
-  @_Concurrency.MainActor @preconcurrency public func subview(_ views: [UIKit.UIView]) -> Self
-  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(effect: UIKit.UIVisualEffect?)
-  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
-  @objc deinit
-}
 extension UIKit.UIColor {
   convenience public init(rgb red: CoreFoundation.CGFloat, _ green: CoreFoundation.CGFloat, _ blue: CoreFoundation.CGFloat, _ alpha: CoreFoundation.CGFloat? = nil)
   convenience public init(rgb value: Swift.String)
@@ -348,53 +784,26 @@ extension UIKit.UIImage {
   public func resize(size: CoreFoundation.CGSize? = nil, width: CoreFoundation.CGFloat? = nil, height: CoreFoundation.CGFloat? = nil) -> UIKit.UIImage
   public func radius(_ radius: CoreFoundation.CGFloat? = nil, corner: [UIKit.UIRectCorner]? = nil) -> UIKit.UIImage
 }
-public enum ExSwiftEdgeSet {
-  case top
-  case bottom
-  case leading
-  case trailing
-  case horizontal
-  case vertical
-  case all
-  public static func == (a: ExSwift.ExSwiftEdgeSet, b: ExSwift.ExSwiftEdgeSet) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public enum ExSwiftSwitch {
-  case on
-  case off
-  public static func == (a: ExSwift.ExSwiftSwitch, b: ExSwift.ExSwiftSwitch) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public enum ExSwiftContentMode {
-  case scaleAspectFill
-  case scaleAspectFit
-  public static func == (a: ExSwift.ExSwiftContentMode, b: ExSwift.ExSwiftContentMode) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
 public let vw: CoreFoundation.CGFloat
 public let vh: CoreFoundation.CGFloat
+public func vw(_ value: Swift.Double) -> CoreFoundation.CGFloat
+public func vh(_ value: Swift.Double) -> CoreFoundation.CGFloat
 public var safeArea: UIKit.UIEdgeInsets {
   get
 }
-public protocol PDExtension {
-}
-extension ExSwift.PDExtension where Self : AnyObject {
-  public func `_`(_ _self: (Self) throws -> Swift.Void) rethrows -> Self
-}
-extension ObjectiveC.NSObject : ExSwift.PDExtension {
-}
-extension ExSwift.ExSwiftEdgeSet : Swift.Equatable {}
-extension ExSwift.ExSwiftEdgeSet : Swift.Hashable {}
-extension ExSwift.ExSwiftSwitch : Swift.Equatable {}
-extension ExSwift.ExSwiftSwitch : Swift.Hashable {}
-extension ExSwift.ExSwiftContentMode : Swift.Equatable {}
-extension ExSwift.ExSwiftContentMode : Swift.Hashable {}
+extension ExSwift.ExContentMode : Swift.Equatable {}
+extension ExSwift.ExContentMode : Swift.Hashable {}
+extension ExSwift.ExEdge : Swift.Equatable {}
+extension ExSwift.ExEdge : Swift.Hashable {}
+extension ExSwift.ExStackDistribution : Swift.Equatable {}
+extension ExSwift.ExStackDistribution : Swift.Hashable {}
+extension ExSwift.ExStackHorizontalAlignment : Swift.Equatable {}
+extension ExSwift.ExStackHorizontalAlignment : Swift.Hashable {}
+extension ExSwift.ExStackVerticalAlignment : Swift.Equatable {}
+extension ExSwift.ExStackVerticalAlignment : Swift.Hashable {}
+extension ExSwift.ExSwitchState : Swift.Equatable {}
+extension ExSwift.ExSwitchState : Swift.Hashable {}
+extension ExSwift.ExLayoutTag : Swift.Equatable {}
+extension ExSwift.ExLayoutTag : Swift.Hashable {}
+extension ExSwift.ExLayoutCompare : Swift.Equatable {}
+extension ExSwift.ExLayoutCompare : Swift.Hashable {}

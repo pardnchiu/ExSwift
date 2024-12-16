@@ -1,93 +1,184 @@
-## ExButton
+# ExButton 文檔
 
-> [!Note]
-> 包含 **ExView** 所有方法
+## 概述
+ExButton 是一個強大的 UIButton 擴展類，提供豐富的配置選項和狀態管理功能，支持鏈式調用和聲明式語法。
 
-- `background`
-    > [!Note]
-    > 功能： 設定按鈕的背景色或背景圖片。
-    ``` Swift
-    func background(color: UIColor? = nil, image: UIImage? = nil, contentMode: UIView.ContentMode? = nil, tintColor: UIColor? = nil, state: UIControl.State? = nil) -> Self
+## 初始化
+```swift
+// 創建空按鈕
+let button = ExButton();
+
+// 創建帶標題的按鈕
+let button = ExButton("標題", subTitle: "副標題");
+
+// 創建帶子視圖的按鈕
+let button = ExButton {
+    customView1
+    customView2
+};
+
+// 使用變量引用
+var myButton: ExButton?
+ExButton(&myButton, "標題");
+```
+
+## 外觀設置
+
+- ### 背景配置
+    ```swift
+    // 設置背景顏色或圖片
+    button.background(
+        for: .normal,                    // 按鈕狀態
+        color: .blue,                    // 背景顏色
+        image: UIImage(named: "bg"),     // 背景圖片
+        contentMode: .scaleAspectFill,   // 內容模式
+        tintColor: .white                // 色調顏色
+    )
+
+    // 使用狀態構建器
+    button.background {
+        .normal(color: .blue)
+        .highlighted(color: .lightBlue)
+        .disabled(color: .gray)
+    }
     ```
-    ```Swift
-    button.background(color: .blue, state: .normal)
-    button.background(image: UIImage(named: "background"), contentMode: .scaleAspectFill)
+- ### 圓角設置
+    ```swift
+    // 設置圓角
+    button.radius(10, corner: [.topLeft, .bottomRight])
     ```
-- `text`
-    > [!Note]
-    > 功能： 設定按鈕的標題文字、子標題、顏色和對齊方式。
-    ```Swift
-    func text(_ value: String? = nil, subtitle: String? = nil, color: UIColor? = nil, alignment: UIButton.Configuration.TitleAlignment? = nil, state: UIControl.State? = nil) -> Self
+- ### 文字設置
+    ```swift
+    // 設置文字內容和樣式
+    button.text(
+        for: .normal,                    // 按鈕狀態
+        "按鈕文字",                      // 主標題
+        subTitle: "副標題",              // 副標題
+        color: .white,                   // 文字顏色
+        alignment: .center,              // 文字對齊
+        verticalAlignment: .center,      // 垂直對齊
+        horzontalAlignment: .center      // 水平對齊
+    )
+
+    // 使用狀態構建器
+    button.text {
+        .normal("正常狀態", color: .black)
+        .highlighted("按下狀態", color: .gray)
+        .disabled("禁用狀態", color: .lightGray)
+    }
     ```
-    ```Swift
-    button.text("確認", subtitle: "請點擊確認", color: .white, alignment: .center, state: .normal)
+- ### 字體設置
+    ```swift
+    // 設置主標題字體
+    button.font(
+        for: .normal,                    // 按鈕狀態
+        .systemFont(ofSize: 16),         // 字體
+        name: "Arial",                   // 字體名稱
+        size: 16,                        // 字體大小
+        weight: .bold,                   // 字重
+        italic: false                    // 是否斜體
+    )
+
+    // 設置副標題字體
+    button.subTitleFont(
+        for: .normal,
+        .systemFont(ofSize: 14),
+        weight: .regular
+    )
+
+    // 使用狀態構建器
+    button.font {
+        .normal(size: 16, weight: .bold)
+        .highlighted(size: 16, weight: .regular)
+    }
     ```
-- `font`
-    > [!Note]
-    > 功能： 設定按鈕標題文字的字體、字重、大小等屬性。
-    ```Swift
-    func font(_ font: UIFont? = nil, name: String? = nil, size: CGFloat? = nil, weight: UIFont.Weight? = nil, italic: Bool? = nil, state: UIControl.State? = nil) -> Self
+- ### 圖片設置
+    ```swift
+    // 設置按鈕圖片
+    button.image(
+        for: .normal,                    // 按鈕狀態
+        UIImage(named: "icon"),          // 圖片
+        size: CGSize(width: 24, height: 24), // 尺寸
+        radius: 12,                      // 圓角
+        placement: .leading,             // 位置
+        gap: 8                          // 間距
+    )
+
+    // 使用狀態構建器
+    button.image {
+        .normal(UIImage(named: "normal"))
+        .highlighted(UIImage(named: "highlighted"))
+    }
     ```
-    ```Swift
-    button.font(name: "Arial", size: 18, weight: .bold)
+- ### 內邊距設置
+    ```swift
+    // 設置內邊距
+    button.padding(
+        for: .normal,                    // 按鈕狀態
+        16,                             // 統一內邊距
+        vertical: 12,                    // 垂直內邊距
+        horizontal: 16                   // 水平內邊距
+    )
+
+    // 使用狀態構建器
+    button.padding {
+        .normal(vertical: 12, horizontal: 16)
+        .highlighted(vertical: 10, horizontal: 14)
+    }
     ```
-- `subTitleFont`
-    > [!Note]
-    > 功能： 設定按鈕子標題文字的字體、字重、大小等屬性。
-    ```Swift
-    func subTitleFont(_ subTitle: UIFont? = nil, name: String? = nil, size: CGFloat? = nil, weight: UIFont.Weight? = nil, italic: Bool? = nil, state: UIControl.State? = nil) -> Self
+
+## 事件處理
+
+- ### 選擇器方式
+    ```swift
+    button.onTouch(.touchUpInside, #selector(buttonTapped))
     ```
-    ```Swift
-    button.subTitleFont(name: "Helvetica", size: 12, italic: true)
+- ### 閉包方式
+    ```swift
+    button.onTouch(.touchUpInside) { button in
+        // 處理點擊事件
+    }
     ```
-- `image`
-    > [!Note]
-    > 功能： 設定按鈕圖片的大小、圓角、圖片位置等屬性。
-    ```Swift
-    func image(_ image: UIImage? = nil, size: CGSize? = nil, width: CGFloat? = nil, height: CGFloat? = nil, radius: CGFloat? = nil, radiusCorner: [UIRectCorner]? = nil, placement: NSDirectionalRectEdge? = nil, gap: CGFloat? = nil, state: UIControl.State? = nil) -> Self
-    ```
-    ```Swift
-    button.image(UIImage(named: "icon"), size: CGSize(width: 24, height: 24), placement: .leading, gap: 8)
-    ```
-- `padding`
-    > [!Note]
-    > 功能： 設定按鈕的內邊距，支持統一或分方向設定。
-    ```Swift
-    func padding(_ value: CGFloat? = nil, top: CGFloat? = nil, left: CGFloat? = nil, bottom: CGFloat? = nil, right: CGFloat? = nil, state: UIControl.State? = nil) -> Self
-    ```
-    ```Swift
-    button.padding(top: 8, left: 12, bottom: 8, right: 12)
-    button.padding(8)   // 四邊一致
-    button.padding()    // 四邊一致 (預設 16)
-    ```
-- `if`
-    > [!Note]
-    > 功能： 根據條件執行指定操作。
-    ```Swift
-    func `if`(button bool: Bool, _ _self: (UIButton) throws -> Void) rethrows -> Self
-    ```
-    ```Swift
-    button.if(自訂條件為真) { button in
-        button.background(color: .green);
-    };
-    ```
-- `action`
-    > [!Note]
-    > 功能： 為按鈕添加目標動作。
-    ```Swift
-    func action(for event: UIControl.Event, _ action: Selector) -> Self
-    ```
-    ```Swift
-    button.action(for: .touchUpInside, #selector(Selector_Name))
-    ```
-- `action closure`
-    > [!Note]
-    > 功能： 使用閉包方式為按鈕添加動作。
-    ```Swift
-    func action(for event: UIControl.Event = .touchUpInside, _ closure: @escaping ExButtonActionClosure) -> Self
-    ```
-    ```Swift
-    button.action(for: .touchUpInside) { button in
-        print("已點擊");
-    };
-    ```
+
+## 條件配置
+```swift
+button.if(shouldApplyStyle) { button in
+    button.background(color: .blue)
+        .text("特殊樣式")
+        .font(size: 18, weight: .bold)
+}
+```
+
+## 自動佈局
+ExButton 支持自動佈局系統：
+- 自動激活約束
+- 支持在滾動視圖中使用
+- 自動更新框架大小
+
+### 示例
+```swift
+let button = ExButton("標題")
+    .background(color: .blue)
+    .text(color: .white)
+    .font(size: 16, weight: .bold)
+    .radius(8)
+    .padding(vertical: 12, horizontal: 16)
+    .onTouch(.touchUpInside) { button in
+        print("按鈕被點擊")
+    }
+```
+
+## 狀態管理
+ExButton 提供完整的狀態管理系統，支持：
+- `.normal`：正常狀態
+- `.highlighted`：高亮狀態
+- `.disabled`：禁用狀態
+- `.selected`：選中狀態
+- `.focused`：焦點狀態
+
+每個狀態都可以配置：
+- 背景顏色和圖片
+- 文字內容和樣式
+- 字體設置
+- 圖片設置
+- 內邊距
