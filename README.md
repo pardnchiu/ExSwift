@@ -39,26 +39,26 @@
 var bool = false;
 myView.subview([
     // 主容器視圖
-    ExView()
+    ExZStack()
         .frame(x: 0, y: 0, width: 300, height: 400) // 設置框架大小
         .background(color: .white) // 背景設為白色
         .subview([
             // 子視圖 1：標題容器
-            ExView()
+            ExZStack()
                 .frame(x: 10, y: 10, width: 280, height: 50) // 設置大小與位置
                 .background(color: .lightGray) // 背景設為淺灰
                 .subview([
-                    ExLabel()
+                    ExText()
                         .frame(x: 10, y: 10, width: 260, height: 30) // 設置標籤框架
                         .text("標題1", color: .red, alignment: .center) // 設置標題文字
                         .background(color: .clear) // 背景透明
-                        .if(bool) { label in
-                            label.text("標題2", color: .black, alignment: .center) // 設置標題文字
+                        .if(bool) {
+                            $0.text("標題2", color: .black, alignment: .center) // 設置標題文字
                         }
                 ]),
 
             // 子視圖 2：按鈕容器
-            ExView()
+            ExZStack()
                 .frame(x: 10, y: 70, width: 280, height: 300) // 按鈕容器框架
                 .background(color: .gray) // 背景設為灰色
                 .subview([
@@ -66,10 +66,9 @@ myView.subview([
                         .frame(x: 20, y: 20, width: 120, height: 40) // 按鈕1框架
                         .background(color: .blue) // 按鈕默認背景藍色
                         .text("按鈕1", color: .red, state: .normal) // 按鈕文字紅色
-                        .action(.touchUpInside) { button in
-                            button
-                                .background(color: .red) // 點擊後背景變紅
-                                .text("已點擊", color: .white, state: .normal) // 文字變白
+                        .action(.touchUpInside) {
+                            $0.background(color: .red) // 點擊後背景變紅
+                              .text("已點擊", color: .white, state: .normal) // 文字變白
                         },
                     ExButton()
                         .frame(x: 140, y: 20, width: 120, height: 40) // 按鈕2框架
@@ -77,8 +76,8 @@ myView.subview([
                         .background(color: .blue, state: .disabled) // 禁用時背景藍色
                         .text("按鈕2", color: .red, state: .normal) // 默認文字紅色
                         .text("已停用", state: .disabled) // 禁用時文字
-                        .action(.touchUpInside) { button in
-                            button.isEnabled = false // 點擊後禁用按鈕
+                        .action(.touchUpInside) {
+                            $0.isEnabled = false // 點擊後禁用按鈕
                         }
                 ])
         ])
